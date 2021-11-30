@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Nosotros from "./nosotros.js";
 
 export const Navbar = () => {
 	return (
@@ -12,7 +13,35 @@ export const Navbar = () => {
 					<nav className="navbar navbar-expand-lg navbar-light bg-light">
 						<div className="container-fluid">
 							<a className="navbar-brand" href="#">
-								Navbar
+								Información
+							</a>
+							<button
+								className="navbar-toggler"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#navbarSupportedContent"
+								aria-controls="navbarSupportedContent"
+								aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span className="navbar-toggler-icon" />
+							</button>
+							<a className="navbar-brand" href="#">
+								Servicios
+							</a>
+							<button
+								className="navbar-toggler"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#navbarSupportedContent"
+								aria-controls="navbarSupportedContent"
+								aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span className="navbar-toggler-icon" />
+							</button>
+							<a className="navbar-brand" href="#">
+								<div>
+									<Nosotros />
+								</div>
 							</a>
 							<button
 								className="navbar-toggler"
@@ -34,20 +63,13 @@ export const Navbar = () => {
 											Link
 										</a>
 									</li>
-
-									<li className="nav-item">
-										<a className="nav-link disabled">REGISTRESE</a>
-									</li>
 								</ul>
 								<form className="d-flex">
-									<input
-										className="form-control me-2"
-										type="search"
-										placeholder="Search"
-										aria-label="Search"
-									/>
 									<button className="btn btn-outline-success" type="submit">
-										Search
+										REGISTRESE
+									</button>
+									<button className="btn btn-outline-primary" type="submit">
+										LOGIN
 									</button>
 								</form>
 							</div>
