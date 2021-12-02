@@ -2,7 +2,7 @@ import React from "react";
 
 const Form = () => {
 	return (
-		<form className="row g-3">
+		<form className="row g-3 ms-4 me-4">
 			<div className="row g-3">
 				<div className="col">
 					<label htmlFor="name" className="form-label">
