@@ -4,8 +4,6 @@ const Jumbotron = () => {
 	return (
 		<div className="container-fluid first-Jumbotron">
 			<h1 className="text-white title text-center">JAF</h1>
-
-			<button className="" />
 		</div>
 	);
 };
