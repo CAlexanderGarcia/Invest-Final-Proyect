@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Form from "./form";
 
 export const Navbar = () => {
 	return (
@@ -10,7 +11,7 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
+						<button className="btn btn-primary">Register</button>
 					</Link>
 				</div>
 			</div>
