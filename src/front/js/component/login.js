@@ -3,6 +3,7 @@ import Modal from "../component/modal.js";
 
 const Login = () => {
 	const [show, setShow] = useState(false);
+	
 
 	return (
 		<div>
@@ -20,10 +21,7 @@ const Login = () => {
 
 			<ul>
 				<li>
-					<Modal 
-					title="pablito" 
-					close="close" 
-					save="save" />
+					<Modal />
 				</li>
 			</ul>
 		</div>

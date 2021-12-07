@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
-const Modal = props => {
+const Modal = () => {
 	const [show, setShow] = useState(false);
+	const { store, actions } = useContext(Context);
 
 	return (
 		<div>
@@ -53,7 +55,7 @@ const Modal = props => {
 							</div>
 
 							<div className="group">
-								<input id="check" type="checkbox" className="check" checked />
+								<input id="check" type="checkbox" className="check" />
 								<label htmlFor="check">
 									<span className="icon" /> Keep me Signed in
 								</label>
@@ -74,3 +76,9 @@ const Modal = props => {
 };
 
 export default Modal;
+
+//		<p>
+//			{store.login.map((value, index) => {
+//				return <p key={index}>{value.Username}</p>;
+//			})}
+//		</p>
