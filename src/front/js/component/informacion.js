@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 
-const Nosotros = () => {
+const Informacion = () => {
 	const [show, setShow] = useState(false);
 
 	return (
 		<div className="dropdown">
 			<a
+				className="btn Informacion mx-5 fs-5"
 				href="#"
-				className="btn Nosotros fs-5 mx-5"
 				onMouseOver={() => {
 					setShow(!show);
 				}}
 				onMouseOut={() => {
 					setShow(!show);
 				}}>
-				<span id="span9" />
-				<span id="span10" />
-				<span id="span11" />
-				<span id="span12" />
-				Nosotros
+				<span id="span17" />
+				<span id="span18" />
+				<span id="span19" />
+				<span id="span20" />
+				Información
 			</a>
 
 			<ul className={"dropdown-menu " + (show ? "show" : "")} />
@@ -26,4 +26,4 @@ const Nosotros = () => {
 	);
 };
 
-export default Nosotros;
+export default Informacion;
