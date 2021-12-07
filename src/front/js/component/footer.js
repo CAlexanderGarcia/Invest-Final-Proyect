@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-
-export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-skull text-danger" /> by <a href="http://www.4geeksacademy.com">JAF</a>
-		</p>
-	</footer>
-);
-=======
 import React, { useState } from "react";
-
 
 export const Footer = () => {
 	const [dropend, setDropend] = useState(false);
@@ -156,4 +144,3 @@ export const Footer = () => {
 	);
 };
 
->>>>>>> cd0b9a9b8e8c924b01e335c8fac88775c1cf4902
