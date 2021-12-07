@@ -10,7 +10,7 @@ import Resgistrese from "./registrese.js";
 import Modal from "../component/modal";
 >>>>>>> cd0b9a9b8e8c924b01e335c8fac88775c1cf4902
 
-export const Navbar = () => {
+const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container navigation ">
@@ -47,5 +47,5 @@ export const Navbar = () => {
 		</nav>
 	);
 };
-//fijarme los div y las etiquetas de cada componente!!!!!
-//
+
+export default Navbar;
