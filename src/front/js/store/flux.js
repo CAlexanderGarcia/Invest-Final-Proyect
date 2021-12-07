@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			login: { Username: "pepito", Password: "1234" }
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
