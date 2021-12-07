@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 export const Footer = () => {
 	const [dropend, setDropend] = useState(false);
 
@@ -144,4 +143,3 @@ export const Footer = () => {
 		</footer>
 	);
 };
-
