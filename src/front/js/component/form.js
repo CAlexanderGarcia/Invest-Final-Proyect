@@ -1,27 +1,29 @@
-import React from "react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 
 const Form = () => {
 	const { store, actions } = useContext(Context);
-	const [data, setData] = useState({
-		email: "",
-		name: "",
-		password: ""
-	});
+	const [data, setData] = useState({});
 
 	const handleInputChange = event => {
-		let value = event.target.value;
-		if (event.target.name == "usuario") {
-			value = parseInt(value);
-		}
 		setData({
 			...data,
-			[event.target.name]: value
+			[event.target.name]: event.target.value
+		});
+	};
+	const submitForm = event => {
+		event.preventDefault();
+		console.log(data);
+		actions.createUser(data).then(result => {
+			console.log(result);
+			if (result.created) {
+				setMessage({ show: true, text: " creado" });
+			}
 		});
 	};
 
 	return (
-		<form action="" className="formulario row g-3 ms-4 me-4" id="formulario">
+		<form onSubmit={submitForm} action="" className="formulario row g-3 ms-4 me-4" id="formulario">
 			<div className="formulario__grupo row g-3" id="grupo__usuario">
 				<label htmlFor="usuario" className="form-label">
 					Usuario
@@ -47,7 +49,14 @@ const Form = () => {
 					Nombre
 				</label>
 				<div className="formulario__grupo-input">
-					<input type="text" className="form-input" id="nombre" placeholder="John" name="First name" />
+					<input
+						type="text"
+						className="form-input"
+						id="nombre"
+						placeholder="John"
+						name="First name"
+						onChange={handleInputChange}
+					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
 				</div>
 				<p className="formulario__input-error">
@@ -60,7 +69,14 @@ const Form = () => {
 					Apellidos
 				</label>
 				<div className="formulario__grupo-input">
-					<input type="text" className="form-input" id="apellidos" placeholder="Doe" name="Last name" />
+					<input
+						type="text"
+						className="form-input"
+						id="apellidos"
+						placeholder="Doe"
+						name="Last name"
+						onChange={handleInputChange}
+					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
 				</div>
 				<p className="formulario__input-error">
@@ -79,6 +95,7 @@ const Form = () => {
 						id="e-mail"
 						placeholder="correo@correo.com"
 						name="e-mail"
+						onChange={handleInputChange}
 					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
 				</div>
@@ -90,7 +107,15 @@ const Form = () => {
 					Dirección de la empresa
 				</label>
 				<div className="formulario__grupo-input">
-					<input type="text" className="form-input" id="adress" placeholder="Doe" aria-label="adress" />
+					<input
+						type="text"
+						className="form-input"
+						id="adress"
+						placeholder="Doe"
+						aria-label="adress"
+						name="adress"
+						onChange={handleInputChange}
+					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
 				</div>
 				<p className="formulario__input-error">Dirección de la empresa debe contener letras y numeros</p>
@@ -100,19 +125,31 @@ const Form = () => {
 				<label htmlFor="inputCompany" className="form-label">
 					Razón Social
 				</label>
-				<input type="text" className="form-input" id="inputCompany" />
+				<input
+					type="text"
+					className="form-input"
+					id="inputCompany"
+					name="razon_social"
+					onChange={handleInputChange}
+				/>
 			</div>
 			<div className="col-md-6">
 				<label htmlFor="specificSizeInputDocNumber" className="form-label">
 					Numero de identificación
 				</label>
-				<input type="text" className="form-input" id="specificSizeInputDocNumber" />
+				<input
+					type="text"
+					className="form-input"
+					id="specificSizeInputDocNumber"
+					name="numero_identificacion"
+					onChange={handleInputChange}
+				/>
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="inputState" className="form-label">
 					Tipo de documentación
 				</label>
-				<select id="inputState" className="form-select">
+				<select id="inputState" className="form-select" onChange={handleInputChange} name="tipo_documentacion">
 					<option selected>Seleccione...</option>
 					<option>DNI</option>
 					<option>NIE</option>
@@ -125,7 +162,13 @@ const Form = () => {
 					Contraseña
 				</label>
 				<div className="formulario__grupo-input">
-					<input type="password" className="form-input" id="password" name="password" />
+					<input
+						type="password"
+						className="form-input"
+						id="password"
+						name="password"
+						onChange={handleInputChange}
+					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
 				</div>
 				<p className="formulario__input-error">
@@ -138,7 +181,13 @@ const Form = () => {
 					Repetir Contraseña
 				</label>
 				<div className="formulario__grupo-input">
-					<input type="password" className="form-input" id="password2" name="password2" />
+					<input
+						type="password"
+						className="form-input"
+						id="password2"
+						name="password2"
+						onChange={handleInputChange}
+					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
 				</div>
 				<p className="formulario__input-error">ambas contraseñas deben coincidir</p>
@@ -146,7 +195,13 @@ const Form = () => {
 
 			<div className="formulario__grupo-terminos" id="grupo__terminos">
 				<label className="form-label">
-					<input className="formulario__checkbox" type="checkbox" name="terminos" id="terminos" />
+					<input
+						className="formulario__checkbox"
+						type="checkbox"
+						name="terminos"
+						id="terminos"
+						onChange={handleInputChange}
+					/>
 					Acepto terminos y condiciones
 				</label>
 			</div>

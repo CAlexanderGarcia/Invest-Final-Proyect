@@ -16,3 +16,24 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+    @api.route('/positions', methods=['GET'])
+def positions():
+      list_positions = Position.query.all()
+      return jsonify([position.serialize() for position in list_positions]), 200
+
+
+@api.route('/user', methods=['POST'])
+def create_user():
+#obtenemos datos que nos llegan en el api
+      name = request.json.get('usuario')
+      
+      # validar datos de la api
+      if not (usuario):
+            return jsonify({"message": "Error datos", "created": False }), 400
+      #creamos el usuario 
+      user = User(usuario=usuario is_active = True)
+      db.session.add(user)  
+      db.session.commit()   
+      #retornamos respuesta el usuario se ha creado
+      return jsonify({"message" : "usuario creado", "created" : True}), 200
