@@ -2,19 +2,11 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 
 const Modal = () => {
-	const [show, setShow] = useState(false);
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div>
-			<button
-				type="button"
-				className="btn Modal fs-5"
-				data-bs-toggle="modal"
-				data-bs-target="#exampleModal"
-				onClick={() => {
-					setShow(!show);
-				}}>
+			<button type="button" className="btn Modal fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				<span id="span5" />
 				<span id="span6" />
 				<span id="span7" />
