@@ -23,10 +23,15 @@ def positions():
       return jsonify([position.serialize() for position in list_positions]), 200
 
 
-@api.route('/user', methods=['POST'])
+@api.route('/register', methods=['POST'])
 def create_user():
 #obtenemos datos que nos llegan en el api
-      name = request.json.get('usuario')
+      usuario = request.json.get('usuario') 
+      nombre = request.json.get('nombre')
+      apellidos = request.json.get('apellidos')
+      email = request.json.get('email')
+      direccion = request.json.get('usuario')
+
       
       # validar datos de la api
       if not (usuario):
