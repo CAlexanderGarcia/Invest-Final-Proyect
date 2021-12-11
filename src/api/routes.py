@@ -37,7 +37,8 @@ def create_user():
       if not (usuario):
             return jsonify({"message": "Error datos", "created": False }), 400
       #creamos el usuario 
-      user = User(usuario=usuario is_active = True)
-      db.session.add(user), db.session.commit()   
+      user = User(usuario=usuario, is_active = True)
+      db.session.add(user)
+      db.session.commit()   
       #retornamos respuesta el usuario se ha creado
       return jsonify({"message" : "usuario creado", "created" : True}), 200

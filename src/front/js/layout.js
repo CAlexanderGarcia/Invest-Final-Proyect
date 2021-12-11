@@ -6,7 +6,6 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import Navbar from "./component/navbar";
 import RegisterForm from "./component/registerForm";
-import Footer from "./component/footer";
 
 //create your first component
 const Layout = () => {
@@ -23,7 +22,7 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/register_form">
+						<Route exact path="/register-form">
 							<RegisterForm />
 						</Route>
 						<Route exact path="/single/:theid">
