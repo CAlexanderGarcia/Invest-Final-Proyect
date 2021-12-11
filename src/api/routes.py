@@ -17,7 +17,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-    @api.route('/positions', methods=['GET'])
+@api.route('/positions', methods=['GET'])
 def positions():
       list_positions = Position.query.all()
       return jsonify([position.serialize() for position in list_positions]), 200
