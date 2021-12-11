@@ -6,6 +6,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import Navbar from "./component/navbar";
 import RegisterForm from "./component/registerForm";
+import Footer from "./component/footer";
 
 //create your first component
 const Layout = () => {

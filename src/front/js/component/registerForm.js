@@ -15,7 +15,6 @@ const RegisterForm = () => {
 	};
 	const submitForm = event => {
 		event.preventDefault();
-		console.log(data);
 		actions.createUser(data).then(result => {
 			console.log(result);
 			if (result.created) {
@@ -94,9 +93,8 @@ const RegisterForm = () => {
 					<input
 						type="email"
 						className="form-input"
-						id="e-mail"
 						placeholder="correo@correo.com"
-						name="e-mail"
+						name="email"
 						onChange={handleInputChange}
 					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
@@ -127,31 +125,19 @@ const RegisterForm = () => {
 				<label htmlFor="inputCompany" className="form-label">
 					Razón Social
 				</label>
-				<input
-					type="text"
-					className="form-input"
-					id="inputCompany"
-					name="razon_social"
-					onChange={handleInputChange}
-				/>
+				<input type="text" className="form-input" name="razonSocial" onChange={handleInputChange} />
 			</div>
 			<div className="col-md-6">
 				<label htmlFor="specificSizeInputDocNumber" className="form-label">
 					Numero de identificación
 				</label>
-				<input
-					type="text"
-					className="form-input"
-					id="specificSizeInputDocNumber"
-					name="numero_identificacion"
-					onChange={handleInputChange}
-				/>
+				<input type="text" className="form-input" name="numeroIdentificacion" onChange={handleInputChange} />
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="inputState" className="form-label">
 					Tipo de documentación
 				</label>
-				<select id="inputState" className="form-select" onChange={handleInputChange} name="tipo_documentacion">
+				<select id="inputState" className="form-select" onChange={handleInputChange} name="tipoDocumentacion">
 					<option selected>Seleccione...</option>
 					<option>DNI</option>
 					<option>NIE</option>
@@ -186,8 +172,8 @@ const RegisterForm = () => {
 					<input
 						type="password"
 						className="form-input"
-						id="password2"
-						name="password2"
+						id="passwordTwo"
+						name="passwordTwo"
 						onChange={handleInputChange}
 					/>
 					<i className="formulario__validacion-estado far fa-times-circle" />
