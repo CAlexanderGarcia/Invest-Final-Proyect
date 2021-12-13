@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			login: { Username: "pepito", Password: "1234" }
+			login: {}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -39,6 +39,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(resp => resp.json());
 				return response;
 			},
+
+			login: (email, password) => {
+				const response = fetch(process.env.BACKEND_URL + "/api/login", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({ email: email, password: password })
+				}).then(resp => resp.json());
+				return response;
+			},
+
+			setToken: token => {
+				setStore({ token: token });
+			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
