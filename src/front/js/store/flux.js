@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			login: { Username: "pepito", Password: "1234" }
+			login: [{ username: "pepito", password: "1234" }]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -29,6 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
 			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

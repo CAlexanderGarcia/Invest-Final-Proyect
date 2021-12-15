@@ -6,7 +6,7 @@ import Informacion from "./informacion.js";
 import Resgistrese from "./registrese.js";
 import Modal from "../component/modal";
 
-const Navbar = () => {
+export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container navigation ">
@@ -36,5 +36,3 @@ const Navbar = () => {
 		</nav>
 	);
 };
-
-export default Navbar;
