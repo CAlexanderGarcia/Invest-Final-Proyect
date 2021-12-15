@@ -22,6 +22,8 @@ const Client = () => {
 						id="client_name"
 						name="name"
 						onChange={handleInputChange}
+						min="3"
+						max="30"
 					/>
 				</div>
 				<div className="mb-3">
@@ -34,6 +36,8 @@ const Client = () => {
 						id="client_nif"
 						name="nif"
 						onChange={handleInputChange}
+						min="9"
+						max="13"
 					/>
 				</div>
 				<div className="mb-3">
@@ -58,6 +62,7 @@ const Client = () => {
 						id="client_postal_code"
 						name="postal_code"
 						onChange={handleInputChange}
+						max="4"
 					/>
 				</div>
 
