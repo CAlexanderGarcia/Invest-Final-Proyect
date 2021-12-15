@@ -8,12 +8,10 @@ import Modal from "../component/modal";
 const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
-			<div className="container navigation " />
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1 jaf">JAF</span>
-			</Link>
-
-			<div className="ml-auto">
+			<div className="container navigation ">
+				<Link to="/">
+					<span className="navbar-brand mb-0 h1 jaf">JAF</span>
+				</Link>
 				<div className="">
 					<nav className="navbar navbar-expand-sm navbar-light bg-light">
 						<div className="container-fluid">
