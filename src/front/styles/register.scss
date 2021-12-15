@@ -18,11 +18,11 @@ body{
     cursor: pointer; 
 }
 
-.formulario__grupo-input{
+.formulario-grupo-input{
     position: relative;
 }
 
-.form__input{
+.form-input{
     width: 100%;
     background: #fff;
     border: 3px solid transparent;
@@ -33,22 +33,22 @@ body{
     transition: .3s ease all;
 }
 
-.form__input:focus{
+.form-input:focus{
     border: 3px solid #0075ff;
     outline: none;    
 }
 
-.form__input-error{
+.form-input-error{
     font-size:12px;
     margin-bottom: 0;
     display: none;
 }
 
-.form__input-error-activo{
+.form-input-error-activo{
     display: block
 }
 
-.formulario__validacion-estado{
+.formulario-validacion-estado{
    position: absolute;
    right: 215px;
    bottom: 7px;
@@ -57,13 +57,13 @@ body{
    opacity: 0;
 }
 
-.formulario__grupo-terminos,
-.formulario__mensaje,
-.formulario__grupo-btn-enviar{
+.formulario-grupo-terminos,
+.formulario-mensaje,
+.formulario-grupo-btn-enviar{
     grid-column:span 2;
 }
 
-.formulario__mensaje{
+.formulario-mensaje{
     height: 45px;
     line-height: 45px;
     background: #f66868;
@@ -72,31 +72,31 @@ body{
     display: none;
 }
 
-.formulario__mensaje-activo {
+.formulario-mensaje-activo {
    display: block;
 }
 
-.formulario__mensaje p {
+.formulario-mensaje p {
     margin: 0;
 }
 
-.formulario__grupo-btn-enviar {
+.formulario-grupo-btn-enviar {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.formulario__mensaje-exito{
+.formulario-mensaje-exito{
     font-size: 14px;
     color: #119208;
     display: none;
 }
 
-.formulario__mensaje-exito-activado{
+.formulario-mensaje-exito-activado{
     display: block;
 }
 
-.formulario__grupo-correcto .formulario__validacion-estado{
+.formulario-grupo-correcto .formulario-validacion-estado{
   color: #1ed12d;
   opacity: 1;
 }
@@ -106,9 +106,9 @@ body{
         grid-template-columns: 1fr;
     }
 
-    .formulario__grupo-terminos,
-    .formulario__mensaje,
-    .formulario__grupo-btn-enviar{
+    .formulario-grupo-terminos,
+    .formulario-mensaje,
+    .formulario-grupo-btn-enviar{
     grid-column: 1;
     }
 }
