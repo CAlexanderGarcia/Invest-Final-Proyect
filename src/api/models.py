@@ -54,4 +54,3 @@ class Bill(db.Model):
             "discount": self.discount,
         }
 
-

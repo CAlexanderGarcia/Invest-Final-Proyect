@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Nosotros from "./nosotros.js";
 import Servicios from "./servicios.js";
 import Informacion from "./informacion.js";
-import Resgistrese from "./registrese.js";
 import Modal from "../component/modal";
 
 export const Navbar = () => {
@@ -22,13 +21,15 @@ export const Navbar = () => {
 
 							<Nosotros />
 
-							<div className="collapse navbar-collapse" id="navbarSupportedContent">
-								<form className="d-flex ml-5">
-									<Resgistrese />
+							<Link to="register-form" className="btn Registrese fs-5">
+								<span id="span1" />
+								<span id="span2" />
+								<span id="span3" />
+								<span id="span4" />
+								Regístrese
+							</Link>
 
-									<Modal />
-								</form>
-							</div>
+							<Modal />
 						</div>
 					</nav>
 				</div>

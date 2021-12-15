@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-export const Footer = () => {
+const Footer = () => {
 	const [dropend, setDropend] = useState(false);
-
 	return (
 		<footer className="footer mt-auto py-3">
 			<div className="container-fluid d-flex">
@@ -33,7 +32,6 @@ export const Footer = () => {
 						</ul>
 					</div>
 				</div>
-
 				<div className="encuentranos container-fluid text-end">
 					<p className="navbar-brand">
 						Encuentranos en:
@@ -143,3 +141,5 @@ export const Footer = () => {
 		</footer>
 	);
 };
+
+export default Footer;
