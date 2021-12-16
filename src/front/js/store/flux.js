@@ -41,13 +41,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return resp;
 			},
 			createSupplier: data => {
-				const response = fetch(process.env.BACKEND_URL + "/api/user", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(data)
-				}).then(resp => resp.json());
+				const response = fetch(
+					"https://3001-olive-swallow-mjq8hl9z.ws-eu23.gitpod.io" + "/api/register/supplier",
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(data)
+					}
+				).then(resp => resp.json());
 				return response;
 			},
 			changeColor: (index, color) => {

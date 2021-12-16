@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Supplier
+from api.models import db, UserData, Supplier
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -41,11 +41,13 @@ def create_supplier():
       postalCode = request.json.get('postalCode')
       email = request.json.get('email')
       phoneNumber = request.json.get('phoneNumber')
-
-      supplier = Supplier(name=name, address=address, nif=nif, postalCode=postalCode, email=email, phoneNumber=phoneNumber)
-      if not (supplier):
-            return jsonify({"message": "Error datos", "created": False }), 400
-      
-      db.session.add(supplier)
-      db.session.commit()   
-      return jsonify({"message" : "supplier creado", "created" : True}), 200
+      try:
+            supplier = Supplier(name=name, address=address, nif=nif, postalCode=postalCode, email=email, phoneNumber=phoneNumber)
+            if not (supplier):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            db.session.add(supplier)
+            db.session.commit()   
+            return jsonify({"message" : "supplier creado", "created" : True}), 200
+      except: 
+            return jsonify({"message" : "supplier no creado", "created" : False}), 500

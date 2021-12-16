@@ -15,7 +15,9 @@ const ModalRegisterSupplier = () => {
 		actions.createSupplier(data).then(result => {
 			console.log(result);
 			if (result.created) {
-				setMessage({ show: true, text: " creado" });
+				alert("Proveedor creado");
+			} else {
+				alert("Proveedor no creado");
 			}
 		});
 	};
@@ -49,7 +51,7 @@ const ModalRegisterSupplier = () => {
 									id="user"
 									type="text"
 									className="input"
-									name="nombre"
+									name="name"
 									onChange={handleInputChange}
 								/>
 							</div>
@@ -77,7 +79,7 @@ const ModalRegisterSupplier = () => {
 									type="text"
 									className="input"
 									data-type="text"
-									name="direccion"
+									name="address"
 									onChange={handleInputChange}
 								/>
 							</div>
@@ -91,7 +93,33 @@ const ModalRegisterSupplier = () => {
 									type="text"
 									className="input"
 									data-type="text"
-									name="codigoPostal"
+									name="postalCode"
+									onChange={handleInputChange}
+								/>
+							</div>
+							<div className="group p-2">
+								<label htmlFor="pass" className="label p-2">
+									Email
+								</label>
+								<input
+									id="pass"
+									type="text"
+									className="input"
+									data-type="text"
+									name="email"
+									onChange={handleInputChange}
+								/>
+							</div>
+							<div className="group p-2">
+								<label htmlFor="pass" className="label p-2">
+									Teléfono
+								</label>
+								<input
+									id="pass"
+									type="text"
+									className="input"
+									data-type="text"
+									name="phoneNumber"
 									onChange={handleInputChange}
 								/>
 							</div>
