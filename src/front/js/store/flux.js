@@ -39,6 +39,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(resp => resp.json());
 				return response;
 			},
+			createSupplier: data => {
+				const response = fetch(process.env.BACKEND_URL + "/api/user", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				}).then(resp => resp.json());
+				return response;
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

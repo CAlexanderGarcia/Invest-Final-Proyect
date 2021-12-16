@@ -7,8 +7,8 @@ import injectContext from "./store/appContext";
 
 import Navbar from "./component/navbar";
 import RegisterForm from "./component/registerForm";
-import { Footer } from "./component/footer";
-import { Proveedores } from "./pages/proveedores";
+import Footer from "./component/footer";
+import { Suppliers } from "./pages/suppliers";
 
 //create your first component
 const Layout = () => {
@@ -31,8 +31,8 @@ const Layout = () => {
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
-						<Route exact path="/proveedores">
-							<Proveedores />
+						<Route exact path="/suppliers">
+							<Suppliers />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
