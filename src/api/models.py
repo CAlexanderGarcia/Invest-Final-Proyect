@@ -22,4 +22,11 @@ class UserData(db.Model):
 	postalCode=db.Column(db.Integer, unique=False, nullable=True)
 	#client_id=db.Column(db.Integer(120), ForeignKey("Client.id"), unique=True, nullable=True)
 
-    
+class Supplier(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=True, nullable=False)
+    nif = db.Column(db.String(50), unique=True, nullable=False)
+    address =  db.Column(db.String(120), nullable=False)
+    postalCode = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=True)
+    phoneNumber = db.Column(db.String(50), unique=True, nullable=True)
