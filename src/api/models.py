@@ -13,7 +13,8 @@ class UserData(db.Model):
     numberDocumentation = db.Column(db.String(120), unique=False, nullable=False)
     typeDocumentation = db.Column(db.String(120), unique=False, nullable=False)
     postalCode = db.Column(db.String(120), unique=False, nullable=False)
-    client_id = db.relationship('Client', backref='userdata', lazy=True)
+    clients = db.relationship('Client', backref='userdata', lazy=True)
+    suppliers = db.relationship('Supplier', backref='userdata', lazy=True)
     
 
 class Supplier(db.Model):
@@ -26,6 +27,7 @@ class Supplier(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     phoneNumber = db.Column(db.String(120), unique=True, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
+    products = db.relationship('Product', backref='supplier', lazy=True)
 
 
 class Bill(db.Model): #factura
@@ -36,7 +38,7 @@ class Bill(db.Model): #factura
     tax = db.Column(db.Integer,nullable=False)
     discount = db.Column(db.Integer, nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
-    productToBill_id = db.relationship('ProductToBill', backref='bill', lazy=True)
+    productToBills = db.relationship('ProductToBill', backref='bill', lazy=True)
 
 class Client(db.Model):
     __tablename__ = 'client'
@@ -46,12 +48,12 @@ class Client(db.Model):
     address = db.Column(db.String(50), nullable=False)
     postalCode = db.Column(db.Integer, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
-    bill_id = db.relationship('Bill', backref='client', lazy=True)
+    bills = db.relationship('Bill', backref='client', lazy=True)
 
 class ProductToBill(db.Model):
     __tablename__ = 'producttobill'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    quantity = db.Column(db.Integer,nullable=False)
+    quantity = db.Column(db.Integer,nullable=False)#quantity de que?
     price = db.Column(db.Float, nullable=False)
     bill_id = db.Column(db.Integer, db.ForeignKey('bill.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
@@ -64,4 +66,4 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'), nullable=False)
-    productToBill_id = db.relationship('ProductToBill', backref='product', lazy=True)
+    productToBills = db.relationship('ProductToBill', backref='product', lazy=True)
