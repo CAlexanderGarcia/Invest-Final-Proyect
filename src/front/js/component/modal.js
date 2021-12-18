@@ -6,7 +6,7 @@ const Modal = () => {
 
 	return (
 		<div>
-			<button type="button" className="btn Modal fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			<button type="button" className="btn Modal fs-5" data-bs-toggle="modal" data-bs-target="#modalLogin">
 				<span id="span5" />
 				<span id="span6" />
 				<span id="span7" />
@@ -15,7 +15,7 @@ const Modal = () => {
 			</button>
 			<div
 				className="modal fade"
-				id="exampleModal"
+				id="modalLogin"
 				tabIndex="-1"
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
@@ -68,9 +68,3 @@ const Modal = () => {
 };
 
 export default Modal;
-
-//		<p>
-//			{store.login.map((value, index) => {
-//				return <p key={index}>{value.Username}</p>;
-//			})}
-//		</p>

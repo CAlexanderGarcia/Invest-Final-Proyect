@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Boolean(), unique=False, nullable=False)
+    name_user = db.Column(db.Boolean(), unique=False, nullable=False)
     usuario = db.Column(db.String(50), nullable=False) 
 
     def __repr__(self):
@@ -18,7 +18,7 @@ class User(db.Model):
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name_client = db.Column(db.String(50), nullable=False)
     nif = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(50), nullable=False)
     postal_code = db.Column(db.Integer, nullable=False)
@@ -53,4 +53,27 @@ class Bill(db.Model):
             "tax": self.tax,
             "discount": self.discount,
         }
+
+class ProductToService(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    quantity_bill=db.Column(db.Integer,nullable=False)
+    price_bill=db.Column(db.Integer, nullable=False)
+    id_bill=
+    id_products=
+
+    def __repr__(self):
+        return '<ProductsToService %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "quantity": self.quantity,
+            "price_bill": self.price_bill,
+        }
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name_product=db.Column(db.String(50), nullable=False)
+    code=db.Column(db.Integer, nullable=False)
+    quantity_product=(db.Integer, nullable=False)
 

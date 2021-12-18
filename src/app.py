@@ -62,3 +62,17 @@ def serve_any_other_file(path):
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
+
+#Creacion de Token para Login
+
+@app.route("/token", methods=["POST"])
+def create_token():
+    email = request.json.get("username", None)
+    password = request.json.get("password", None)
+
+    email = Email.filter.query(email=email, password=password).first()    
+    if user is None:
+        return jsonify({"msg": "Email o Contraseñas Incorrectas"}), 401
+
+    access_token = create_access_token(identity=email.id)
+    return jsonify({"token": access_token, "email_id": email.id}) 

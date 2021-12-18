@@ -4,8 +4,9 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-import Navbar from "./component/navbar";
+import { Navbar } from "./component/navbar";
 import RegisterForm from "./component/registerForm";
+import Client from "./pages/client";
 
 //create your first component
 const Layout = () => {
