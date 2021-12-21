@@ -29,6 +29,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
 			},
+			createUser: async data => {
+				const response = await fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu23.gitpod.io/api/register", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				});
+				const resp = await response.json();
+				return resp;
+			},
+			createSupplier: data => {
+				const response = fetch(
+					"https://3001-olive-swallow-mjq8hl9z.ws-eu23.gitpod.io" + "/api/register/supplier",
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(data)
+					}
+				).then(resp => resp.json());
+				return response;
+			},
+			createClient: data => {
+				const response = fetch(
+					"https://3001-blue-anteater-g71sf0ld.ws-eu23.gitpod.io" + "/api/register/client",
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(data)
+					}
+				).then(resp => resp.json());
+				return response;
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
