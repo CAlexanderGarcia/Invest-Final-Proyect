@@ -2,7 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, redirect
-from api.models import db, UserData, Supplier
+#from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity
+from api.models import db, UserData, Supplier, Client
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -52,22 +53,27 @@ def create_supplier():
       except: 
             return jsonify({"message" : "supplier no creado", "created" : False}), 500
 
-@api.route('/new', methods=['POST'])
+@api.route('/client', methods=['POST'])
+#@jwt_required()
 def add_client():
-      name=request.form["name"]
-      nif=request.form["nif"]
-      address=request.form["address"]
-      postalCode=request.form["postalCode"]
+     # current_user = get_jwt_identity()
+      name = request.json.get("client_name")
+      nif = request.json.get("client_nif")
+      address = request.json.get("client_address")
+      postalCode = request.json.get("client_postalcode")
+      try:
 
-      new_client = Contact(name, nif, address, postalCode)
-      db.session.add(new_client)
-      db.session.commit()
+            new_client = Client(name=name, address=address, nif=nif, postalCode=postalCode, userData_id= 1)
+            #new_client = Client(name=name, address=address,nif=nif, postalCode=postalCode, userData_id= current_user)
+            if not (new_client):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            db.session.add(new_client)
+            db.session.commit()   
+            return jsonify({"message" : "New Client Created", "created" : True}), 200
+      except Exception as e: 
+            print(e)
+            return jsonify({"message" : "Cliente no Creado", "created" : False}), 500
 
-@api.route('/update')
-def update_client():
-      return "update a contact"
 
-@api.route('/delete')
-def delete_client():
-      return "delete a contact"
 

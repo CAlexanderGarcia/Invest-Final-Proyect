@@ -13,8 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			],
-			login: [{ username: "pepito", password: "1234" }]
+			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -22,13 +21,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
-			getMessage: () => {
-				// fetching data from the backend
+			/*getMessage: () => {
+				fetching data from the backend
 				fetch(process.env.BACKEND_URL + "/api/hello")
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
-			},
+			},*/
 			createUser: async data => {
 				const response = await fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu23.gitpod.io/api/register", {
 					method: "POST",
@@ -54,16 +53,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return response;
 			},
 			createClient: data => {
-				const response = fetch(
-					"https://3001-blue-anteater-g71sf0ld.ws-eu23.gitpod.io" + "/api/register/client",
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json"
-						},
-						body: JSON.stringify(data)
-					}
-				).then(resp => resp.json());
+				console.log(data);
+				const store = getStore();
+				const response = fetch("https://3001-blue-anteater-g71sf0ld.ws-eu23.gitpod.io/api/client", {
+					method: "POST",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				}).then(resp => resp.json());
 				return response;
 			},
 			changeColor: (index, color) => {

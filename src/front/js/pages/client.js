@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import List from "../component/list;
 
 const Client = () => {
 	const { actions } = useContext(Context);
 	const [data, setData] = useState({});
+	const [showMessage, setShowMessage] = useState({});
 	const handleInputChange = event => {
 		setData({
 			...data,
@@ -12,14 +14,15 @@ const Client = () => {
 	};
 	const handleFormSubmit = event => {
 		event.preventDefault();
-		actions.createClient(data).then(result => {
-			console.log(result);
-			if (result.created) {
-				alert("Cliente creado");
-			} else {
-				alert("Cliente no creado");
-			}
-		});
+		setShowMessage({});
+		actions
+			.createClient(data)
+			.then(result => {
+				setShowMessage({ error: false, message: "El cliente fue creado" });
+			})
+			.catch(err => {
+				setShowMessage({ error: true, message: "El cliente no se pudo crear" });
+			});
 	};
 
 	return (
@@ -35,17 +38,26 @@ const Client = () => {
 				<div className="modal fade" tabIndex="-1" id="clientModal">
 					<div className="modal-dialog">
 						<div className="modal-content">
-							<div className="modal-header">
-								<h5 className="modal-title">Creación de un Cliente</h5>
-								<button
-									type="button"
-									className="btn-close"
-									data-bs-dismiss="modal"
-									aria-label="Close"
-								/>
-							</div>
-							<div className="modal-body">
-								<form onSubmit={handleFormSubmit}>
+							<form onSubmit={handleFormSubmit}>
+								<div className="modal-header">
+									<h5 className="modal-title">Creación de un Cliente</h5>
+									<button
+										type="button"
+										className="btn-close"
+										data-bs-dismiss="modal"
+										aria-label="Close"
+									/>
+								</div>
+								<div className="modal-body">
+									{showMessage && showMessage.message ? (
+										<div
+											className={`alert alert-${showMessage.error ? "danger" : "success"}`}
+											role="alert">
+											{showMessage.message}
+										</div>
+									) : (
+										""
+									)}
 									<div className="m-3 p-2">
 										<label htmlFor="client_name" className="col-sm-2 col-form-label">
 											Nombre
@@ -98,13 +110,13 @@ const Client = () => {
 											onChange={handleInputChange}
 										/>
 									</div>
-								</form>
-							</div>
-							<div className="modal-footer">
-								<button type="button" className="btn btn-primary">
-									Crear
-								</button>
-							</div>
+								</div>
+								<div className="modal-footer">
+									<button type="submit" className="btn btn-primary">
+										Crear
+									</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -119,6 +131,7 @@ const Client = () => {
 					Search
 				</button>
 			</form>
+			<List />
 		</nav>
 	);
 };
