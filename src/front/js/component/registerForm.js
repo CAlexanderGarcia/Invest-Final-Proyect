@@ -215,6 +215,7 @@ const RegisterForm = () => {
 					}}>
 					Registrarse
 				</button>
+				<Link to="/">Go to login</Link>
 				<p className="formulario-mensaje-exito" id="formulario-mensaje-exito">
 					Registro exitoso
 				</p>
