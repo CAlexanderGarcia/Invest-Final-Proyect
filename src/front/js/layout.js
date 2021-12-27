@@ -4,10 +4,12 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
+
 import Navbar from "./component/navbar";
 import RegisterForm from "./component/registerForm";
 import Footer from "./component/footer";
 import login from "./component/login";
+import { Suppliers } from "./pages/suppliers";
 
 //create your first component
 const Layout = () => {
@@ -29,6 +31,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
+						</Route>
+						<Route exact path="/suppliers">
+							<Suppliers />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
