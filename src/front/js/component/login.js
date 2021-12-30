@@ -8,7 +8,7 @@ const Login = () => {
 	return (
 		<div>
 			<a
-				className="btn Login fs-5"
+				className="btn fs-5 mx-5 buttom-nsi"
 				onClick={() => {
 					setShow(!show);
 				}}>

@@ -13,21 +13,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			listClients: [],
+			listProduct: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
-			/*getMessage: () => {
-				fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},*/
 			createUser: async data => {
 				const response = await fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu23.gitpod.io/api/register", {
 					method: "POST",
@@ -55,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			createClient: data => {
 				console.log(data);
 				const store = getStore();
-				const response = fetch("https://3001-blue-anteater-g71sf0ld.ws-eu23.gitpod.io/api/client", {
+				const response = fetch(process.env.BACKEND_URL + "/client", {
 					method: "POST",
 					headers: {
 						//	Authorization: "Bearer " + store.accessToken,
@@ -65,19 +56,90 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(resp => resp.json());
 				return response;
 			},
-			changeColor: (index, color) => {
-				//get the store
+			changeClient: data => {
+				console.log(data);
 				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+				const response = fetch(process.env.BACKEND_URL + "/client", {
+					method: "PUT",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				}).then(resp => resp.json());
+				return response;
+			},
+			deleteClient: client => {
+				const response = fetch(process.env.BACKEND_URL + "/client/" + client, {
+					method: "DELETE",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => console.log(data));
+			},
+			listClient: () => {
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/client", {
+					method: "GET",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => setStore({ listClients: data }));
+			},
+			createProduct: data => {
+				console.log(data);
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/product", {
+					method: "POST",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				}).then(resp => resp.json());
+				return response;
+			},
+			changeProduct: data => {
+				console.log(data);
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/product", {
+					method: "PUT",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				}).then(resp => resp.json());
+				return response;
+			},
+			deleteProduct: product => {
+				const response = fetch(process.env.BACKEND_URL + "/product/" + product, {
+					method: "DELETE",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => console.log(data));
+			},
+			listProduct: () => {
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/product", {
+					method: "GET",
+					headers: {
+						//	Authorization: "Bearer " + store.accessToken,
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => setStore({ listProduct: data }));
 			}
 		}
 	};

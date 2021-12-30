@@ -21,7 +21,7 @@ export const Navbar = () => {
 
 							<Nosotros />
 
-							<Link to="register-form" className="btn Registrese fs-5">
+							<Link to="register-form" className="btn buttom-nsi fs-5 me-4">
 								<span id="span1" />
 								<span id="span2" />
 								<span id="span3" />

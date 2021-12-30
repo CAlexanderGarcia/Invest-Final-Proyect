@@ -6,7 +6,11 @@ const Modal = () => {
 
 	return (
 		<div>
-			<button type="button" className="btn Modal fs-5" data-bs-toggle="modal" data-bs-target="#modalLogin">
+			<button
+				type="button"
+				className="btn fs-5 buttom-nsi text-success"
+				data-bs-toggle="modal"
+				data-bs-target="#modalLogin">
 				<span id="span5" />
 				<span id="span6" />
 				<span id="span7" />
