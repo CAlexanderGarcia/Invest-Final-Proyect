@@ -9,6 +9,7 @@ import Navbar from "./component/navbar";
 import RegisterForm from "./component/registerForm";
 import Footer from "./component/footer";
 import { Suppliers } from "./pages/suppliers";
+import { Bills } from "./pages/bills";
 
 //create your first component
 const Layout = () => {
@@ -33,6 +34,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/suppliers">
 							<Suppliers />
+						</Route>
+						<Route exact path="/bills">
+							<Bills />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
