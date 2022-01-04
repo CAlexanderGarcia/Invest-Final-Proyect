@@ -1,13 +1,15 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint, redirect
-#from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity
+from flask import Flask, request, jsonify, url_for, redirect, Blueprint
+from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
 from api.models import db, UserData, Supplier, Client, Product
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+
+#############################USUARIOS#################################
 
 @api.route('/register', methods=['POST'])
 def create_user():
@@ -34,7 +36,9 @@ def create_user():
       #retornamos respuesta el usuario se ha creado
       return jsonify({"message" : "usuario creado", "created" : True}), 200
 
-@api.route('/register/supplier', methods=['POST'])
+#############################PROVEEDORES#################################
+
+@api.route('/supplier', methods=['POST'])
 def create_supplier():
       name = request.json.get('name') 
       address = request.json.get('address')
@@ -43,24 +47,73 @@ def create_supplier():
       email = request.json.get('email')
       phoneNumber = request.json.get('phoneNumber')
       try:
-            supplier = Supplier(name=name, address=address, nif=nif, postalCode=postalCode, email=email, phoneNumber=phoneNumber)
+            supplier = Supplier(name=name, address=address, nif=nif, postalCode=postalCode, email=email, phoneNumber=phoneNumber, userData_id=1)
             if not (supplier):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
             db.session.add(supplier)
             db.session.commit()   
             return jsonify({"message" : "supplier creado", "created" : True}), 200
-      except: 
+      except Exception as e: 
+            print(e)
             return jsonify({"message" : "supplier no creado", "created" : False}), 500
+
+
+@api.route('/supplier', methods=['GET'])
+#@jwt_required()
+def get_supplier():
+      # current_user = get_jwt_identity()
+      suppliers = Supplier.query.filter_by(userData_id=1)
+      data = [supplier.serialize() for supplier in suppliers]
+      return jsonify(data), 200
+
+@api.route('/supplier/<int:supplier_id>', methods=['DELETE'])
+#@jwt_required()
+def delete_suppliers(supplier_id):
+      # current_user = get_jwt_identity()
+      supplier = Supplier.query.filter_by(id=supplier_id).first() 
+
+      if not supplier:
+            return jsonify({"message": "El Proveedor no fue encontrado"}), 400
+      db.session.delete(supplier)
+      db.session.commit()
+      return jsonify({"message" : "El Proveedor fue borrado con éxito"}), 200
+
+@api.route('/supplier/<int:supplier_id>', methods=['PUT'])
+def update_supplier(supplier_id):
+      name = request.json.get('name') 
+      nif = request.json.get('nif')
+      address = request.json.get('address')  
+      postalCode = request.json.get('postalCode')
+      email = request.json.get ('email')
+      phoneNumber =  request.json.get('phoneNumber')
+      try:
+            supplier = Supplier.query.filter_by(userData_id=1).first()         
+            if not (supplier):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            supplier.name = name
+            supplier.nif = nif
+            supplier.address = address
+            supplier.postalCode = postalCode
+            supplier.email = email
+            supplier.phoneNumber = phoneNumber
+            db.session.commit()   
+            return jsonify({"message" : "Proveedor Modificado", "created" : True}), 200
+      except Exception as e:
+            print(e) 
+            return jsonify({"message" : "Proveedor no modificado", "created" : False}), 500
+
+#############################CLIENTES#################################
 
 @api.route('/client', methods=['POST'])
 #@jwt_required()
 def add_client():
      # current_user = get_jwt_identity()
-      name = request.json.get("client_name")
-      nif = request.json.get("client_nif")
-      address = request.json.get("client_address")
-      postalCode = request.json.get("client_postalcode")
+      name = request.json.get("name")
+      nif = request.json.get("nif")
+      address = request.json.get("address")
+      postalCode = request.json.get("postalCode")
       try:
 
             new_client = Client(name=name, address=address, nif=nif, postalCode=postalCode, userData_id= 1)
@@ -95,48 +148,94 @@ def delete_clients(client_id):
       db.session.delete(client)
       db.session.commit()
       return jsonify({"message" : "El Cliente fue borrado con éxito"}), 200
+
+@api.route('/client/<int:client_id>', methods=['PUT'])
+def update_client(client_id):
+      name = request.json.get('name') 
+      address = request.json.get('address')
+      nif = request.json.get('nif')
+      postalCode = request.json.get('postalCode')
+      try:
+            client = Client.query.filter_by(userData_id=1, id=client_id).first()         
+            if not (client):
+                  return jsonify({"message": "Error datos", "created": False }), 400
             
- #PRODUCTOS
+            client.name = name
+            client.address = address
+            client.nif = nif
+            client.postalCode = postalCode
+            db.session.commit()   
+            return jsonify({"message" : "Cliente Modificado", "created" : True}), 200
+      except: 
+            return jsonify({"message" : "Cliente no modificado", "created" : False}), 500
 
-@api.route('/product', methods=['POST'])#añadir un nuevo producto a la BD
+#############################PRODUCTOS#################################
+
+@api.route('/product', methods=['POST'])
 #@jwt_required()
-def add_product():#Creo mi funcion con las filas del modelo Product
+def add_product():
      # current_user = get_jwt_identity()
-      name = request.json.get("product_name")
-      code = request.json.get("product_code")
-      quantity = request.json.get("product_quantity")
-      price = request.json.get("product_price")
-
+      name = request.json.get("name")
+      code = request.json.get("code")
+      quantity = request.json.get("quantity")
+      price = request.json.get("price")
+      supplier = request.json.get("supplier")
       try:
 
-            new_product = Product(name=name, code=code, quantity=quantity, price=price)
-            #new_product = Product(name=name, code=code, quantity=quantity, price=price, userData_id= 1)
+            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier)
+           
             if not (new_product):
-                  return jsonify({"message": "Error de datos", "created": False }), 400
+                  return jsonify({"message": "Error datos", "created": False }), 400
             
             db.session.add(new_product)
             db.session.commit()   
-            return jsonify({"message" : "Nuevo Producto Agregado", "created" : True}), 200
+            return jsonify({"message" : "Nuevo Producto Creado", "created" : True}), 200
       except Exception as e: 
             print(e)
-            return jsonify({"message" : "Producto no Agregado", "created" : False}), 500
+            return jsonify({"message" : "Producto no Creado", "created" : False}), 500
 
 
 @api.route('/product', methods=['GET'])
 #@jwt_required()
-def get_product():
+def get_products():
       # current_user = get_jwt_identity()
-      products = Product.query.filter_by(supplier_id=1)
-      data = [product.serialize() for product in products]
+      suppliers = Supplier.query.filter_by(userData_id=1)
+      suppliers_ids = [supplier.id for supplier in suppliers]
+      products = Product.query.filter(Product.supplier_id.in_(suppliers_ids))#buscamos todos los productos del listado de proveedores
+      data = [product.serialize() for product in products] 
       return jsonify(data), 200
 
 @api.route('/product/<int:product_id>', methods=['DELETE'])
 #@jwt_required()
-def delete_product(product_id):
+def delete_products(product_id):
       # current_user = get_jwt_identity()
-      product = Product.query.filter_by(id=product_id).first() 
+      product = Product.query.filter_by(id=product_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
+
       if not product:
             return jsonify({"message": "El Producto no fue encontrado"}), 400
       db.session.delete(product)
       db.session.commit()
-      return jsonify({"message" : "El Producto fue borrado con éxito"}), 200           
+      return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
+
+@api.route('/product/<int:product_id>', methods=['PUT'])
+def update_product(product_id):
+      name = request.json.get('name') 
+      code = request.json.get('code')
+      quantity = request.json.get('quantity')
+      price = request.json.get('price')
+      supplier = request.json.get('supplier')
+      try:
+            product = Product.query.filter_by(supplier_id=supplier, id=product_id).first()         
+            if not (product):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            product.name = name
+            product.code = code
+            product.quantity = quantity
+            product.price = price
+            product.supplier_id = supplier
+            db.session.commit()   
+            return jsonify({"message" : "Producto Modificado", "created" : True}), 200
+      except Exception as e:
+            print(e) 
+            return jsonify({"message" : "Producto no modificado", "created" : False}), 500

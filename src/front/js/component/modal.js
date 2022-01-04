@@ -38,9 +38,9 @@ const Modal = () => {
 						<form className="login-form">
 							<div className="group">
 								<label htmlFor="user" className="label">
-									Username
+									Email
 								</label>
-								<input id="user" type="text" className="input" />
+								<input id="user" type="email" className="input" />
 							</div>
 
 							<div className="group">

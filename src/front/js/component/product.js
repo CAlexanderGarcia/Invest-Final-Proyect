@@ -1,7 +1,8 @@
 import React from "react";
-import ListClient from "../component/listClient";
-import ModalClient from "../component/modalClient";
-const Client = () => {
+import ListProduct from "../component/listProduct";
+
+
+const Product = () => {
 	return (
 		<div className="container-fluid justify-content-between">
 			<div className="container-fluid navbar navbar-white bg-white">
@@ -9,25 +10,16 @@ const Client = () => {
 					type="button"
 					className="btn fs-5 buttom-nsi"
 					data-bs-toggle="modal"
-					data-bs-target={`#modal-create-client`}>
+					data-bs-target={`#modal-create-product`}>
 					<span id="span9" />
 					<span id="span10" />
 					<span id="span11" />
 					<span id="span12" />
-					Crear Cliente
+					Crear Producto
 				</button>
-				<ModalClient
-					idModal="modal-create-client"
-					buttonTitle="Crear Cliente"
-					modalHeader="Creación de Clientes"
-					nameButton="Crear"
-					messageSuccess="El Cliente fue creado con Exito"
-					messageError="El Cliente no fue creado"
-					isCreated={true}
-					client={{}}
-				/>
+				
 				<form className="form d-flex mx-3 pe-5">
-					<input className="form-control" type="search" placeholder="Buscar Cliente" aria-label="Search" />
+					<input className="form-control" type="search" placeholder="Buscar Producto" aria-label="Search" />
 					<button type="submit" className="btn fs-5 buttom-nsi" data-bs-toggle="modal">
 						<span id="span9" />
 						<span id="span10" />
@@ -37,9 +29,9 @@ const Client = () => {
 					</button>
 				</form>
 			</div>
-			<ListClient />
+			<ListProduct />
 		</div>
 	);
 };
 
-export default Client;
+export default Product;

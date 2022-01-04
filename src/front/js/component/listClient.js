@@ -60,13 +60,13 @@ const ListClient = () => {
 											onClick={() => {
 												setCurrentClient(value);
 											}}
-											className="px-2 ms-1 link-pen" //editar boton
+											className="px-2 ms-3 link-pen btn btn-link" //editar boton
 											data-bs-toggle="modal"
 											data-bs-target={"#modal-change-client"}>
 											<i className="fas fa-pen" />
 										</button>
 										<button
-											className="px-2 me-1 link-trash"
+											className="px-2 me-1 link-trash btn btn-link "
 											onClick={() => {
 												actions.deleteClient(value.id);
 												actions.listClient(); // ver la otra forma de actualizar el listado sin llamar al API
@@ -79,7 +79,7 @@ const ListClient = () => {
 						})
 					) : (
 						<tr>
-							<td colSpan="5">No tiene clientes</td>
+							<td colSpan="6">No tiene clientes</td>
 						</tr>
 					)}
 				</tbody>

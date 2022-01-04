@@ -1,7 +1,7 @@
 import React from "react";
-import ListClient from "../component/listClient";
-import ModalClient from "../component/modalClient";
-const Client = () => {
+import ListSupplier from "../component/listSupplier";
+import ModalSupplier from "../component/modalSupplier";
+const Supplier = () => {
 	return (
 		<div className="container-fluid justify-content-between">
 			<div className="container-fluid navbar navbar-white bg-white">
@@ -9,25 +9,25 @@ const Client = () => {
 					type="button"
 					className="btn fs-5 buttom-nsi"
 					data-bs-toggle="modal"
-					data-bs-target={`#modal-create-client`}>
+					data-bs-target={`#modal-create-supplier`}>
 					<span id="span9" />
 					<span id="span10" />
 					<span id="span11" />
 					<span id="span12" />
-					Crear Cliente
+					Crear Proveedor
 				</button>
-				<ModalClient
-					idModal="modal-create-client"
-					buttonTitle="Crear Cliente"
-					modalHeader="Creación de Clientes"
+				<ModalSupplier
+					idModal="modal-create-supplier"
+					buttonTitle="Crear Proveedor"
+					modalHeader="Creación de Proveedor"
 					nameButton="Crear"
-					messageSuccess="El Cliente fue creado con Exito"
-					messageError="El Cliente no fue creado"
+					messageSuccess="El Proveedor fue creado con Exito"
+					messageError="El Proveedor no fue creado. Inténtelo nuevamente"
 					isCreated={true}
-					client={{}}
+					supplier={{}}
 				/>
 				<form className="form d-flex mx-3 pe-5">
-					<input className="form-control" type="search" placeholder="Buscar Cliente" aria-label="Search" />
+					<input className="form-control" type="search" placeholder="Buscar Proveedor" aria-label="Search" />
 					<button type="submit" className="btn fs-5 buttom-nsi" data-bs-toggle="modal">
 						<span id="span9" />
 						<span id="span10" />
@@ -37,9 +37,9 @@ const Client = () => {
 					</button>
 				</form>
 			</div>
-			<ListClient />
+			<ListSupplier />
 		</div>
 	);
 };
 
-export default Client;
+export default Supplier;

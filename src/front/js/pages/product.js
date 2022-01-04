@@ -24,6 +24,7 @@ const Product = () => {
 					messageSuccess="El Producto fue añadido con éxito"
 					messageError="El Producto no fue añadido"
 					isCreated={true}
+					product={{}}
 				/>
 				<form className="form d-flex mx-3 pe-5">
 					<input className="form-control" type="search" placeholder="Buscar Productos" aria-label="Search" />

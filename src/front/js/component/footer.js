@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Footer = () => {
 	const [dropend, setDropend] = useState(false);
 	return (
-		<footer className="footer mt-auto py-3">
+		<footer className="footer mt-auto fixed-bottom">
 			<div className="container-fluid d-flex bg-dark">
 				<div className="align-start">
 					<div className="btn-group dropend">
@@ -15,7 +15,7 @@ const Footer = () => {
 								setDropend(!dropend);
 							}}
 							type="a"
-							className="btn dropdown-toggle fs-5 text-white buttom-nsi"
+							className="btn dropdown-toggle fs-5 text-white buttom-nsi mt-2"
 							data-bs-toggle="dropdown">
 							<span id="span9" />
 							<span id="span10" />
@@ -26,9 +26,9 @@ const Footer = () => {
 						<ul className={"dropdown-menu" + (dropend ? "dropend" : "")}>
 							<a className="dropdown-item" href="#">
 								<div className="container-fluid text-white">
-									<p>Teléfono:</p>
+									<>Teléfono:</>
 									<span className="text-muted">(+34) 910 000 000</span>
-									<p>Horario de atención al cliente:</p>
+									<>Horario de atención al cliente:</>
 									<span className="text-muted"> 09:00 a 18:00 todos los días</span>
 								</div>
 							</a>
@@ -96,6 +96,18 @@ const Footer = () => {
 								aria-expanded="false"
 								aria-label="Toggle navigation">
 								<i className="fab fa-youtube fs-5" />
+							</button>
+						</a>
+						<a href="https://www.linkedin.com/">
+							<button
+								className="navbar-toggler social-buttons__button social-button social-button--linkedin"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#navbarSupportedContent"
+								aria-controls="navbarSupportedContent"
+								aria-expanded="false"
+								aria-label="Toggle navigation">
+								<i className="fab fa-linkedin-in fs-5" />
 							</button>
 						</a>
 					</span>

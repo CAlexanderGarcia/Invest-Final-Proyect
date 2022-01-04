@@ -3,17 +3,24 @@ import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
 const ModalProduct = props => {
-	const { actions } = useContext(Context);
-	const [data, setData] = useState(props.client);
-	const [showMessage, setShowMessage] = useState({});
+	const { actions, store } = useContext(Context);
+	const [data, setData] = useState({});
+	const [showMessage, setShowMessage] = useState();
 	useEffect(() => {
-		console.log(props);
+		actions.listSupplier();
 	}, []);
 	const handleInputChange = event => {
-		setData({
-			...data,
-			[event.target.name]: event.target.value
-		});
+		if (Object.keys(data).length == 0) {
+			setData({
+				...props.product,
+				[event.target.name]: event.target.value
+			});
+		} else {
+			setData({
+				...data,
+				[event.target.name]: event.target.value
+			});
+		}
 	};
 	const handleFormSubmit = event => {
 		event.preventDefault();
@@ -22,28 +29,28 @@ const ModalProduct = props => {
 			? actions
 					.createProduct(data)
 					.then(result => {
-						actions.listProduct();
+						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
 					})
 			: actions
-					.changeProduct(data)
+					.updateProduct(data)
 					.then(result => {
-						actions.listClient();
+						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
 					});
-		//	console.log("Productos");
+		//	console.log("pepito");
 	};
 	return (
 		<>
 			<div className="modal fade" tabIndex="-1" id={props.idModal}>
 				<div className="modal-dialog">
-					<div className="modal-content">
+					<div className="modal-content modalCSP">
 						<form onSubmit={handleFormSubmit}>
 							<div className="modal-header">
 								<h5 className="modal-title">{props.modalHeader}</h5>
@@ -72,8 +79,9 @@ const ModalProduct = props => {
 										id="product_name"
 										type="text"
 										className="input col-sm-10"
-										name="product_name"
+										name="name"
 										onChange={handleInputChange}
+										defaultValue={props.product.name}
 									/>
 								</div>
 
@@ -85,9 +93,10 @@ const ModalProduct = props => {
 										id="product_code"
 										type="text"
 										className="input col-sm-10"
-										name="product_code"
+										name="code"
 										data-type="text"
 										onChange={handleInputChange}
+										defaultValue={props.product.code}
 									/>
 								</div>
 								<div className="m-3 p-2">
@@ -98,9 +107,10 @@ const ModalProduct = props => {
 										id="product_quantity"
 										type="text"
 										className="input col-sm-10"
-										name="product_quantity"
+										name="quantity"
 										data-type="text"
 										onChange={handleInputChange}
+										defaultValue={props.product.quantity}
 									/>
 								</div>
 								<div className="m-3 p-2">
@@ -111,10 +121,33 @@ const ModalProduct = props => {
 										id="product_price"
 										type="number"
 										className="input col-sm-10"
-										name="product_price"
+										name="price"
 										data-type="number"
 										onChange={handleInputChange}
+										defaultValue={props.product.price}
 									/>
+								</div>
+								<div className="m-3 p-2">
+									<label htmlFor="product_supplier" className="col-2 col-form-label">
+										Proveedores
+									</label>
+									<select
+										id="product_supplier"
+										className="input col-sm-10"
+										name="supplier"
+										onChange={handleInputChange}
+										defaultValue={props.product.price}>
+										<option value="" selected disabled hidden>
+											-Choose here-
+										</option>
+										{store.listSuppliers.map((value, index) => {
+											return (
+												<option key={index} value={value.id}>
+													{value.name}
+												</option>
+											);
+										})}
+									</select>
 								</div>
 							</div>
 							<div className="modal-footer">
@@ -132,7 +165,7 @@ const ModalProduct = props => {
 
 ModalProduct.propTypes = {
 	idModal: PropTypes.string,
-	client: PropTypes.object,
+	product: PropTypes.object,
 	modalHeader: PropTypes.string,
 	nameButton: PropTypes.string,
 	messageSuccess: PropTypes.string,

@@ -15,7 +15,18 @@ class UserData(db.Model):
     postalCode = db.Column(db.String(120), unique=False, nullable=False)
     clients = db.relationship('Client', backref='userdata', lazy=True)
     suppliers = db.relationship('Supplier', backref='userdata', lazy=True)
-    
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "email" : self.email,
+            "password" : self.password,
+            "surname": self.surname,
+            "address": self.address,
+            "company":self.company,
+            "numberDocumentation": self.numberDocumentation,
+            "typeDocumentation": self.typeDocumentation,
+            "postalCode": self.postalCode,
+        }
 
 class Supplier(db.Model):
     __tablename__ = 'supplier'
@@ -28,7 +39,16 @@ class Supplier(db.Model):
     phoneNumber = db.Column(db.String(120), unique=True, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
     products = db.relationship('Product', backref='supplier', lazy=True)
-
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "name" : self.name,
+            "nif" : self.nif,
+            "address": self.address,
+            "postalCode": self.postalCode,
+            "email":self.email,
+            "phoneNumber": self.phoneNumber,
+        }
 
 class Bill(db.Model): #factura
     __tablename__ = 'bill'
@@ -80,6 +100,7 @@ class Product(db.Model):
     def serialize(self):
         return {
             "id" : self.id,
+            "name" : self.name,
             "code" : self.code,
             "quantity" : self.quantity,
             "price": self.price,
