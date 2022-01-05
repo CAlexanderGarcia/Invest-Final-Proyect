@@ -1,10 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { Redirect } from "react-router-dom";
 
-const Modal = () => {
+const ModalLogin = () => {
 	const { store, actions } = useContext(Context);
-
-	return (
+	const [data, setData] = useState({});
+	const [error, setError] = useState("");
+	const handleInputChange = event => {
+		setData({ ...data, [event.target.name]: event.target.value });
+	};
+	const handleOnSubmit = event => {
+		event.preventDefault();
+		const response = actions.login(data).then(res => {
+			console.log(res);
+			if (res) {
+			} else {
+				setError("Email o Password Incorrectos, Inténtelo de Nuevo");
+			}
+		});
+	};
+	useEffect(
+		() => {
+			if (store.tokenUser.token) {
+				document.querySelector(".btn-close").click();
+			}
+		},
+		[store.tokenUser.token]
+	);
+	return store.tokenUser.token ? (
+		<Redirect to="/client" />
+	) : (
 		<div>
 			<button
 				type="button"
@@ -34,20 +59,39 @@ const Modal = () => {
 						</div>
 
 						<div className="modal-body" />
-
-						<form className="login-form">
+						{error ? (
+							<div className={`alert alert-danger`} role="alert">
+								{error}
+							</div>
+						) : (
+							""
+						)}
+						<form className="login-form " onSubmit={handleOnSubmit}>
 							<div className="group">
 								<label htmlFor="user" className="label">
 									Email
 								</label>
-								<input id="user" type="email" className="input" />
+								<input
+									id="user"
+									type="email"
+									className="input"
+									name="email"
+									onChange={handleInputChange}
+								/>
 							</div>
 
 							<div className="group">
 								<label htmlFor="pass" className="label">
 									Password
 								</label>
-								<input id="pass" type="password" className="input" data-type="password" />
+								<input
+									id="pass"
+									type="password"
+									className="input"
+									data-type="password"
+									name="password"
+									onChange={handleInputChange}
+								/>
 							</div>
 
 							<div className="group">
@@ -71,4 +115,4 @@ const Modal = () => {
 	);
 };
 
-export default Modal;
+export default ModalLogin;

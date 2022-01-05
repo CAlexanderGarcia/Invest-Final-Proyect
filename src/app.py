@@ -10,16 +10,18 @@ from api.utils import APIException, generate_sitemap
 from api.models import db, UserData
 from api.routes import api
 from api.admin import setup_admin
-from flask_jwt_extended import JWTManager, create_access_token #dar de alta JWT y el token
+from flask_jwt_extended import JWTManager #dar de alta JWT y el token
 
 #from models import Person
 
-#jwt=JWTManager(api) #Inicializar JWT
+
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+jwt=JWTManager(app) #Inicializar JWT
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -69,15 +71,3 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT, debug=True)
 
 #############################TOKEN#################################
-
-#@app.route("/token", methods=["POST"])
-#def create_token():
-#    email = request.json.get("email")
-#    password = request.json.get("password")
-#
-#    user = UserData.query.filter_by(email=email, password=password).first()    
-#    if user is None:
-#        return jsonify({"msg": "Email o Contraseñas Incorrectas"}), 401
-#
-#    access_token = create_access_token(identity=user.id)
-#    return jsonify({"token": access_token, "email_id": user.id}) 

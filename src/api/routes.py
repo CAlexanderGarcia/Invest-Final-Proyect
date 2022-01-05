@@ -7,8 +7,22 @@ from api.models import db, UserData, Supplier, Client, Product
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
+#############################TOKEN#################################
 
+@api.route("/token", methods=["POST"])
+def create_token():
+    email = request.json.get("email")
+    password = request.json.get("password")
+    try:
+        user = UserData.query.filter_by(email=email, password=password).first()    
+        if user is None:
+            return jsonify({"msg": "Email o Contraseñas Incorrectas"}), 401
 
+        access_token = create_access_token(identity=user.id)
+        return jsonify({"token": access_token, "user_id": user.id}) 
+    except Exception as e: 
+            print(e)
+            return jsonify({"message" : "Producto no Creado", "created" : False}), 500    
 #############################USUARIOS#################################
 
 @api.route('/register', methods=['POST'])
@@ -107,17 +121,18 @@ def update_supplier(supplier_id):
 #############################CLIENTES#################################
 
 @api.route('/client', methods=['POST'])
-#@jwt_required()
+@jwt_required()
 def add_client():
-     # current_user = get_jwt_identity()
+      current_user = get_jwt_identity()
       name = request.json.get("name")
       nif = request.json.get("nif")
       address = request.json.get("address")
       postalCode = request.json.get("postalCode")
       try:
-
-            new_client = Client(name=name, address=address, nif=nif, postalCode=postalCode, userData_id= 1)
-            #new_client = Client(name=name, address=address,nif=nif, postalCode=postalCode, userData_id= current_user)
+            print(current_user)
+            #new_client = Client(name=name, address=address, nif=nif, postalCode=postalCode, userData_id= 1)
+            new_client = Client(name=name, address=address,nif=nif, postalCode=postalCode, userData_id= current_user)
+            
             if not (new_client):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
@@ -239,3 +254,4 @@ def update_product(product_id):
       except Exception as e:
             print(e) 
             return jsonify({"message" : "Producto no modificado", "created" : False}), 500
+

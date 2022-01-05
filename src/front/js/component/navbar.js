@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Nosotros from "./nosotros.js";
 import Servicios from "./servicios.js";
 import Informacion from "./informacion.js";
-import Modal from "../component/modal";
+import ModalLogin from "../component/modalLogin";
 
 export const Navbar = () => {
 	return (
@@ -29,7 +29,7 @@ export const Navbar = () => {
 								Regístrese
 							</Link>
 
-							<Modal />
+							<ModalLogin />
 						</div>
 					</nav>
 				</div>

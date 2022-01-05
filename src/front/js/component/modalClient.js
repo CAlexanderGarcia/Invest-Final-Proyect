@@ -41,7 +41,6 @@ const ModalClient = props => {
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
 					});
-		//	console.log("pepito");
 	};
 	return (
 		<>

@@ -16,7 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			listClients: [],
 			listProducts: [],
-			listSuppliers: []
+			listSuppliers: [],
+			tokenUser: {}
 		},
 		actions: {
 			createUser: async data => {
@@ -29,6 +30,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				const resp = await response.json();
 				return resp;
+			},
+			/*************************************LOGIN**********************************/
+			login: async data => {
+				let resp = {};
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/token", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(data)
+					});
+					resp = await response.json();
+				} catch (error) {
+					console.log(error);
+				}
+				console.log(resp);
+				if (resp.token) {
+					setStore({ tokenUser: resp });
+					return true;
+				} else {
+					return false;
+				}
 			},
 
 			/*************************************PROVEEDORES**********************************/
@@ -96,10 +120,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			createClient: data => {
 				console.log(data);
 				const store = getStore();
+				console.log(store.tokenUser);
 				const response = fetch(process.env.BACKEND_URL + "/client", {
 					method: "POST",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + store.tokenUser.token,
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "../component/modal.js";
+import ModalLogin from "./modalLogin.js";
 
 const Login = () => {
 	const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ const Login = () => {
 
 			<ul>
 				<li>
-					<Modal />
+					<ModalLogin />
 				</li>
 			</ul>
 		</div>
