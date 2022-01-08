@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const BillsForm = () => {
+	const [clients, setClients] = useState();
+	const [products, setProducts] = useState();
+
+	const [selectedClient, setSelectedClient] = useState();
+	const [selectedProduct, setSelectedProduct] = useState();
+
+	useEffect(() => {
+		getClients();
+		getProducts();
+	}, []);
+
+	const getClients = async () => {
+		const response = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/clients");
+		const data = await response.json();
+		setClients(data.clients);
+	};
+
+	const getProducts = async () => {
+		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/products");
+		const dataProduct = await responseProduct.json();
+		setProducts(dataProduct.products);
+	};
+
 	return (
 		<div className="container">
 			<div className="row g-3">
@@ -8,20 +31,13 @@ const BillsForm = () => {
 				<div className="col-md-6">
 					<div className="input-group">
 						<span className="input-group-text">Nombre</span>
-						<input type="text" className="form-control" id="inputEmail4" value="Fredy" readOnly disabled />
+						<input type="text" className="form-control" value="Fredy" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-6">
 					<div className="input-group">
 						<span className="input-group-text">Apellidos</span>
-						<input
-							type="text"
-							className="form-control"
-							id="inputPassword4"
-							value="Moreno"
-							readOnly
-							disabled
-						/>
+						<input type="text" className="form-control" value="Moreno" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-8">
@@ -45,26 +61,19 @@ const BillsForm = () => {
 				<div className="col-md-2">
 					<div className="input-group">
 						<span className="input-group-text">C.P.</span>
-						<input type="text" className="form-control" id="inputZip" value="12345" readOnly disabled />
+						<input type="text" className="form-control" value="12345" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
 						<span className="input-group-text">Email</span>
-						<input
-							type="email"
-							className="form-control"
-							id="inputCity"
-							value="info@fredymoreno.es"
-							readOnly
-							disabled
-						/>
+						<input type="email" className="form-control" value="info@fredymoreno.es" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
 						<span className="input-group-text">DNI</span>
-						<input type="text" className="form-control" id="inputZip" value="1234567" readOnly disabled />
+						<input type="text" className="form-control" value="1234567" readOnly disabled />
 					</div>
 				</div>
 			</div>
@@ -74,81 +83,165 @@ const BillsForm = () => {
 				<label htmlFor="inputState" className="form-label">
 					Lista de clientes
 				</label>
-				<select id="inputState" className="form-select mb-3">
+				<select
+					onChange={e => setSelectedClient(clients.find(x => x.id.toString() == e.target.value))}
+					id="inputState"
+					className="form-select mb-3">
 					<option selected>Seleccionar cliente...</option>
-					<option>...</option>
+					{clients
+						? clients.map((x, y) => {
+								return (
+									<option value={x.id} key={x.id}>
+										{x.name}
+									</option>
+								);
+						  })
+						: null}
 				</select>
 			</div>
 
-			{/* FORMULARIO FACTURA */}
 			<form className="row g-3">
 				<div className="col-md-9">
 					<div className="input-group">
 						<span className="input-group-text">Nombre</span>
-						<input type="text" className="form-control" value="" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							name="name"
+							value={selectedClient ? selectedClient.name : ""}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-3">
 					<div className="input-group">
 						<span className="input-group-text">NIF</span>
-						<input type="text" className="form-control" value="" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							name="nif"
+							value={selectedClient ? selectedClient.nif : ""}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-10">
 					<div className="input-group">
 						<span className="input-group-text">Dirección</span>
-						<input type="text" className="form-control" value="" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							name="address"
+							value={selectedClient ? selectedClient.address : ""}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
 						<span className="input-group-text">C.P.</span>
-						<input type="text" className="form-control" value="" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							name="postalCode"
+							value={selectedClient ? selectedClient.postalCode : ""}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 
+				{/* FORMULARIO FACTURA */}
 				<h2 className="mt-4">Datos Factura</h2>
-				<div className="col-md-6">
-					<label htmlFor="inputCity" className="form-label">
+				<div className="col-md-4">
+					<label htmlFor="inputBillId" className="form-label">
 						Nº Factura
 					</label>
-					<input type="text" className="form-control" id="inputCity" />
+					<input type="text" className="form-control" />
 				</div>
 				<div className="col-md-4">
-					<label htmlFor="inputState" className="form-label">
-						Fecha
+					<label htmlFor="inputDate" className="form-label">
+						Fecha factura
 					</label>
-					<input type="text" className="form-control" id="inputDate" />
+					<input
+						type="text"
+						className="form-control"
+						value={new Date().toLocaleString() + ""}
+						readOnly
+						disabled
+					/>
 				</div>
-				<div className="col-md-2">
-					<label htmlFor="inputZip" className="form-label">
-						Impuestos
-					</label>
-					<input type="text" className="form-control" id="inputZip" />
-				</div>
-				<div className="col-md-2">
-					<label htmlFor="inputZip" className="form-label">
+				<div className="col-md-4">
+					<label htmlFor="inputCode" className="form-label">
 						Referencia
 					</label>
-					<input type="text" className="form-control" id="inputZip" />
+					<input
+						type="text"
+						className="form-control"
+						name="code"
+						value={selectedProduct ? selectedProduct.code : ""}
+						readOnly
+						disabled
+					/>
 				</div>
+				{/* form productos */}
 				<div className="col-md-7">
-					<label htmlFor="inputAddress" className="form-label">
+					<label htmlFor="inputProduct" className="form-label">
 						Producto
 					</label>
-					<input type="text" className="form-control" id="inputAddress" />
+					<select
+						onChange={e => setSelectedProduct(products.find(p => p.id.toString() == e.target.value))}
+						className="form-select mb-3">
+						<option selected>Seleccionar producto...</option>
+						{products
+							? products.map((p, y) => {
+									return (
+										<option value={p.id} key={p.id}>
+											{p.name}
+										</option>
+									);
+							  })
+							: null}
+					</select>
 				</div>
 				<div className="col-md-1">
-					<label htmlFor="inputState" className="form-label">
+					<label htmlFor="inputQuantityUnity" className="form-label">
+						Precio/u
+					</label>
+					<input
+						type="number"
+						className="form-control"
+						name="price"
+						value={selectedProduct ? selectedProduct.price : ""}
+						readOnly
+						disabled
+					/>
+				</div>
+				<div className="col-md-1">
+					<label htmlFor="inputTax" className="form-label">
+						Impuestos
+					</label>
+					<input
+						type="text"
+						className="form-control"
+						name="tax"
+						value={selectedProduct ? selectedProduct.tax : ""}
+					/>
+				</div>
+				<div className="col-md-1">
+					<label htmlFor="inputQuantity" className="form-label">
 						Cantidad
 					</label>
-					<input type="text" className="form-control" id="inputDate" />
+					<input type="number" className="form-control" />
 				</div>
 				<div className="col-md-2">
-					<label htmlFor="inputZip" className="form-label">
+					<label htmlFor="inputPrice" className="form-label">
 						Precio
 					</label>
-					<input type="text" className="form-control" id="inputZip" />
+					<input type="number" className="form-control" />
 				</div>
 
 				<div className="col-12 d-flex justify-content-between">
