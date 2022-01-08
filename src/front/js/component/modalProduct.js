@@ -38,6 +38,7 @@ const ModalProduct = props => {
 			: actions
 					.updateProduct(data)
 					.then(result => {
+						console.log(result);
 						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
 					})
@@ -136,7 +137,7 @@ const ModalProduct = props => {
 										className="input col-sm-10"
 										name="supplier"
 										onChange={handleInputChange}
-										defaultValue={props.product.price}>
+										defaultValue="">
 										<option value="" selected disabled hidden>
 											-Choose here-
 										</option>

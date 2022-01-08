@@ -1,11 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ModalLogin = () => {
 	const { store, actions } = useContext(Context);
 	const [data, setData] = useState({});
 	const [error, setError] = useState("");
+	const history = useHistory();
 	const handleInputChange = event => {
 		setData({ ...data, [event.target.name]: event.target.value });
 	};
@@ -14,22 +15,15 @@ const ModalLogin = () => {
 		const response = actions.login(data).then(res => {
 			console.log(res);
 			if (res) {
+				document.querySelector(".btn-close").click();
+				history.push("/client");
 			} else {
 				setError("Email o Password Incorrectos, Inténtelo de Nuevo");
 			}
 		});
 	};
-	useEffect(
-		() => {
-			if (store.tokenUser.token) {
-				document.querySelector(".btn-close").click();
-			}
-		},
-		[store.tokenUser.token]
-	);
-	return store.tokenUser.token ? (
-		<Redirect to="/client" />
-	) : (
+
+	return (
 		<div>
 			<button
 				type="button"

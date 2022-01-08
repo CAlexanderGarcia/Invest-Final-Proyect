@@ -31,7 +31,7 @@ def create_user():
       name = request.json.get('name', None)       
       surname = request.json.get('surname', None)
       email = request.json.get('email', None)
-      adress = request.json.get('adress', None)
+      address = request.json.get('address', None)
       company = request.json.get('company', None)
       password = request.json.get('password', None)
       numberDocumentation = request.json.get('numberDocumentation', None)
@@ -42,7 +42,7 @@ def create_user():
       # validar datos de la api
       
       #creamos el usuario 
-      user = UserData(name=name, surname=surname, email=email, adress=adress, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode)
+      user = UserData(name=name, surname=surname, email=email, address=address, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode)
       if not (user):
             return jsonify({"message": "Error datos", "created": False }), 400
       db.session.add(user)
@@ -53,7 +53,9 @@ def create_user():
 #############################PROVEEDORES#################################
 
 @api.route('/supplier', methods=['POST'])
+@jwt_required()
 def create_supplier():
+      current_user = get_jwt_identity()
       name = request.json.get('name') 
       address = request.json.get('address')
       nif = request.json.get('nif')
@@ -61,7 +63,7 @@ def create_supplier():
       email = request.json.get('email')
       phoneNumber = request.json.get('phoneNumber')
       try:
-            supplier = Supplier(name=name, address=address, nif=nif, postalCode=postalCode, email=email, phoneNumber=phoneNumber, userData_id=1)
+            supplier = Supplier(name=name, address=address, nif=nif, postalCode=postalCode, email=email, phoneNumber=phoneNumber, userData_id=current_user)
             if not (supplier):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
@@ -74,17 +76,17 @@ def create_supplier():
 
 
 @api.route('/supplier', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def get_supplier():
-      # current_user = get_jwt_identity()
-      suppliers = Supplier.query.filter_by(userData_id=1)
+      current_user = get_jwt_identity()
+      suppliers = Supplier.query.filter_by(userData_id=current_user)
       data = [supplier.serialize() for supplier in suppliers]
       return jsonify(data), 200
 
 @api.route('/supplier/<int:supplier_id>', methods=['DELETE'])
-#@jwt_required()
+@jwt_required()
 def delete_suppliers(supplier_id):
-      # current_user = get_jwt_identity()
+      current_user = get_jwt_identity()
       supplier = Supplier.query.filter_by(id=supplier_id).first() 
 
       if not supplier:
@@ -94,7 +96,9 @@ def delete_suppliers(supplier_id):
       return jsonify({"message" : "El Proveedor fue borrado con éxito"}), 200
 
 @api.route('/supplier/<int:supplier_id>', methods=['PUT'])
+@jwt_required()
 def update_supplier(supplier_id):
+      current_user = get_jwt_identity()
       name = request.json.get('name') 
       nif = request.json.get('nif')
       address = request.json.get('address')  
@@ -102,7 +106,7 @@ def update_supplier(supplier_id):
       email = request.json.get ('email')
       phoneNumber =  request.json.get('phoneNumber')
       try:
-            supplier = Supplier.query.filter_by(userData_id=1).first()         
+            supplier = Supplier.query.filter_by(userData_id=current_user).first()         
             if not (supplier):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
@@ -130,7 +134,6 @@ def add_client():
       postalCode = request.json.get("postalCode")
       try:
             print(current_user)
-            #new_client = Client(name=name, address=address, nif=nif, postalCode=postalCode, userData_id= 1)
             new_client = Client(name=name, address=address,nif=nif, postalCode=postalCode, userData_id= current_user)
             
             if not (new_client):
@@ -145,17 +148,17 @@ def add_client():
 
 
 @api.route('/client', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def get_clients():
-      # current_user = get_jwt_identity()
-      clients = Client.query.filter_by(userData_id=1)
+      current_user = get_jwt_identity()
+      clients = Client.query.filter_by(userData_id=current_user)
       data = [client.serialize() for client in clients]
       return jsonify(data), 200
 
 @api.route('/client/<int:client_id>', methods=['DELETE'])
-#@jwt_required()
+@jwt_required()
 def delete_clients(client_id):
-      # current_user = get_jwt_identity()
+      current_user = get_jwt_identity()
       client = Client.query.filter_by(id=client_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
 
       if not client:
@@ -165,13 +168,15 @@ def delete_clients(client_id):
       return jsonify({"message" : "El Cliente fue borrado con éxito"}), 200
 
 @api.route('/client/<int:client_id>', methods=['PUT'])
+@jwt_required()
 def update_client(client_id):
+      current_user = get_jwt_identity()
       name = request.json.get('name') 
       address = request.json.get('address')
       nif = request.json.get('nif')
       postalCode = request.json.get('postalCode')
       try:
-            client = Client.query.filter_by(userData_id=1, id=client_id).first()         
+            client = Client.query.filter_by(userData_id=current_user, id=client_id).first()         
             if not (client):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
@@ -187,9 +192,9 @@ def update_client(client_id):
 #############################PRODUCTOS#################################
 
 @api.route('/product', methods=['POST'])
-#@jwt_required()
+@jwt_required()
 def add_product():
-     # current_user = get_jwt_identity()
+      current_user = get_jwt_identity()
       name = request.json.get("name")
       code = request.json.get("code")
       quantity = request.json.get("quantity")
@@ -197,7 +202,7 @@ def add_product():
       supplier = request.json.get("supplier")
       try:
 
-            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier)
+            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
            
             if not (new_product):
                   return jsonify({"message": "Error datos", "created": False }), 400
@@ -211,19 +216,19 @@ def add_product():
 
 
 @api.route('/product', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def get_products():
-      # current_user = get_jwt_identity()
-      suppliers = Supplier.query.filter_by(userData_id=1)
+      current_user = get_jwt_identity()
+      suppliers = Supplier.query.filter_by(userData_id=current_user)
       suppliers_ids = [supplier.id for supplier in suppliers]
       products = Product.query.filter(Product.supplier_id.in_(suppliers_ids))#buscamos todos los productos del listado de proveedores
       data = [product.serialize() for product in products] 
       return jsonify(data), 200
 
 @api.route('/product/<int:product_id>', methods=['DELETE'])
-#@jwt_required()
+@jwt_required()
 def delete_products(product_id):
-      # current_user = get_jwt_identity()
+      current_user = get_jwt_identity()
       product = Product.query.filter_by(id=product_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
 
       if not product:
@@ -232,15 +237,18 @@ def delete_products(product_id):
       db.session.commit()
       return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
 
-@api.route('/product/<int:product_id>', methods=['PUT'])
+@api.route('/product/<int:product_id>', methods=['POST'])
+@jwt_required()
 def update_product(product_id):
-      name = request.json.get('name') 
-      code = request.json.get('code')
-      quantity = request.json.get('quantity')
-      price = request.json.get('price')
-      supplier = request.json.get('supplier')
       try:
-            product = Product.query.filter_by(supplier_id=supplier, id=product_id).first()         
+            current_user = get_jwt_identity()
+            name = request.json.get('name') 
+            code = request.json.get('code')
+            quantity = request.json.get('quantity')
+            price = request.json.get('price')
+            supplier = request.json.get('supplier')
+            product = Product.query.filter_by(supplier_id=supplier, id=product_id).first() 
+            print(supplier, product_id)        
             if not (product):
                   return jsonify({"message": "Error datos", "created": False }), 400
             

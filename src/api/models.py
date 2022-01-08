@@ -8,7 +8,7 @@ class UserData(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     surname = db.Column(db.String(120), unique=False, nullable=False)
-    adress = db.Column(db.String(120), unique=False, nullable=False)
+    address = db.Column(db.String(120), unique=False, nullable=False)
     company = db.Column(db.String(120), unique=False, nullable=False)
     numberDocumentation = db.Column(db.String(120), unique=False, nullable=False)
     typeDocumentation = db.Column(db.String(120), unique=False, nullable=False)

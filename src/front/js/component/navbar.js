@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Nosotros from "./nosotros.js";
 import Servicios from "./servicios.js";
 import Informacion from "./informacion.js";
 import ModalLogin from "../component/modalLogin";
+import { Context } from "../store/appContext";
+import PrivateNavbar from "../component/privateNavbar";
 
 export const Navbar = () => {
-	return (
+	const { actions } = useContext(Context);
+	const token = actions.getToken();
+	useEffect(() => {
+		actions.getToken();
+	}, []);
+	return token ? (
+		<PrivateNavbar />
+	) : (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container navigation ">
 				<Link to="/">

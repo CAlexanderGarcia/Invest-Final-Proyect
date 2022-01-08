@@ -68,8 +68,7 @@ const ListClient = () => {
 										<button
 											className="px-2 me-1 link-trash btn btn-link "
 											onClick={() => {
-												actions.deleteClient(value.id);
-												actions.listClient(); // ver la otra forma de actualizar el listado sin llamar al API
+												actions.deleteClient(value.id).then(data => actions.listClient());
 											}}>
 											<i className="fas fa-trash" />
 										</button>

@@ -11,6 +11,7 @@ from api.models import db, UserData
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager #dar de alta JWT y el token
+from datetime import timedelta
 
 #from models import Person
 
@@ -22,6 +23,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 jwt=JWTManager(app) #Inicializar JWT
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

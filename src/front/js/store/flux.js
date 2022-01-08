@@ -49,10 +49,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(resp);
 				if (resp.token) {
 					setStore({ tokenUser: resp });
+					localStorage.setItem("tokenUser", resp.token); //guarda el token en el local Store("base de datos" del navegador)
 					return true;
 				} else {
 					return false;
 				}
+			},
+			getToken: () => {
+				const token = localStorage.getItem("tokenUser"); //Busca en la local store un elemento en este caso el token
+				return token ? token : null;
+			},
+			removeToken: () => {
+				localStorage.clear();
 			},
 
 			/*************************************PROVEEDORES**********************************/
@@ -61,7 +69,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/supplier", {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Authorization: "Bearer " + getActions().getToken()
 					},
 					body: JSON.stringify(data)
 				}).then(resp => resp.json());
@@ -73,7 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/supplier", {
 					method: "PUT",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -84,7 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/supplier/" + supplier, {
 					method: "DELETE",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
 				})
@@ -95,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/supplier/" + data.id, {
 					method: "PUT",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -107,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/supplier", {
 					method: "GET",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
 				})
@@ -124,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/client", {
 					method: "POST",
 					headers: {
-						Authorization: "Bearer " + store.tokenUser.token,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -137,7 +146,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/client", {
 					method: "PUT",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -148,18 +157,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/client/" + client, {
 					method: "DELETE",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
-				})
-					.then(resp => resp.json())
-					.then(data => console.log(data));
+				}).then(resp => resp.json());
+				return response;
 			},
 			updateClient: data => {
 				const response = fetch(process.env.BACKEND_URL + "/client/" + data.id, {
 					method: "PUT",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -171,7 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/client", {
 					method: "GET",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
 				})
@@ -186,7 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/product", {
 					method: "POST",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -199,7 +207,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/product", {
 					method: "PUT",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -210,7 +218,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/product/" + product, {
 					method: "DELETE",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
 				}).then(resp => resp.json());
@@ -218,9 +226,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateProduct: data => {
 				const response = fetch(process.env.BACKEND_URL + "/product/" + data.id, {
-					method: "PUT",
+					method: "POST",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
@@ -232,7 +240,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = fetch(process.env.BACKEND_URL + "/product", {
 					method: "GET",
 					headers: {
-						//	Authorization: "Bearer " + store.accessToken,
+						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
 				})
