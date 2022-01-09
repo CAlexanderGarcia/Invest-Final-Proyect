@@ -6,9 +6,8 @@ class UserData(db.Model):
     __tablename__ = 'userdata'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    surname = db.Column(db.String(120), unique=False, nullable=False)
-    adress = db.Column(db.String(120), unique=False, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)    
+    address = db.Column(db.String(120), unique=False, nullable=True)
     company = db.Column(db.String(120), unique=False, nullable=False)
     numberDocumentation = db.Column(db.String(120), unique=False, nullable=False)
     typeDocumentation = db.Column(db.String(120), unique=False, nullable=False)
