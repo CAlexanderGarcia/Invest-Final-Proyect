@@ -6,7 +6,7 @@ const Informacion = () => {
 	return (
 		<div className="dropdown">
 			<a
-				className="btn buttom-nsi mx-5 fs-5"
+				className="btn buttom-nsi mx-5 fs-5 text-white"
 				href="#"
 				onMouseOver={() => {
 					setShow(!show);

@@ -16,13 +16,13 @@ export const Navbar = () => {
 	return token ? (
 		<PrivateNavbar />
 	) : (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar navbar-dark bg-dark">
 			<div className="container navigation ">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1 jaf">JAF</span>
+					<span className="navbar-brand mb-0 h1 Investy">Investy</span>
 				</Link>
 				<div className="">
-					<nav className="navbar navbar-expand-sm navbar-light bg-light">
+					<nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 						<div className="container-fluid">
 							<Informacion />
 
@@ -30,7 +30,7 @@ export const Navbar = () => {
 
 							<Nosotros />
 
-							<Link to="register-form" className="btn buttom-nsi fs-5 me-4">
+							<Link to="register-form" className="btn buttom-nsi fs-5 me-4 text-white">
 								<span id="span1" />
 								<span id="span2" />
 								<span id="span3" />

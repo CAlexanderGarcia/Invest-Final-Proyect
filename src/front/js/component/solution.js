@@ -1,21 +1,21 @@
 import React from "react";
+import office01 from "../../img/office01.png";
+import office02 from "../../img/office02.png";
+import office03 from "../../img/office03.png";
 
 const Solution = () => {
 	return (
-		<div className="solution">
+		<div className="solution col-md-lg-12 my-5">
 			<div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
 				<div className="carousel-inner solution_item">
 					<div className="carousel-item active">
-						<img src="" className="d-block w-100" alt="..." />
-						<p>hola</p>
+						<img src={office01} className="d-block w-100" alt="..." />
 					</div>
 					<div className="carousel-item">
-						<img src="..." className="d-block w-100" alt="..." />
-						<p>como</p>
+						<img src={office02} className="d-block w-100" alt="..." />
 					</div>
 					<div className="carousel-item">
-						<img src="..." className="d-block w-100" alt="..." />
-						<p>estas</p>
+						<img src={office03} className="d-block w-100" alt="..." />
 					</div>
 				</div>
 				<button

@@ -28,6 +28,9 @@ const ModalClient = props => {
 					.then(result => {
 						actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
+						{
+							document.getElementById("myform").reset();
+						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -37,6 +40,9 @@ const ModalClient = props => {
 					.then(result => {
 						actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
+						{
+							document.getElementById("myform").reset();
+						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -46,8 +52,8 @@ const ModalClient = props => {
 		<>
 			<div className="modal fade" tabIndex="-1" id={props.idModal}>
 				<div className="modal-dialog">
-					<div className="modal-content modalCSP">
-						<form onSubmit={handleFormSubmit}>
+					<div className="modal-content modalCSP container-fluid">
+						<form onSubmit={handleFormSubmit} id="myform">
 							<div className="modal-header">
 								<h5 className="modal-title">{props.modalHeader}</h5>
 								<button
@@ -68,13 +74,13 @@ const ModalClient = props => {
 									""
 								)}
 								<div className="m-3 p-2">
-									<label htmlFor="client_name" className="col-sm-2 col-form-label">
+									<label htmlFor="client_name" className="col-sm-2 fw-bold">
 										Nombre
 									</label>
 									<input
 										id="client_name"
 										type="text"
-										className="input col-sm-10"
+										className="col-sm-10 rounded"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.client.name}
@@ -82,13 +88,13 @@ const ModalClient = props => {
 								</div>
 
 								<div className="m-3 p-2">
-									<label htmlFor="client_nif" className="col-sm-2 col-form-label">
+									<label htmlFor="client_nif" className="col-sm-2 col-form-label fw-bold">
 										NIF
 									</label>
 									<input
 										id="client_nif"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="nif"
 										data-type="text"
 										onChange={handleInputChange}
@@ -96,13 +102,13 @@ const ModalClient = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="client_address" className="col-sm-2 col-form-label">
+									<label htmlFor="client_address" className="col-sm-2 col-form-label fw-bold">
 										Dirección
 									</label>
 									<input
 										id="client_address"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded "
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
@@ -110,13 +116,13 @@ const ModalClient = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="client_postalcode" className="col-2 col-form-label">
+									<label htmlFor="client_postalcode" className="col-2 col-form-label fw-bold">
 										Código Postal
 									</label>
 									<input
 										id="client_postalcode"
 										type="number"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="postalCode"
 										data-type="number"
 										onChange={handleInputChange}

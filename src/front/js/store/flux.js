@@ -2,18 +2,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			listClients: [],
 			listProducts: [],
 			listSuppliers: [],
@@ -96,9 +84,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					}
-				})
-					.then(resp => resp.json())
-					.then(data => console.log(data));
+				}).then(resp => resp.json());
+				return response;
 			},
 			updateSupplier: data => {
 				const response = fetch(process.env.BACKEND_URL + "/supplier/" + data.id, {

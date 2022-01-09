@@ -31,6 +31,9 @@ const ModalProduct = props => {
 					.then(result => {
 						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
+						{
+							document.getElementById("myform").reset();
+						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -41,6 +44,9 @@ const ModalProduct = props => {
 						console.log(result);
 						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
+						{
+							document.getElementById("myform").reset();
+						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -52,7 +58,7 @@ const ModalProduct = props => {
 			<div className="modal fade" tabIndex="-1" id={props.idModal}>
 				<div className="modal-dialog">
 					<div className="modal-content modalCSP">
-						<form onSubmit={handleFormSubmit}>
+						<form onSubmit={handleFormSubmit} id="myform">
 							<div className="modal-header">
 								<h5 className="modal-title">{props.modalHeader}</h5>
 								<button
@@ -62,7 +68,7 @@ const ModalProduct = props => {
 									aria-label="Close"
 								/>
 							</div>
-							<div className="modal-body">
+							<div className="modal-body myform">
 								{showMessage && showMessage.message ? (
 									<div
 										className={`alert alert-${showMessage.error ? "danger" : "success"}`}
@@ -79,7 +85,7 @@ const ModalProduct = props => {
 									<input
 										id="product_name"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.product.name}
@@ -93,7 +99,7 @@ const ModalProduct = props => {
 									<input
 										id="product_code"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="code"
 										data-type="text"
 										onChange={handleInputChange}
@@ -107,7 +113,7 @@ const ModalProduct = props => {
 									<input
 										id="product_quantity"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="quantity"
 										data-type="text"
 										onChange={handleInputChange}
@@ -121,7 +127,7 @@ const ModalProduct = props => {
 									<input
 										id="product_price"
 										type="number"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="price"
 										data-type="number"
 										onChange={handleInputChange}
@@ -134,7 +140,7 @@ const ModalProduct = props => {
 									</label>
 									<select
 										id="product_supplier"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded text-center"
 										name="supplier"
 										onChange={handleInputChange}
 										defaultValue="">
@@ -152,7 +158,7 @@ const ModalProduct = props => {
 								</div>
 							</div>
 							<div className="modal-footer">
-								<button type="submit" className="btn btn-primary">
+								<button type="submit" className="btn btn-lg text-info shadow mb-1 bg-body rounded">
 									{props.nameButton}
 								</button>
 							</div>

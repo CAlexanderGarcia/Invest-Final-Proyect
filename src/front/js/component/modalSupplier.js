@@ -28,6 +28,9 @@ const ModalSupplier = props => {
 					.then(result => {
 						actions.listSupplier(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
+						{
+							document.getElementById("myform").reset();
+						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -37,6 +40,9 @@ const ModalSupplier = props => {
 					.then(result => {
 						actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
+						{
+							document.getElementById("myform").reset();
+						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -48,7 +54,7 @@ const ModalSupplier = props => {
 			<div className="modal fade" tabIndex="-1" id={props.idModal}>
 				<div className="modal-dialog">
 					<div className="modal-content modalCSP ">
-						<form onSubmit={handleFormSubmit}>
+						<form onSubmit={handleFormSubmit} id="myform">
 							<div className="modal-header">
 								<h5 className="modal-title">{props.modalHeader}</h5>
 								<button
@@ -75,7 +81,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_name"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.supplier.name}
@@ -89,7 +95,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_nif"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="nif"
 										data-type="text"
 										onChange={handleInputChange}
@@ -103,7 +109,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_address"
 										type="text"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
@@ -117,7 +123,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_postalcode"
 										type="number"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="postalCode"
 										data-type="number"
 										onChange={handleInputChange}
@@ -131,7 +137,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_postalcode"
 										type="email"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="email"
 										data-type="email"
 										onChange={handleInputChange}
@@ -140,12 +146,12 @@ const ModalSupplier = props => {
 								</div>
 								<div className="m-3 p-2">
 									<label htmlFor="supplier_phoneNumber" className="col-2 col-form-label">
-										Número de Télefono
+										Télefono
 									</label>
 									<input
 										id="supplier_phoneNumber"
 										type="number"
-										className="input col-sm-10"
+										className="input col-sm-10 rounded"
 										name="phoneNumber"
 										data-type="number"
 										onChange={handleInputChange}
@@ -154,7 +160,7 @@ const ModalSupplier = props => {
 								</div>
 							</div>
 							<div className="modal-footer">
-								<button type="submit" className="btn btn-primary">
+								<button type="submit" className="btn btn-lg text-info shadow mb-1 bg-body rounded">
 									{props.nameButton}
 								</button>
 							</div>

@@ -7,7 +7,7 @@ const Servicios = () => {
 		<div className="dropdown">
 			<a
 				href="#"
-				className="btn buttom-nsi mx-5 fs-5"
+				className="btn buttom-nsi mx-5 fs-5 text-white"
 				onMouseOver={() => {
 					setShow(!show);
 				}}

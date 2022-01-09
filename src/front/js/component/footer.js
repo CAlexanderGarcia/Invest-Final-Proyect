@@ -3,9 +3,9 @@ import React, { useState } from "react";
 const Footer = () => {
 	const [dropend, setDropend] = useState(false);
 	return (
-		<footer className="footer mt-auto fixed-bottom">
+		<footer className="footerZIndex mt-5 sticky-bottom">
 			<div className="container-fluid d-flex bg-dark">
-				<div className="align-start">
+				<div className="align-start d-flex">
 					<div className="btn-group dropend">
 						<a
 							onMouseOver={() => {
@@ -15,7 +15,7 @@ const Footer = () => {
 								setDropend(!dropend);
 							}}
 							type="a"
-							className="btn dropdown-toggle fs-5 text-white buttom-nsi mt-2"
+							className="btn dropdown-toggle fs-5 text-white buttom-nsi my-2"
 							data-bs-toggle="dropdown">
 							<span id="span9" />
 							<span id="span10" />
@@ -23,17 +23,17 @@ const Footer = () => {
 							<span id="span12" />
 							Contacto
 						</a>
-						<ul className={"dropdown-menu" + (dropend ? "dropend" : "")}>
-							<a className="dropdown-item" href="#">
-								<div className="container-fluid text-white">
-									<>Teléfono:</>
-									<span className="text-muted">(+34) 910 000 000</span>
-									<>Horario de atención al cliente:</>
-									<span className="text-muted"> 09:00 a 18:00 todos los días</span>
-								</div>
-							</a>
-						</ul>
 					</div>
+					<ul className={"dropdown-menu" + (dropend ? "dropend" : "")}>
+						<a className="dropdown-item " href="#">
+							<div className="container text-white row row-cols-4 mt-2 text-start">
+								<>Teléfono:</>
+								<span className="text-muted col"> (+34) 910 000 000</span>
+								<>Horario de atención al cliente:</>
+								<span className="text-muted col"> 09:00 a 18:00 todos los días</span>
+							</div>
+						</a>
+					</ul>
 				</div>
 				<div className=" container-fluid d-flex">
 					<span className="encuentranos text-white">Encuéntranos en:</span>

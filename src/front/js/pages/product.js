@@ -26,7 +26,13 @@ const Product = () => {
 					isCreated={true}
 					product={{}}
 				/>
-				<form className="form d-flex mx-3 pe-5">
+			</div>
+			<ListProduct />
+		</div>
+	);
+};
+
+/*<form className="form d-flex mx-3 pe-5">
 					<input className="form-control" type="search" placeholder="Buscar Productos" aria-label="Search" />
 					<button type="submit" className="btn Modal fs-5" data-bs-toggle="modal">
 						<span id="span5" />
@@ -35,11 +41,6 @@ const Product = () => {
 						<span id="span8" />
 						Buscar
 					</button>
-				</form>
-			</div>
-			<ListProduct />
-		</div>
-	);
-};
+				</form>*/
 
 export default Product;

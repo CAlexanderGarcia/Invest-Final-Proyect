@@ -26,7 +26,13 @@ const Supplier = () => {
 					isCreated={true}
 					supplier={{}}
 				/>
-				<form className="form d-flex mx-3 pe-5">
+			</div>
+			<ListSupplier />
+		</div>
+	);
+};
+
+/*<form className="form d-flex mx-3 pe-5">
 					<input className="form-control" type="search" placeholder="Buscar Proveedor" aria-label="Search" />
 					<button type="submit" className="btn fs-5 buttom-nsi" data-bs-toggle="modal">
 						<span id="span9" />
@@ -35,11 +41,6 @@ const Supplier = () => {
 						<span id="span12" />
 						Buscar
 					</button>
-				</form>
-			</div>
-			<ListSupplier />
-		</div>
-	);
-};
+				</form>*/
 
 export default Supplier;
