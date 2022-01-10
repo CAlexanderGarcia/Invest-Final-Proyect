@@ -76,8 +76,9 @@ const ListSupplier = () => {
 										<button
 											className="px-2 me-1 link-trash btn btn-link "
 											onClick={() => {
-												actions.deleteSupplier(value.id);
-												actions.listSupplier(); // ver la otra forma de actualizar el listado sin llamar al API
+												actions.deleteSupplier(value.id).then(() => {
+													actions.listSupplier();
+												}); //actions.listSupplier();  ver la otra forma de actualizar el listado sin llamar al API
 											}}>
 											<i className="fas fa-trash" />
 										</button>

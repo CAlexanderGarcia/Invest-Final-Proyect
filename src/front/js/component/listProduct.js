@@ -40,6 +40,9 @@ const ListProduct = () => {
 						<th scope="col" className="text-left">
 							Precio
 						</th>
+						<th scope="col" className="text-left">
+							Proveedor
+						</th>
 						<th />
 					</tr>
 				</thead>
@@ -55,6 +58,7 @@ const ListProduct = () => {
 									<td className="text-center">{value.code}</td>
 									<td className="text-center">{value.quantity}</td>
 									<td className="text-center">{value.price}</td>
+									<td className="text-center">{store.listSuppliers[0].name}</td>
 									<td>
 										<button
 											onClick={() => {
@@ -81,7 +85,7 @@ const ListProduct = () => {
 						})
 					) : (
 						<tr>
-							<td colSpan="12">No tiene producto</td>
+							<td colSpan="12">No tiene productos añadidos</td>
 						</tr>
 					)}
 				</tbody>

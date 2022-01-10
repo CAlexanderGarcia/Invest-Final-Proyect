@@ -99,17 +99,17 @@ def delete_suppliers(supplier_id):
 @jwt_required()
 def update_supplier(supplier_id):
       current_user = get_jwt_identity()
-      name = request.json.get('name') 
-      nif = request.json.get('nif')
+      if supplier.name != name : supplier.name=name
+      if supplier.nif != nif : supplier.nif=nif
       address = request.json.get('address')  
       postalCode = request.json.get('postalCode')
-      email = request.json.get ('email')
+      if supplier.email != email : supplier.email=email
       phoneNumber =  request.json.get('phoneNumber')
       try:
             supplier = Supplier.query.filter_by(userData_id=current_user).first()         
             if not (supplier):
                   return jsonify({"message": "Error datos", "created": False }), 400
-            
+            print(name, nif, address, postalCode, email, phoneNumber)
             supplier.name = name
             supplier.nif = nif
             supplier.address = address

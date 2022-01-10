@@ -29,16 +29,16 @@ const ListClient = () => {
 							ID
 						</th>
 						<th scope="col" className="text-left">
-							Name
+							Nombre
 						</th>
 						<th scope="col" className="text-left">
 							NIF
 						</th>
 						<th scope="col" className="text-left">
-							Address
+							Dirección
 						</th>
 						<th scope="col" className="text-left">
-							Postal Code
+							Código Postal
 						</th>
 						<th />
 					</tr>

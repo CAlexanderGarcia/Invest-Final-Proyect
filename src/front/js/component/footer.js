@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Footer = () => {
 	const [dropend, setDropend] = useState(false);
 	return (
-		<footer className="footerZIndex mt-5 sticky-bottom">
+		<footer className="sticky-bottom">
 			<div className="container-fluid d-flex bg-dark">
 				<div className="align-start d-flex">
 					<div className="btn-group dropend">

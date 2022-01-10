@@ -18,7 +18,15 @@ const Product = () => {
 					Crear Producto
 				</button>
 				
-				<form className="form d-flex mx-3 pe-5">
+				
+			</div>
+			<ListProduct />
+		</div>
+	);
+};
+
+/*
+<form className="form d-flex mx-3 pe-5">
 					<input className="form-control" type="search" placeholder="Buscar Producto" aria-label="Search" />
 					<button type="submit" className="btn fs-5 buttom-nsi" data-bs-toggle="modal">
 						<span id="span9" />
@@ -28,10 +36,6 @@ const Product = () => {
 						Buscar
 					</button>
 				</form>
-			</div>
-			<ListProduct />
-		</div>
-	);
-};
 
+*/ 
 export default Product;

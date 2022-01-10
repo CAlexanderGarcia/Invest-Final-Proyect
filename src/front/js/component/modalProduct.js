@@ -79,7 +79,7 @@ const ModalProduct = props => {
 									""
 								)}
 								<div className="m-3 p-2">
-									<label htmlFor="product_name" className="col-sm-2 col-form-label">
+									<label htmlFor="product_name" className="col-sm-2 col-form-label fw-bold">
 										Nombre
 									</label>
 									<input
@@ -93,7 +93,7 @@ const ModalProduct = props => {
 								</div>
 
 								<div className="m-3 p-2">
-									<label htmlFor="product_code" className="col-sm-2 col-form-label">
+									<label htmlFor="product_code" className="col-sm-2 col-form-label fw-bold">
 										Código
 									</label>
 									<input
@@ -107,7 +107,7 @@ const ModalProduct = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="product_quantity" className="col-sm-2 col-form-label">
+									<label htmlFor="product_quantity" className="col-sm-2 col-form-label fw-bold">
 										Cantidad
 									</label>
 									<input
@@ -121,7 +121,7 @@ const ModalProduct = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="product_price" className="col-2 col-form-label">
+									<label htmlFor="product_price" className="col-2 col-form-label fw-bold">
 										Precio
 									</label>
 									<input
@@ -134,13 +134,13 @@ const ModalProduct = props => {
 										defaultValue={props.product.price}
 									/>
 								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="product_supplier" className="col-2 col-form-label">
+								<div className="m-3 p-2 ms-1 row">
+									<label htmlFor="product_supplier" className="col-3 col-form-label fw-bold">
 										Proveedores
 									</label>
 									<select
 										id="product_supplier"
-										className="input col-sm-10 rounded text-center"
+										className="input col-9 rounded text-center"
 										name="supplier"
 										onChange={handleInputChange}
 										defaultValue="">

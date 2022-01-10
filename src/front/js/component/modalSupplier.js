@@ -75,7 +75,7 @@ const ModalSupplier = props => {
 									""
 								)}
 								<div className="m-3 p-2">
-									<label htmlFor="supplier_name" className="col-sm-2 col-form-label">
+									<label htmlFor="supplier_name" className="col-sm-2 col-form-label fw-bold">
 										Nombre
 									</label>
 									<input
@@ -89,7 +89,7 @@ const ModalSupplier = props => {
 								</div>
 
 								<div className="m-3 p-2">
-									<label htmlFor="supplier_nif" className="col-sm-2 col-form-label">
+									<label htmlFor="supplier_nif" className="col-sm-2 col-form-label fw-bold">
 										NIF
 									</label>
 									<input
@@ -103,7 +103,7 @@ const ModalSupplier = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="supplier_address" className="col-sm-2 col-form-label">
+									<label htmlFor="supplier_address" className="col-sm-2 col-form-label fw-bold">
 										Dirección
 									</label>
 									<input
@@ -117,7 +117,9 @@ const ModalSupplier = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="supplier_postalcode" className="col-2 col-form-label">
+									<label
+										htmlFor="supplier_postalcode"
+										className="col-2 col-form-label cd-supplier fw-bold">
 										Código Postal
 									</label>
 									<input
@@ -131,7 +133,7 @@ const ModalSupplier = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="supplier_email" className="col-2 col-form-label">
+									<label htmlFor="supplier_email" className="col-2 col-form-label fw-bold">
 										Email
 									</label>
 									<input
@@ -145,8 +147,8 @@ const ModalSupplier = props => {
 									/>
 								</div>
 								<div className="m-3 p-2">
-									<label htmlFor="supplier_phoneNumber" className="col-2 col-form-label">
-										Télefono
+									<label htmlFor="supplier_phoneNumber" className="col-2 col-form-label fw-bold">
+										Teléfono
 									</label>
 									<input
 										id="supplier_phoneNumber"
