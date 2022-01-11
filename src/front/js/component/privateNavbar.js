@@ -32,48 +32,40 @@ export const PrivateNavbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<a className="nav-link active" aria-current="page">
-									<Link to="/client" className="btn buttom-nsi fs-5 text-white">
-										<span id="span9" />
-										<span id="span10" />
-										<span id="span11" />
-										<span id="span12" />
-										Clientes
-									</Link>
-								</a>
+								<Link to="/client" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Clientes
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<Link to="/product" className="btn buttom-nsi fs-5 text-white">
-										<span id="span9" />
-										<span id="span10" />
-										<span id="span11" />
-										<span id="span12" />
-										Productos
-									</Link>
-								</a>
+								<Link to="/product" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Productos
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<Link to="/supplier" className="btn buttom-nsi fs-5 text-white">
-										<span id="span9" />
-										<span id="span10" />
-										<span id="span11" />
-										<span id="span12" />
-										Proveedores
-									</Link>
-								</a>
+								<Link to="/supplier" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Proveedores
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<button className="btn buttom-nsi fs-5 text-secondary" onClick={handleClick}>
-										<span id="span9" />
-										<span id="span10" />
-										<span id="span11" />
-										<span id="span12" />
-										Log Out
-									</button>
-								</a>
+								<button className="btn buttom-nsi fs-5 text-secondary" onClick={handleClick}>
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Log Out
+								</button>
 							</li>
 						</ul>
 					</div>

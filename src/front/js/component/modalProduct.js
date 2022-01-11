@@ -143,8 +143,8 @@ const ModalProduct = props => {
 										className="input col-9 rounded text-center"
 										name="supplier"
 										onChange={handleInputChange}
-										defaultValue="">
-										<option value="" selected disabled hidden>
+										defaultValue={"DEFAULT"}>
+										<option value="DEFAULT" selected disabled hidden>
 											-Choose here-
 										</option>
 										{store.listSuppliers.map((value, index) => {
