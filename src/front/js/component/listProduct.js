@@ -24,23 +24,23 @@ const ListProduct = () => {
 			/>
 			<table className="container table table-striped text-center table-fill my-5">
 				<thead>
-					<tr>
-						<th scope="col" className="text-left">
+					<tr className="tr-CPP">
+						<th scope="col" className="text-left th-CPP">
 							ID
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Nombre
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Código
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Cantidad
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Precio
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Proveedor
 						</th>
 						<th />
@@ -51,7 +51,7 @@ const ListProduct = () => {
 						store.listProducts.map((value, index) => {
 							return (
 								<tr key={index}>
-									<td scope="row" className="text-center">
+									<td scope="row" className="text-center td-CPP">
 										{value.id}
 									</td>
 									<td className="text-center">{value.name}</td>

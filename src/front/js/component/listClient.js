@@ -24,20 +24,20 @@ const ListClient = () => {
 			/>
 			<table className="container table table-striped text-center table-fill my-5">
 				<thead>
-					<tr>
-						<th scope="col" className="text-left">
+					<tr className="tr-CPP">
+						<th scope="col" className="text-left th-CPP">
 							ID
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Nombre
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							NIF
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Dirección
 						</th>
-						<th scope="col" className="text-left">
+						<th scope="col" className="text-left th-CPP">
 							Código Postal
 						</th>
 						<th />
@@ -48,7 +48,7 @@ const ListClient = () => {
 						store.listClients.map((value, index) => {
 							return (
 								<tr key={index}>
-									<td scope="row" className="text-center">
+									<td scope="row" className="text-center td-CPP">
 										{value.id}
 									</td>
 									<td className="text-center">{value.name}</td>

@@ -33,7 +33,7 @@
     animation: float 5s infinite;
     color: black;
   }
-  th {
+  #th-CPP {
     color:#2c70b8;;
     background:black;
     padding:24px;
@@ -42,52 +42,52 @@
     vertical-align:middle;
   }
 
-th:first-child {
+  #th-CPP:first-child {
     border-top-left-radius:3px;
   }
    
-th:last-child {
+  #th-CPP:last-child {
     border-top-right-radius:3px;
     
   }
 
-  tr {
+  #tr-CPP {
     font-size:22px;
     font-weight:normal;
     text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
   }
    
-  tr:hover td {
+  #tr-CPP:hover td {
     background:#4E5066;
     color:#FFFFFF;
     border-top: 1px solid #22262e;
   }
    
-  tr:first-child {
+  #tr-CPP:first-child {
     border-top:5px;
   }
   
-  tr:last-child {
+  #tr-CPP:last-child {
     border-bottom:5px;
   }
    
-  tr:nth-child(odd) td {
+  #tr-CPP:nth-child(odd) td {
     background:#EBEBEB;
   }
    
-  tr:nth-child(odd):hover td {
+  #tr-CPP:nth-child(odd):hover td {
     background:#4E5066;
   }
   
-  tr:last-child td:first-child {
+  #tr-CPP:last-child td:first-child {
     border-bottom-left-radius:3px;
   }
    
-  tr:last-child td:last-child {
+  #tr-CPP:last-child td:last-child {
     border-bottom-right-radius:3px;
   }
    
-  td {
+  #td-CPP {
     background:#FFFFFF;
     padding:20px;
     text-align:center;
@@ -98,15 +98,15 @@ th:last-child {
     font-weight: 600;
   }
   
-  td:last-child {
+  #td-CPP:last-child {
     border-right: 5px;
   }
   
-  th.text-center {
+  #th-CPP.text-center {
     text-align: center;
   }
 
-  td.text-center {
+  #td-CPP.text-center {
     text-align: center;
   }
   
