@@ -10,11 +10,7 @@ import INVESTY_HORIZONTAL_BLANCO from "../../img/INVESTY_HORIZONTAL_BLANCO.png";
 
 export const Navbar = () => {
 	const { actions } = useContext(Context);
-	const token = actions.getToken();
-	useEffect(() => {
-		actions.getToken();
-	}, []);
-	return token ? (
+	return actions.getToken() ? (
 		<PrivateNavbar />
 	) : (
 		<nav className="row navbar navbar-expand-xl navbar-dark bg-dark">
@@ -38,35 +34,25 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<a className="nav-link active" aria-current="page">
-									<Informacion />
-								</a>
+								<Informacion />
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<Servicios />
-								</a>
+								<Servicios />
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<Nosotros />
-								</a>
+								<Nosotros />
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<Link to="register-form" className="btn buttom-nsi fs-5 me-4 text-white">
-										<span id="span1" />
-										<span id="span2" />
-										<span id="span3" />
-										<span id="span4" />
-										Regístrese
-									</Link>
-								</a>
+								<Link to="register-form" className="btn buttom-nsi fs-5 me-4 text-white">
+									<span id="span1" />
+									<span id="span2" />
+									<span id="span3" />
+									<span id="span4" />
+									Regístrese
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link">
-									<ModalLogin />
-								</a>
+								<ModalLogin />
 							</li>
 						</ul>
 					</div>

@@ -49,6 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			removeToken: () => {
 				localStorage.clear();
+				setStore({ tokenUser: null });
 			},
 
 			/*************************************PROVEEDORES**********************************/
