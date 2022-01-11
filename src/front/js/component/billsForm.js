@@ -5,7 +5,8 @@ const BillsForm = () => {
 	const [products, setProducts] = useState();
 
 	const [selectedClient, setSelectedClient] = useState();
-	const [selectedProduct, setSelectedProduct] = useState();
+	const [selectedProduct, setSelectedProduct] = useState([]);
+	const [rowProducts, setRowProducts] = useState([]);
 
 	useEffect(() => {
 		getClients();
@@ -22,6 +23,90 @@ const BillsForm = () => {
 		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/products");
 		const dataProduct = await responseProduct.json();
 		setProducts(dataProduct.products);
+		addRow(dataProduct.products);
+	};
+	const addRow = products => {
+		setRowProducts([
+			...rowProducts,
+			<div className="row" key={rowProducts.length}>
+				<div className="col-lg-6">
+					<label htmlFor="inputProduct" className="form-label">
+						Producto
+					</label>
+					<select
+						onChange={e =>
+							setSelectedProduct([
+								...selectedProduct,
+								{
+									...products.find(p => p.id.toString() == e.target.value),
+									quantity: 1
+								}
+							])
+						}
+						className="form-select mb-3">
+						<option selected>Seleccionar producto...</option>
+						{products
+							? products.map((p, y) => {
+									return (
+										<option value={p.id} key={p.id}>
+											{p.name}
+										</option>
+									);
+							  })
+							: null}
+					</select>
+				</div>
+				<div className="col-lg-2">
+					<label htmlFor="inputQuantityUnity" className="form-label">
+						Precio/u
+					</label>
+					<input
+						type="number"
+						className="form-control"
+						name="price"
+						value={selectedProduct ? selectedProduct.price : ""}
+						readOnly
+						disabled
+					/>
+				</div>
+				<div className="col-lg-1 col-sm-6">
+					<label htmlFor="inputTax" className="form-label">
+						Impuestos
+					</label>
+					<input
+						type="text"
+						className="form-control"
+						name="tax"
+						value={selectedProduct ? selectedProduct.tax : ""}
+					/>
+				</div>
+				<div className="col-lg-1 col-sm-6">
+					<label htmlFor="inputQuantity" className="form-label">
+						Cantidad
+					</label>
+					<input
+						type="number"
+						className="form-control"
+						defaultValue={1}
+						onChange={e => {
+							if (e.target.value <= products.find(x => x.id == selectedProduct.id).quantity) {
+								setSelectedProduct({ ...selectedProduct, quantity: e.target.value });
+							}
+						}}
+					/>
+				</div>
+				<div className="col-lg-2">
+					<label htmlFor="inputPrice" className="form-label">
+						Precio
+					</label>
+					<input
+						type="number"
+						className="form-control"
+						value={selectedProduct ? selectedProduct.price * selectedProduct.quantity : ""}
+					/>
+				</div>
+			</div>
+		]);
 	};
 
 	return (
@@ -187,65 +272,18 @@ const BillsForm = () => {
 						disabled
 					/>
 				</div>
-				{/* form productos */}
-				<div className="col-md-7">
-					<label htmlFor="inputProduct" className="form-label">
-						Producto
-					</label>
-					<select
-						onChange={e => setSelectedProduct(products.find(p => p.id.toString() == e.target.value))}
-						className="form-select mb-3">
-						<option selected>Seleccionar producto...</option>
-						{products
-							? products.map((p, y) => {
-									return (
-										<option value={p.id} key={p.id}>
-											{p.name}
-										</option>
-									);
-							  })
-							: null}
-					</select>
-				</div>
-				<div className="col-md-1">
-					<label htmlFor="inputQuantityUnity" className="form-label">
-						Precio/u
-					</label>
-					<input
-						type="number"
-						className="form-control"
-						name="price"
-						value={selectedProduct ? selectedProduct.price : ""}
-						readOnly
-						disabled
-					/>
-				</div>
-				<div className="col-md-1">
-					<label htmlFor="inputTax" className="form-label">
-						Impuestos
-					</label>
-					<input
-						type="text"
-						className="form-control"
-						name="tax"
-						value={selectedProduct ? selectedProduct.tax : ""}
-					/>
-				</div>
-				<div className="col-md-1">
-					<label htmlFor="inputQuantity" className="form-label">
-						Cantidad
-					</label>
-					<input type="number" className="form-control" />
-				</div>
-				<div className="col-md-2">
-					<label htmlFor="inputPrice" className="form-label">
-						Precio
-					</label>
-					<input type="number" className="form-control" />
-				</div>
 
+				{/* form productos */}
+				<div>{rowProducts}</div>
 				<div className="col-12 d-flex justify-content-between">
-					<button className="btn btn-secondary">Añadir producto</button>
+					<button
+						className="btn btn-secondary"
+						onClick={e => {
+							e.preventDefault();
+							addRow(products);
+						}}>
+						Añadir producto
+					</button>
 					<button type="submit" className="btn btn-primary">
 						Generar factura
 					</button>
