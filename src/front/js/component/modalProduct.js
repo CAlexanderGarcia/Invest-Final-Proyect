@@ -44,9 +44,6 @@ const ModalProduct = props => {
 						console.log(result);
 						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
-						{
-							document.getElementById("myform").reset();
-						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });
@@ -143,8 +140,9 @@ const ModalProduct = props => {
 										className="input col-9 rounded text-center"
 										name="supplier"
 										onChange={handleInputChange}
-										defaultValue={"DEFAULT"}>
-										<option value="DEFAULT" selected disabled hidden>
+										required
+										defaultValue="DEFAULT">
+										<option disabled hidden>
 											-Choose here-
 										</option>
 										{store.listSuppliers.map((value, index) => {
