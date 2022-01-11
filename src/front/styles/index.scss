@@ -57,7 +57,7 @@
     text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
   }
    
-  #tr-CPP:hover td {
+  #tr-CPP:hover #td-CPP {
     background:#4E5066;
     color:#FFFFFF;
     border-top: 1px solid #22262e;
@@ -71,19 +71,19 @@
     border-bottom:5px;
   }
    
-  #tr-CPP:nth-child(odd) td {
+  #tr-CPP:nth-child(odd) #td-CPP {
     background:#EBEBEB;
   }
    
-  #tr-CPP:nth-child(odd):hover td {
+  #tr-CPP:nth-child(odd):hover #td-CPP {
     background:#4E5066;
   }
   
-  #tr-CPP:last-child td:first-child {
+  #tr-CPP:last-child #td-CPP:first-child {
     border-bottom-left-radius:3px;
   }
    
-  #tr-CPP:last-child td:last-child {
+  #tr-CPP:last-child #td-CPP:last-child {
     border-bottom-right-radius:3px;
   }
    

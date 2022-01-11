@@ -54,11 +54,11 @@ const ListProduct = () => {
 									<td scope="row" className="text-center td-CPP">
 										{value.id}
 									</td>
-									<td className="text-center">{value.name}</td>
-									<td className="text-center">{value.code}</td>
-									<td className="text-center">{value.quantity}</td>
-									<td className="text-center">{value.price}</td>
-									<td className="text-center">{store.listSuppliers[0].name}</td>
+									<td className="text-center #td-CPP">{value.name}</td>
+									<td className="text-center #td-CPP">{value.code}</td>
+									<td className="text-center #td-CPP">{value.quantity}</td>
+									<td className="text-center #td-CPP">{value.price}</td>
+									<td className="text-center #td-CPP">{value.supplier}</td>
 									<td>
 										<button
 											onClick={() => {

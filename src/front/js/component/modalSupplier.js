@@ -38,11 +38,8 @@ const ModalSupplier = props => {
 			: actions
 					.updateSupplier(data)
 					.then(result => {
-						actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
+						actions.listSupplier(); //actualizo el listado de clientes independientemente de crear o modificar
 						setShowMessage({ error: false, message: props.messageSuccess });
-						{
-							document.getElementById("myform").reset();
-						}
 					})
 					.catch(err => {
 						setShowMessage({ error: true, message: props.messageError });

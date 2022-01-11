@@ -104,4 +104,5 @@ class Product(db.Model):
             "code" : self.code,
             "quantity" : self.quantity,
             "price": self.price,
+            "supplier": self.supplier.name
         }
