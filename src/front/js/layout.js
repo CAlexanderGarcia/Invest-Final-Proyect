@@ -10,6 +10,7 @@ import Client from "./pages/client";
 import Footer from "./component/footer";
 import Supplier from "./pages/supplier";
 import Product from "./pages/product";
+import { Bills } from "./pages/bills";
 
 //create your first component
 const Layout = () => {
@@ -39,6 +40,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/supplier">
 							<Supplier />
+						</Route>
+						<Route exact path="/bills">
+							<Bills />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
