@@ -12,8 +12,6 @@ export const Home = () => {
 	return (
 		<div className="container-fluid">
 			<Intro />
-			<Solution />
-			<Jumbotron_2 />
 			<Pricing />
 			<Valoration />
 			<Faq />

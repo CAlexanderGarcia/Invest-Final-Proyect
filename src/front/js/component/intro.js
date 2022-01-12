@@ -1,5 +1,10 @@
 import React from "react";
+import office01 from "../../img/office01.png";
+import office02 from "../../img/office02.png";
+import office03 from "../../img/office03.png";
 import jumbo01 from "../../img/jumbo01.png";
+import jumbo02 from "../../img/jumbo02.png";
+import jumbo03 from "../../img/jumbo03.png";
 
 const Intro = () => {
 	return (
@@ -19,40 +24,22 @@ const Intro = () => {
 				</div>
 				<div className="carousel-inner">
 					<div className="carousel-item active">
-						<svg
-							className="bd-placeholder-img"
-							width="100%"
-							height="100%"
-							xmlns="http://www.w3.org/2000/svg"
-							aria-hidden="true"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<rect width="100%" height="100%" fill="#777" />
-						</svg>
+						<img src={office01} className="bd-placeholder-img" width="100%" height="100%" />
 
 						<div className="container">
 							<div className="carousel-caption text-start">
-								<h1>Example headline.</h1>
-								<p>Some representative placeholder content for the first slide of the carousel.</p>
+								<h1>BIENVENIDO A INVESTY</h1>
+								<p>Creamos soluciones para tu empresa</p>
 								<p>
 									<a className="btn btn-lg btn-primary" href="#">
-										Sign up today
+										Comenzar
 									</a>
 								</p>
 							</div>
 						</div>
 					</div>
 					<div className="carousel-item">
-						<svg
-							className="bd-placeholder-img"
-							width="100%"
-							height="100%"
-							xmlns="http://www.w3.org/2000/svg"
-							aria-hidden="true"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<rect width="100%" height="100%" fill="#777" />
-						</svg>
+						<img src={office02} className="bd-placeholder-img" width="100%" height="100%" />
 
 						<div className="container">
 							<div className="carousel-caption">
@@ -67,16 +54,7 @@ const Intro = () => {
 						</div>
 					</div>
 					<div className="carousel-item">
-						<svg
-							className="bd-placeholder-img"
-							width="100%"
-							height="100%"
-							xmlns="http://www.w3.org/2000/svg"
-							aria-hidden="true"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<rect width="100%" height="100%" fill="#777" />
-						</svg>
+						<img src={office03} className="bd-placeholder-img" width="100%" height="100%" />
 
 						<div className="container">
 							<div className="carousel-caption text-end">
@@ -199,11 +177,10 @@ const Intro = () => {
 				<div className="row featurette">
 					<div className="col-md-7">
 						<h2 className="featurette-heading">
-							First featurette heading. <span className="text-muted">Itll blow your mind.</span>
+							Productividad. <span className="text-muted">Eficacia.</span>
 						</h2>
 						<p className="lead">
-							Some great placeholder content for the first featurette here. Imagine some exciting prose
-							here.
+							Mantener el orden de tus proveedores es muy sencillo con el sistema de gestión de Investy.
 						</p>
 					</div>
 					<div className="col-md-5">
@@ -222,29 +199,18 @@ const Intro = () => {
 				<div className="row featurette">
 					<div className="col-md-7 order-md-2">
 						<h2 className="featurette-heading">
-							Oh yeah, its that good. <span className="text-muted">See for yourself.</span>
+							Gestión empresarial. <span className="text-muted">See for yourself.</span>
 						</h2>
-						<p className="lead">
-							Another featurette Of course. More placeholder content here to give you an idea of how this
-							layout would work with some actual realworld content in place.
-						</p>
+						<p className="lead">Tus productos y clientes todos organizados de la forma más simple.</p>
 					</div>
 					<div className="col-md-5 order-md-1">
-						<svg
+						<img
+							src={jumbo02}
 							className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
 							width="500"
 							height="500"
-							xmlns="http://www.w3.org/2000/svg"
 							role="img"
-							aria-label="Placeholder: 500x500"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100" fill="#eee" />
-							<text x="50%" y="50%" fill="#aaa" dy=".3em">
-								500x500
-							</text>
-						</svg>
+						/>
 					</div>
 				</div>
 
@@ -262,21 +228,13 @@ const Intro = () => {
 						</p>
 					</div>
 					<div className="col-md-5">
-						<svg
+						<img
+							src={jumbo03}
 							className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
 							width="500"
 							height="500"
-							xmlns="http://www.w3.org/2000/svg"
 							role="img"
-							aria-label="Placeholder: 500x500"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100" fill="#eee" />
-							<text x="50%" y="50%" fill="#aaa" dy=".3em">
-								500x500
-							</text>
-						</svg>
+						/>
 					</div>
 				</div>
 
