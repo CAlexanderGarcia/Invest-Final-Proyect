@@ -59,6 +59,15 @@ export const PrivateNavbar = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
+								<Link to="/bills" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Facturas
+								</Link>
+							</li>
+							<li className="nav-item">
 								<button className="btn buttom-nsi fs-5 text-secondary" onClick={handleClick}>
 									<span id="span9" />
 									<span id="span10" />
