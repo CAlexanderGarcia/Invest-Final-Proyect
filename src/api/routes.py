@@ -60,6 +60,6 @@ def get_clients():
 
 @api.route('/products', methods=['GET'])
 def get_products():
-      products = Product.query.filter_by(supplier_id = 2).all()
+      products = Product.query.filter_by(supplier_id = 1).all()
       serialized_products = list(map(lambda p: p.serialize(), products))
       return jsonify({"products": serialized_products}), 200
