@@ -5,6 +5,9 @@ import office03 from "../../img/office03.png";
 import jumbo01 from "../../img/jumbo01.png";
 import jumbo02 from "../../img/jumbo02.png";
 import jumbo03 from "../../img/jumbo03.png";
+import fredy from "../../img/fredy.png";
+import juan from "../../img/juan.png";
+import alex from "../../img/alex.png";
 
 const Intro = () => {
 	return (
@@ -90,21 +93,13 @@ const Intro = () => {
 			<div className="container marketing">
 				<div className="row">
 					<div className="col-lg-4">
-						<svg
+						<img
+							src={alex}
 							className="bd-placeholder-img rounded-circle"
 							width="140"
 							height="140"
-							xmlns="http://www.w3.org/2000/svg"
 							role="img"
-							aria-label="Placeholder: 140x140"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100" fill="#777" />
-							<text x="50%" y="50%" fill="#777" dy=".3em">
-								140x140
-							</text>
-						</svg>
+						/>
 
 						<h2>Heading</h2>
 						<p>
@@ -118,21 +113,13 @@ const Intro = () => {
 						</p>
 					</div>
 					<div className="col-lg-4">
-						<svg
+						<img
+							src={fredy}
 							className="bd-placeholder-img rounded-circle"
 							width="140"
 							height="140"
-							xmlns="http://www.w3.org/2000/svg"
 							role="img"
-							aria-label="Placeholder: 140x140"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100" fill="#777" />
-							<text x="50%" y="50%" fill="#777" dy=".3em">
-								140x140
-							</text>
-						</svg>
+						/>
 
 						<h2>Heading</h2>
 						<p>
@@ -146,21 +133,13 @@ const Intro = () => {
 						</p>
 					</div>
 					<div className="col-lg-4">
-						<svg
+						<img
+							src={juan}
 							className="bd-placeholder-img rounded-circle"
 							width="140"
 							height="140"
-							xmlns="http://www.w3.org/2000/svg"
 							role="img"
-							aria-label="Placeholder: 140x140"
-							preserveAspectRatio="xMidYMid slice"
-							focusable="false">
-							<title>Placeholder</title>
-							<rect width="100%" height="100" fill="#777" />
-							<text x="50%" y="50%" fill="#777" dy=".3em">
-								140x140
-							</text>
-						</svg>
+						/>
 
 						<h2>Heading</h2>
 						<p>And lastly this, the third column of representative placeholder content.</p>
