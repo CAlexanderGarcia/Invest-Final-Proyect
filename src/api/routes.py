@@ -99,22 +99,26 @@ def delete_suppliers(supplier_id):
 @jwt_required()
 def update_supplier(supplier_id):
       current_user = get_jwt_identity()
-      if supplier.name != name : supplier.name=name
-      if supplier.nif != nif : supplier.nif=nif
-      address = request.json.get('address')  
+      address = request.json.get('address')
+      name = request.json.get('name')
+      nif = request.json.get('nif')
+      email = request.json.get('email')  
       postalCode = request.json.get('postalCode')
-      if supplier.email != email : supplier.email=email
       phoneNumber =  request.json.get('phoneNumber')
       try:
-            supplier = Supplier.query.filter_by(userData_id=current_user).first()         
+            supplier = Supplier.query.get(supplier_id)       
             if not (supplier):
                   return jsonify({"message": "Error datos", "created": False }), 400
             print(name, nif, address, postalCode, email, phoneNumber)
-            supplier.name = name
-            supplier.nif = nif
+            
+            if supplier.name != name : 
+                  supplier.name=name
+            if supplier.nif != nif : 
+                  supplier.nif=nif
             supplier.address = address
             supplier.postalCode = postalCode
-            supplier.email = email
+            if supplier.email != email : 
+                  supplier.email=email
             supplier.phoneNumber = phoneNumber
             db.session.commit()   
             return jsonify({"message" : "Proveedor Modificado", "created" : True}), 200
@@ -190,6 +194,31 @@ def update_client(client_id):
             return jsonify({"message" : "Cliente no modificado", "created" : False}), 500
 
 #############################PRODUCTOS#################################
+@api.route('/product/<int:product_id>', methods=['PUT'])
+@jwt_required()
+def update_product(product_id):
+      try:
+            current_user = get_jwt_identity()
+            name = request.json.get('name') 
+            code = request.json.get('code')
+            quantity = request.json.get('quantity')
+            price = request.json.get('price')
+            supplier = request.json.get('supplier')
+            product = Product.query.filter_by( id=product_id).first() 
+            print(supplier, product_id)        
+            if not (product):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            product.name = name
+            product.code = code
+            product.quantity = quantity
+            product.price = price
+            product.supplier_id = supplier
+            db.session.commit()   
+            return jsonify({"message" : "Producto Modificado", "created" : True}), 200
+      except Exception as e:
+            print(e) 
+            return jsonify({"message" : "Producto no modificado", "created" : False}), 500
 
 @api.route('/product', methods=['POST'])
 @jwt_required()
@@ -237,29 +266,4 @@ def delete_products(product_id):
       db.session.commit()
       return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
 
-@api.route('/product/<int:product_id>', methods=['POST'])
-@jwt_required()
-def update_product(product_id):
-      try:
-            current_user = get_jwt_identity()
-            name = request.json.get('name') 
-            code = request.json.get('code')
-            quantity = request.json.get('quantity')
-            price = request.json.get('price')
-            supplier = request.json.get('supplier')
-            product = Product.query.filter_by(supplier_id=supplier, id=product_id).first() 
-            print(supplier, product_id)        
-            if not (product):
-                  return jsonify({"message": "Error datos", "created": False }), 400
-            
-            product.name = name
-            product.code = code
-            product.quantity = quantity
-            product.price = price
-            product.supplier_id = supplier
-            db.session.commit()   
-            return jsonify({"message" : "Producto Modificado", "created" : True}), 200
-      except Exception as e:
-            print(e) 
-            return jsonify({"message" : "Producto no modificado", "created" : False}), 500
 

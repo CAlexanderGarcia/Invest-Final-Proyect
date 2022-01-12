@@ -49,6 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			removeToken: () => {
 				localStorage.clear();
+				setStore({ tokenUser: null });
 			},
 
 			/*************************************PROVEEDORES**********************************/
@@ -213,7 +214,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateProduct: data => {
 				const response = fetch(process.env.BACKEND_URL + "/product/" + data.id, {
-					method: "POST",
+					method: "PUT",
 					headers: {
 						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
