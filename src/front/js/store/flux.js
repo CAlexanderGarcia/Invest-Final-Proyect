@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			listClients: [],
 			listProducts: [],
 			listSuppliers: [],
-			tokenUser: {}
+			tokenUser: {},
+			listBills: []
 		},
 		actions: {
 			createUser: async data => {
@@ -234,6 +235,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => setStore({ listProducts: data.products }));
+			},
+			/********************FACTURAS**********************/
+
+			listBill: () => {
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/bills", {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + getActions().getToken(),
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => setStore({ listBills: data.bills }));
 			}
 		}
 	};

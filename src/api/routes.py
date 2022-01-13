@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
-from api.models import db, UserData, Supplier, Client, Product, ProductToBill
+from api.models import db, UserData, Supplier, Client, Product, ProductToBill, Bill
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -265,4 +265,46 @@ def delete_products(product_id):
       db.session.commit()
       return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
 
+#############################FACTURAS#################################
 
+@api.route('/bills', methods=['POST'])
+@jwt_required()
+def add_bill():
+      current_user = get_jwt_identity()
+      client_id = request.json.get("client")
+      number_bill = request.json.get("number_bill")
+      date_bill = request.json.get("date_bill")
+      products = request.json.get("products")#almacenado de todos los productos
+      
+      try:
+            client = Client.query.filter_by(id=client_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
+
+            if not client:
+                  return jsonify({"message": "ID del Cliente no Existe"}), 400
+
+            bill = Bill(number=number_bill, date=date_bill, tax=21, discount=0, client_id=client_id) #Creacion de factura
+          
+            if not (bill):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            db.session.add(bill)
+            db.session.commit()
+            for product in products: 
+                  product = Product.query.filter_by(code=product.get("code"), supplier_id=product.get("supplier_id")).first()
+                  product_to_bill = ProductToBill(quantity=product.get("quantity"), price=product.get("productPrice"), bill_id=bill.id, product_id=product.id)
+                  db.session.add(product_to_bill)
+                  db.session.commit()      
+            return jsonify({"message" : "La Factura ha sido Creada", "created" : True}), 200
+      except Exception as e: 
+            print(e)
+            return jsonify({"message" : "La Factura no se ha Creado", "created" : False}), 500
+
+@api.route('/bills', methods=['GET'])
+@jwt_required()
+def get_bills():
+      current_user = get_jwt_identity()
+      clients = Client.query.filter_by(userData_id=current_user)
+      clients_ids=[client.id for client in clients]
+      bills = Bill.query.filter(Bill.client_id.in_(clients_ids))#buscar facturas asociados a esos clientes
+      serialized_bills = list(map(lambda b: b.serialize(), bills))
+      return jsonify({"bills": serialized_bills}), 200

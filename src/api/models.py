@@ -59,7 +59,19 @@ class Bill(db.Model): #factura
     discount = db.Column(db.Integer, nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     productToBills = db.relationship('ProductToBill', backref='bill', lazy=True)
-
+    def serialize(self):
+        prices = [product.price for product in self.productToBills]
+        total = sum(prices)
+        return {
+            "id" : self.id,
+            "number" : self.number,
+            "date" : self.date,
+            "tax": self.tax,
+            "discount": self.discount,
+            "nif":self.client.nif,
+            "total":total
+            
+        }
 class Client(db.Model):
     __tablename__ = 'client'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
