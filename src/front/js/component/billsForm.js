@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const BillsForm = () => {
 	const [clients, setClients] = useState();
 	const [products, setProducts] = useState();
+	const [total, setTotal] = useState(0);
 
 	const [selectedClient, setSelectedClient] = useState();
 	const [selectedProduct, setSelectedProduct] = useState([]);
@@ -11,6 +12,18 @@ const BillsForm = () => {
 		getClients();
 		getProducts();
 	}, []);
+
+	useEffect(
+		() => {
+			let sumTotal = 0;
+			for (let x in selectedProduct) {
+				sumTotal += selectedProduct[x].productPrice;
+				console.log(x);
+			}
+			setTotal(sumTotal);
+		},
+		[selectedProduct]
+	);
 
 	const getClients = async () => {
 		const response = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/clients");
@@ -21,7 +34,12 @@ const BillsForm = () => {
 	const getProducts = async () => {
 		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/products");
 		const dataProduct = await responseProduct.json();
-		setProducts(dataProduct.products);
+		setProducts(
+			dataProduct.products.map(product => {
+				product["productPrice"] = 0;
+				return product;
+			})
+		);
 	};
 
 	return (
@@ -103,7 +121,7 @@ const BillsForm = () => {
 				</select>
 			</div>
 
-			<form className="row g-3">
+			<div className="row g-3">
 				<div className="col-md-9">
 					<div className="input-group">
 						<span className="input-group-text">Nombre</span>
@@ -230,9 +248,11 @@ const BillsForm = () => {
 						return (
 							<div className="row" key={i}>
 								<div className="col-lg-6">
-									<label htmlFor="nameProducts" className="form-label">
-										Nombre del producto
-									</label>
+									{i == 0 ? (
+										<label htmlFor="nameProducts" className="form-label">
+											Nombre del producto
+										</label>
+									) : null}
 									<input
 										type="text"
 										className="form-control"
@@ -274,15 +294,49 @@ const BillsForm = () => {
 									<input
 										type="number"
 										className="form-control"
-										defaultValue={1}
+										defaultValue={0}
 										onChange={e => {
-											if (e.target.value <= product.quantity && e.target.value > 0) {
+											let quantity = products.find(x => x.id == product.id).quantity;
+											if (parseInt(e.target.value) <= quantity && parseInt(e.target.value) > 0) {
 												setSelectedProduct(
 													selectedProduct.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
-																quantity: e.target.value
+																quantity: parseInt(e.target.value),
+																productPrice:
+																	parseInt(e.target.value) * parseInt(product.price)
+															};
+														} else {
+															return x;
+														}
+													})
+												);
+											} else if (parseInt(e.target.value) > quantity) {
+												e.target.value = quantity;
+												setSelectedProduct(
+													selectedProduct.map(x => {
+														if (x.id == product.id) {
+															return {
+																...product,
+																quantity: quantity,
+																productPrice:
+																	parseInt(e.target.value) * parseInt(product.price)
+															};
+														} else {
+															return x;
+														}
+													})
+												);
+											} else if (parseInt(e.target.value) <= 0) {
+												e.target.value = 0;
+												setSelectedProduct(
+													selectedProduct.map(x => {
+														if (x.id == product.id) {
+															return {
+																...product,
+																quantity: 0,
+																productPrice: 0
 															};
 														} else {
 															return x;
@@ -300,14 +354,11 @@ const BillsForm = () => {
 										Precio €
 									</label>
 									<div className="d-flex">
-										<input
-											type="number"
-											className="form-control"
-											value={
-												product.price * selectedProduct.find(x => x.id == product.id).quantity
-											}
+										<input type="number" className="form-control" value={product.productPrice} />
+										<i
+											onClick={() => setSelectedProduct(selectedProduct.filter((x, y) => y != i))}
+											className="fas fa-trash-alt fs-1 ms-3 mb-0"
 										/>
-										<i className="fas fa-trash-alt fs-1 ms-3 mb-0" />
 									</div>
 								</div>
 							</div>
@@ -315,13 +366,15 @@ const BillsForm = () => {
 					})}
 				</div>
 
+				<div>{total}</div>
+
 				{/* BUTTON */}
 				<div className="col-12 text-center">
 					<button type="submit" className="btn btn-primary">
 						Generar factura
 					</button>
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 };
