@@ -3,7 +3,7 @@ import React from "react";
 const ListBills = () => {
 	return (
 		<div>
-			<h1 className="text-center fw-bolder mt-5 ">VENTAS</h1>
+			<h1 className="text-center fw-bolder mt-5 ">FACTURAS</h1>
 			<table className="table container my-5 shadow ">
 				<thead className="table-success text-center">
 					<tr>
@@ -57,7 +57,7 @@ const ListBills = () => {
 					</li>
 				</ul>
 			</nav>
-			<h1 className="text-center fw-bolder mt-5">COMPRAS</h1>
+			{/*<h1 className="text-center fw-bolder mt-5">COMPRAS</h1>
 			<table className="table container my-5 shadow">
 				<thead className="table-primary text-center">
 					<tr>
@@ -110,7 +110,7 @@ const ListBills = () => {
 						</a>
 					</li>
 				</ul>
-			</nav>
+			</nav>*/}
 		</div>
 	);
 };
