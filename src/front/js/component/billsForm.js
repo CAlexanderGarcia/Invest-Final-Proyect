@@ -26,13 +26,13 @@ const BillsForm = () => {
 	);
 
 	const getClients = async () => {
-		const response = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/clients");
+		const response = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu27.gitpod.io/api/clients");
 		const data = await response.json();
 		setClients(data.clients);
 	};
 
 	const getProducts = async () => {
-		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu25.gitpod.io/api/products");
+		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu27.gitpod.io/api/products");
 		const dataProduct = await responseProduct.json();
 		setProducts(
 			dataProduct.products.map(product => {
@@ -283,7 +283,7 @@ const BillsForm = () => {
 									<label htmlFor="inputTax" className="form-label">
 										IVA
 									</label>
-									<input type="text" className="form-control" name="tax" value={21} />
+									<input type="text" className="form-control" name="tax" value={21} readOnly />
 								</div>
 
 								{/* QUANTITY */}
@@ -305,7 +305,9 @@ const BillsForm = () => {
 																...product,
 																quantity: parseInt(e.target.value),
 																productPrice:
-																	parseInt(e.target.value) * parseInt(product.price)
+																	parseInt(e.target.value) *
+																	parseInt(product.price) *
+																	1.21
 															};
 														} else {
 															return x;
@@ -321,7 +323,9 @@ const BillsForm = () => {
 																...product,
 																quantity: quantity,
 																productPrice:
-																	parseInt(e.target.value) * parseInt(product.price)
+																	parseInt(e.target.value) *
+																	parseInt(product.price) *
+																	1.21
 															};
 														} else {
 															return x;
