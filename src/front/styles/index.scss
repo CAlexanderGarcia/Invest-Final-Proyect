@@ -1,506 +1,241 @@
-.first-Jumbotron{
-    background: url("../img/first-bg.jpg") no-repeat center;
-    height: 500px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 1950px 500px;
-   
-}
-.second-Jumbotron{
-    background: url("../img/bg_2.jpg") no-repeat center ;
-    height: 800px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 1950px 800px;
-    color: #fff;
+.shadow-w{
+  text-shadow: 1px 1px 20px #000;
 }
 
-.jaf{
-    text-decoration:none ;
-    color:white;
-    font-size: larger;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-bottom: -18rem;
+.investy{
+  width: 140px;
+}
+
+.Investy-navbar{
+  width: 143px;
+  margin-left: -69px;
+  margin-bottom: -74px;
 }
 .title{
     font-size: 500px;
 
 }
 .navbar{
-    margin:5px
+    margin:5px;
+}
+.cd-supplier{
+  margin-top: -24px;
 }
 
-
-//NOSOTROS
-.Nosotros{
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
+//TABLE 
+.table-fill {
+    background: white;
+    border-radius:3px;
+    border-collapse: collapse;
+    margin: auto;
+    padding:5px;
+    box-shadow: 0 1px 50px rgba(0, 0, 0, 0.1);
+    animation: float 5s infinite;
     color: black;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  #th-CPP {
+    color:#2c70b8;;
+    background:black;
+    padding:24px;
+    text-align:center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align:middle;
+  }
+
+  #th-CPP:first-child {
+    border-top-left-radius:3px;
+  }
+   
+  #th-CPP:last-child {
+    border-top-right-radius:3px;
     
-}
-.Nosotros span{
-    display: block;
-    position: absolute;
-}
-#span9{
-    top: 0;
-    left:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,rgb(22, 10, 189));
-}
+  }
 
-.Nosotros:hover #span9{
-    left:100%;
-    transition:1s;
+  #tr-CPP {
+    font-size:22px;
+    font-weight:normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+  }
+   
+  #tr-CPP:hover #td-CPP {
+    background:#4E5066;
+    color:#FFFFFF;
+    border-top: 1px solid #22262e;
+  }
+   
+  #tr-CPP:first-child {
+    border-top:5px;
+  }
+  
+  #tr-CPP:last-child {
+    border-bottom:5px;
+  }
+   
+  #tr-CPP:nth-child(odd) #td-CPP {
+    background:#EBEBEB;
+  }
+   
+  #tr-CPP:nth-child(odd):hover #td-CPP {
+    background:#4E5066;
+  }
+  
+  #tr-CPP:last-child #td-CPP:first-child {
+    border-bottom-left-radius:3px;
+  }
+   
+  #tr-CPP:last-child #td-CPP:last-child {
+    border-bottom-right-radius:3px;
+  }
+   
+  #td-CPP {
+    background:#FFFFFF;
+    padding:20px;
+    text-align:center;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:18px;
+    border-right: 1px solid #C1C3D1;
+    font-weight: 600;
+  }
+  
+  #td-CPP:last-child {
+    border-right: 5px;
+  }
+  
+  #th-CPP.text-center {
+    text-align: center;
+  }
+
+  #td-CPP.text-center {
+    text-align: center;
+  }
+  
+.link-pen{
+    color:rgb(1, 153, 199);
+  
 }
-
-#span11{
-    bottom: 0;
-    right:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,rgb(22, 10, 189));
-}
-
-
-.Nosotros:hover #span11{
-    right:100%;
-    transition:1s;
-    transition-delay: 0.5s;
-}
-
-#span10{
-    top: -100%;
-    right:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent,rgb(22, 10, 189));
-}
-
-.Nosotros:hover #span10{
-    top:100%;
-    transition:1s;
-    transition-delay: 0.25s;
-}
-
-#span12{
-    bottom: -100%;
-    left:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent,rgb(22, 10, 189));
-}
-
-.Nosotros:hover #span12{
-    bottom:100%;
-    transition:1s;
-    transition-delay: 0.75s;
-}
-//END-NOSOTROS
-
-
-//SERVICIOS
-.Servicios{
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: black;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
-}
-.Servicios span{
-    display: block;
-    position: absolute;
-}
-#span13{
-    top: 0;
-    left:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,rgb(22, 10, 189));
+.link-trash{
+    color: rgb(202, 95, 95);
 }
 
-.Servicios:hover #span13{
-    left:100%;
-    transition:1s;
+//NOSOTROS-SERVICIOS-INFORMACION
+.buttom-nsi {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  color: black;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 24px;
+  overflow: hidden;
+  transition: 0.2s;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  &:hover {
+    border: 1px solid transparent;
+    span {
+      position: absolute;
+      display: block;
+
+      &:nth-child(1) {
+        filter: hue-rotate(0deg);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #1267dd);
+        animation: animate1 1s linear infinite;
+      }
+      @keyframes animate1 {
+        0% {
+          left: -100%;
+        }
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+
+      &:nth-child(2) {
+        filter: hue-rotate(60deg);
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, #1267dd);
+        animation: animate2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
+
+      @keyframes animate2 {
+        0% {
+          top: -100%;
+        }
+        50%,
+        100% {
+          top: 100%;
+        }
+      }
+      &:nth-child(3) {
+        filter: hue-rotate(120deg);
+        bottom: 0;
+        right: 0;
+        width: 100%;
+
+        background: linear-gradient(270deg, transparent, #1267dd);
+        animation: animate3 1s linear infinite;
+        animation-delay: 0.5s;
+      }
+      @keyframes animate3 {
+        0% {
+          right: -100%;
+          height: 2px;
+        }
+        50%,
+        100% {
+          height: 2px;
+          right: 100%;
+        }
+      }
+
+      &:nth-child(4) {
+        filter: hue-rotate(300deg);
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, #1267dd);
+        animation: animate4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
+      @keyframes animate4 {
+        0% {
+          bottom: -100%;
+        }
+        50%,
+        100% {
+          bottom: 100%;
+        }
+      }
+    }
+  }
 }
 
-#span15{
-    bottom: 0;
-    right:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,rgb(22, 10, 189));
-}
-
-
-.Servicios:hover #span15{
-    right:100%;
-    transition:1s;
-    transition-delay: 0.5s;
-}
-
-#span14{
-    top: -100%;
-    right:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent,rgb(22, 10, 189));
-}
-
-.Servicios:hover #span14{
-    top:100%;
-    transition:1s;
-    transition-delay: 0.25s;
-}
-
-#span16{
-    bottom: -100%;
-    left:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent,rgb(22, 10, 189));
-}
-
-.Servicios:hover #span16{
-    bottom:100%;
-    transition:1s;
-    transition-delay: 0.75s;
-}
-//END-SERVICIOS
-
-
-//REGISTRESE
-.Registrese{
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: rgb(35, 23, 146);
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-}
-.Registrese span{
-    display: block;
-    position: absolute;
-}
-
-#span1{
-    top: 0;
-    left:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,rgb(22, 10, 189));
-}
-
-.Registrese:hover #span1{
-    left:100%;
-    transition:1s;
-}
-
-#span3{
-    bottom: 0;
-    right:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,rgb(22, 10, 189));
-}
-
-.Registrese:hover #span3{
-    right:100%;
-    transition:1s;
-    transition-delay: 0.5s;
-}
-
-#span2{
-    top: -100%;
-    right:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent,rgb(22, 10, 189));
-}
-
-.Registrese:hover #span2{
-    top:100%;
-    transition:1s;
-    transition-delay: 0.25s;
-}
-
-#span4{
-    bottom: -100%;
-    left:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent,rgb(22, 10, 189));
-}
-
-.Registrese:hover #span4{
-    bottom:100%;
-    transition:1s;
-    transition-delay: 0.75s;
-}
-//END-REGISTRESE
-
-//LOGIN
-
-.Modal{
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: rgb(23, 146, 23);
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-}
-.Modal span{
-    display: block;
-    position: absolute;
-}
-
-#span5{
-    top: 0;
-    left:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,rgb(57, 219, 43));
-}
-
-.Modal:hover #span5{
-    left:100%;
-    transition:1s;
-}
-
-#span7{
-    bottom: 0;
-    right:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,rgb(57, 219, 43));
-}
-
-.Modal:hover #span7{
-    right:100%;
-    transition:1s;
-    transition-delay: 0.5s;
-}
-
-#span6{
-    top: -100%;
-    right:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent,rgb(57, 219, 43));
-}
-
-.Modal:hover #span6{
-    top:100%;
-    transition:1s;
-    transition-delay: 0.25s;
-}
-
-#span8{
-    bottom: -100%;
-    left:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent,rgb(57, 219, 43));
-}
-
-.Modal:hover #span8{
-    bottom:100%;
-    transition:1s;
-    transition-delay: 0.75s;
-}
-
-//END-LOGIN
-
-//INFORMACION
-.Informacion{
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: black;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-}
-.Informacion span{
-    display: block;
-    position: absolute;
-}
-
-#span17{
-    top: 0;
-    left:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,rgb(22, 10, 189));
-}
-
-.Informacion:hover #span17{
-    left:100%;
-    transition:1s;
-}
-
-#span19{
-    bottom: 0;
-    right:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,rgb(22, 10, 189));
-}
-
-.Informacion:hover #span19{
-    right:100%;
-    transition:1s;
-    transition-delay: 0.5s;
-}
-
-#span18{
-    top: -100%;
-    right:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent,rgb(22, 10, 189));
-}
-
-.Informacion:hover #span18{
-    top:100%;
-    transition:1s;
-    transition-delay: 0.25s;
-}
-
-
-.contacto{
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    color: black;
-    letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
-}
-.contacto span{
-    display: block;
-    position: absolute;
-}
-#span21{
-    top: 0;
-    left:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent,rgb(22, 10, 189));
-}
-
-.contacto:hover #span21{
-    left:100%;
-    transition:1s;
-}
-
-#span23{
-    bottom: 0;
-    right:-100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent,rgb(22, 10, 189));
-}
-
-
-.contacto:hover #span23{
-    right:100%;
-    transition:1s;
-    transition-delay: 0.5s;
-}
-
-#span22{
-    top: -100%;
-    right:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent,rgb(22, 10, 189));
-}
-
-.contacto:hover #span22{
-    top:100%;
-    transition:1s;
-    transition-delay: 0.25s;
-}
-
-#span24{
-    bottom: -100%;
-    left:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent,rgb(22, 10, 189));
-}
-
-.contacto:hover #span24{
-    bottom:100%;
-    transition:1s;
-    transition-delay: 0.75s;
-}
+//END-NOSOTROS-SERVICIOS-INFORMACION
 
 .encuentranos{
     position: relative;
     display: inline-block;
-    padding: 15px 30px;
+    padding: 26px;
+    margin-left:auto;
     color: black;
     letter-spacing: 4px;
-    text-decoration: none;
-    font-size: 24px;
-    overflow: hidden;
-    transition: 0.2s;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-#span20{
-    bottom: -100%;
-    left:0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent,rgb(22, 10, 189));
-}
-
-.Informacion:hover #span20{
-    bottom:100%;
-    transition:1s;
-    transition-delay: 0.75s;
 }
 
 
 // LOGIN
-
-
-
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
@@ -637,63 +372,108 @@ a{color:inherit;text-decoration:none}
 	transform:rotate(0);
 }
 
-.hr{
-	height:2px;
-	margin:60px 0 50px 0;
-	background:rgba(255,255,255,.2);
-}
-.foot-lnk{
-	text-align:center;
+
+//SOCIAL BUTTONS
+
+.social-buttons {
+    &__button {
+      margin: 10px 5px 0;
+    }
+  }
+  
+  $social-button-size: 50px;
+  $social-button-icon-size: 0.8;
+  $social-button-background: rgb(14, 1, 1);
+  $social-button-active-color: #fff;
+  $social-button-transition-time: 0.3s;
+  
+  $social-button-colors: (
+    'mail': #0072c6,
+    'facebook': #3b5999,
+    'linkedin': #0077b5,
+    'twitter': #55acee,
+    'instagram': #e4405f,
+    'youtube': #c12127,
+
+  );
+  
+  .social-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    width: $social-button-size;
+    height: $social-button-size;
+    text-decoration: none;
+    border-radius: 100%;
+    background: $social-button-background;
+    text-align: center;
+  
+    &::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      display: block;
+      width: 0;
+      height: 0;
+      border-radius: 100%;
+      transition: $social-button-transition-time;
+    }
+  
+    &:focus,
+    &:hover {
+      color: $social-button-active-color;
+  
+      &::after {
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        margin-left: calc(-50% - 1px);
+      }
+    }
+  
+    i,
+    svg {
+      position: relative;
+      z-index: 1;
+      transition: $social-button-transition-time;
+    }
+  
+    i {
+      font-size: $social-button-size * $social-button-icon-size;
+    }
+  
+    svg {
+      height: percentage($social-button-icon-size);
+      width: percentage($social-button-icon-size);
+    }
+  
+    @each $name, $color in $social-button-colors {
+      &--#{$name} {
+        color: $color;
+  
+        &::after {
+          background: $color;
+        }
+      }
+    }
+  }
+  //MODAL CLIENTES
+  .modalCSP {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
-.suppliers{
-    text-align: inherit;
-}
-//Products
-
-.card-img-topone{
-    background: url("../img/bg_2.jpg") no-repeat center;
-    height: 300px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 800px 550px;
-}
-
-.card-img-toptwo{
-    background: url("../img/bg_2.jpg") no-repeat center;
-    height: 300px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 800px 550px;
-}
-
-.card-img-topthree{
-    background: url("../img/bg_2.jpg") no-repeat center;
-    height: 300px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 800px 500px;
-}
-
-.card-img-topfour{
-    background: url("../img/bg_2.jpg") no-repeat center;
-    height: 300px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 800px 500px;
-}
-
-.card-img-topfive{
-    background: url("../img/bg_2.jpg") no-repeat center;
-    height: 300px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 800px 500px;
-}
-.card-img-topsix{
-    background: url("../img/bg_2.jpg") no-repeat center;
-    height: 300px;
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    background-size: 800px 500px;
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

@@ -6,7 +6,7 @@ const Informacion = () => {
 	return (
 		<div className="dropdown">
 			<a
-				className="btn Informacion mx-5 fs-5"
+				className="btn buttom-nsi mx-5 fs-5 text-white"
 				href="#"
 				onMouseOver={() => {
 					setShow(!show);
@@ -14,10 +14,10 @@ const Informacion = () => {
 				onMouseOut={() => {
 					setShow(!show);
 				}}>
-				<span id="span17" />
-				<span id="span18" />
-				<span id="span19" />
-				<span id="span20" />
+				<span id="span9" />
+				<span id="span10" />
+				<span id="span11" />
+				<span id="span12" />
 				Información
 			</a>
 

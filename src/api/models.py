@@ -15,20 +15,40 @@ class UserData(db.Model):
     postalCode = db.Column(db.String(120), unique=False, nullable=False)
     clients = db.relationship('Client', backref='userdata', lazy=True)
     suppliers = db.relationship('Supplier', backref='userdata', lazy=True)
-    
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "email" : self.email,
+            "password" : self.password,
+            "surname": self.surname,
+            "address": self.address,
+            "company":self.company,
+            "numberDocumentation": self.numberDocumentation,
+            "typeDocumentation": self.typeDocumentation,
+            "postalCode": self.postalCode,
+        }
 
 class Supplier(db.Model):
     __tablename__ = 'supplier'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     nif = db.Column(db.String(120), unique=True, nullable=False)
-    address = db.Column(db.String(120), unique=True, nullable=False)
-    postalCode = db.Column(db.String(120), unique=True, nullable=False)
+    address = db.Column(db.String(120), unique=False, nullable=False)
+    postalCode = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    phoneNumber = db.Column(db.String(120), unique=True, nullable=False)
+    phoneNumber = db.Column(db.String(120), unique=False, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
     products = db.relationship('Product', backref='supplier', lazy=True)
-
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "name" : self.name,
+            "nif" : self.nif,
+            "address": self.address,
+            "postalCode": self.postalCode,
+            "email":self.email,
+            "phoneNumber": self.phoneNumber,
+        }
 
 class Bill(db.Model): #factura
     __tablename__ = 'bill'
