@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
 	return (
-		<div>
+		<div className="container">
 			<div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-				<h1 className="display-4 fw-normal">Pricing</h1>
+				<h1 className="display-4 fw-normal">Membresía</h1>
 				<p className="fs-5 text-muted">
-					Quickly build an effective pricing table for your potential customers with this Bootstrap example.
-					Its built with default Bootstrap components and utilities with little customization.
+					Como un sitio de membresías, siempre nos enfocamos en reducir la cancelación y aumentar la
+					satisfacción. Sabemos que recopilar el feedback de los clientes a lo largo del ciclo de vida del
+					cliente nos ha permitido lograr ambos objetivos
 				</p>
 			</div>
 
@@ -22,13 +24,13 @@ const Pricing = () => {
 								<small className="text-muted fw-light" />
 							</h1>
 							<ul className="list-unstyled mt-3 mb-4">
-								<li>10 users included</li>
-								<li>2 GB of storage</li>
-								<li>Email support</li>
-								<li>Help center access</li>
+								<li>10 Usuarios Incluídos</li>
+								<li>2 GB de Almacenamiento</li>
+								<li>Soporte Email</li>
+								<li>Ayuda a través de Help Center</li>
 							</ul>
 							<button type="button" className="w-100 btn btn-lg btn-outline-primary">
-								Sign up for free
+								<Link to="/register-form">Regístrate Gratis</Link>
 							</button>
 						</div>
 					</div>
@@ -40,17 +42,17 @@ const Pricing = () => {
 						</div>
 						<div className="card-body">
 							<h1 className="card-title pricing-card-title">
-								$15
-								<small className="text-muted fw-light">/mo</small>
+								€15
+								<small className="text-muted fw-light">/mes</small>
 							</h1>
 							<ul className="list-unstyled mt-3 mb-4">
-								<li>20 users included</li>
-								<li>10 GB of storage</li>
-								<li>Priority email support</li>
-								<li>Help center access</li>
+								<li>20 Usuarios Incluídos</li>
+								<li>10 GB de Almacenamiento</li>
+								<li>Prioridad de Soporte Email</li>
+								<li>Acceso a Help Center</li>
 							</ul>
 							<button type="button" className="w-100 btn btn-lg btn-primary">
-								Get started
+								Comienza Ahora
 							</button>
 						</div>
 					</div>
@@ -62,24 +64,24 @@ const Pricing = () => {
 						</div>
 						<div className="card-body">
 							<h1 className="card-title pricing-card-title">
-								$29
-								<small className="text-muted fw-light">/mo</small>
+								€29
+								<small className="text-muted fw-light">/mes</small>
 							</h1>
 							<ul className="list-unstyled mt-3 mb-4">
-								<li>30 users included</li>
-								<li>15 GB of storage</li>
-								<li>Phone and email support</li>
-								<li>Help center access</li>
+								<li>50 Usuarios Incluídos</li>
+								<li>25 GB de Almacenamiento</li>
+								<li>Soporte Email y Telefónico</li>
+								<li>Acceso y Prioridad en Help Center</li>
 							</ul>
 							<button type="button" className="w-100 btn btn-lg btn-primary">
-								Contact us
+								Contáctanos
 							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<h2 className="display-6 text-center mb-4">Compare plans</h2>
+			<h2 className="display-6 text-center mb-4">Comparación de Planes</h2>
 
 			<div className="table-responsive">
 				<table className="table text-center">
@@ -92,28 +94,28 @@ const Pricing = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row" className="text-start">
+						<tr className="">
+							<th scope="row" className="text-start table-primary">
 								Public
 							</th>
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-info " width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-info" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-info" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" className="text-start">
+							<th scope="row" className="text-start table-primary">
 								Private
 							</th>
 							<td />
@@ -132,12 +134,13 @@ const Pricing = () => {
 
 					<tbody>
 						<tr>
-							<th scope="row" className="text-start">
+							<th scope="row" className="text-start table-primary">
 								Permissions
 							</th>
 							<td>
 								<svg className="bi" width="24" height="24">
 									<use xlinkHref="#check" />
+									<i className="fas fa-check" />
 								</svg>
 							</td>
 							<td>
@@ -152,7 +155,7 @@ const Pricing = () => {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" className="text-start">
+							<th scope="row" className="text-start table-primary">
 								Sharing
 							</th>
 							<td />
@@ -168,7 +171,7 @@ const Pricing = () => {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" className="text-start">
+							<th scope="row" className="text-start table-primary">
 								Unlimited members
 							</th>
 							<td />
@@ -184,7 +187,7 @@ const Pricing = () => {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row" className="text-start">
+							<th scope="row" className="text-start table-primary">
 								Extra security
 							</th>
 							<td />

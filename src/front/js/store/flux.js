@@ -34,7 +34,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error);
 				}
-				console.log(resp);
 				if (resp.token) {
 					setStore({ tokenUser: resp });
 					localStorage.setItem("tokenUser", resp.token); //guarda el token en el local Store("base de datos" del navegador)
@@ -43,6 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
+			/*************************************TOKEN**********************************/
 			getToken: () => {
 				const token = localStorage.getItem("tokenUser"); //Busca en la local store un elemento en este caso el token
 				return token ? token : null;
@@ -164,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			listClient: () => {
 				const store = getStore();
-				const response = fetch(process.env.BACKEND_URL + "/client", {
+				const response = fetch(process.env.BACKEND_URL + "/clients", {
 					method: "GET",
 					headers: {
 						Authorization: "Bearer " + getActions().getToken(),
@@ -172,7 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => setStore({ listClients: data }));
+					.then(data => setStore({ listClients: data.clients }));
 			},
 
 			/********************PRODUCTOS**********************/
@@ -225,7 +225,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			listProduct: () => {
 				const store = getStore();
-				const response = fetch(process.env.BACKEND_URL + "/product", {
+				const response = fetch(process.env.BACKEND_URL + "/products", {
 					method: "GET",
 					headers: {
 						Authorization: "Bearer " + getActions().getToken(),
@@ -233,7 +233,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => setStore({ listProducts: data }));
+					.then(data => setStore({ listProducts: data.products }));
 			}
 		}
 	};
