@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
-from api.models import db, UserData, Supplier, Client, Product
+from api.models import db, UserData, Supplier, Client, Product, ProductToBill
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -74,6 +74,17 @@ def create_supplier():
             print(e)
             return jsonify({"message" : "supplier no creado", "created" : False}), 500
 
+@api.route('/clients', methods=['GET'])
+def get_clients():
+      clients = Client.query.filter_by(userData_id = 1).all()
+      serialized_clients = list(map(lambda x: x.serialize(), clients))
+      return jsonify({"clients": serialized_clients}), 200
+
+@api.route('/products', methods=['GET'])
+def get_products():
+      products = Product.query.filter_by(supplier_id = 1).all()
+      serialized_products = list(map(lambda p: p.serialize(), products))
+      return jsonify({"products": serialized_products}), 200
 
 @api.route('/supplier', methods=['GET'])
 @jwt_required()
@@ -151,13 +162,13 @@ def add_client():
             return jsonify({"message" : "Cliente no Creado", "created" : False}), 500
 
 
-@api.route('/client', methods=['GET'])
+""" @api.route('/client', methods=['GET'])
 @jwt_required()
 def get_clients():
       current_user = get_jwt_identity()
       clients = Client.query.filter_by(userData_id=current_user)
       data = [client.serialize() for client in clients]
-      return jsonify(data), 200
+      return jsonify(data), 200 """
 
 @api.route('/client/<int:client_id>', methods=['DELETE'])
 @jwt_required()
@@ -244,7 +255,7 @@ def add_product():
             return jsonify({"message" : "Producto no Creado", "created" : False}), 500
 
 
-@api.route('/product', methods=['GET'])
+""" @api.route('/product', methods=['GET'])
 @jwt_required()
 def get_products():
       current_user = get_jwt_identity()
@@ -252,7 +263,7 @@ def get_products():
       suppliers_ids = [supplier.id for supplier in suppliers]
       products = Product.query.filter(Product.supplier_id.in_(suppliers_ids))#buscamos todos los productos del listado de proveedores
       data = [product.serialize() for product in products] 
-      return jsonify(data), 200
+      return jsonify(data), 200 """
 
 @api.route('/product/<int:product_id>', methods=['DELETE'])
 @jwt_required()
