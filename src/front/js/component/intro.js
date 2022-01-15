@@ -90,8 +90,10 @@ const Intro = () => {
 				</button>
 			</div>
 
-			<div className="container marketing">
-				<div className="row">
+			<div className="container marketing my-5">
+				<h2 className="ms-4 fs-1">TEAMS</h2>
+				<hr />
+				<div className="row text-center">
 					<div className="col-lg-4">
 						<img
 							src={alex}
@@ -106,11 +108,6 @@ const Intro = () => {
 							Some representative placeholder content for the three columns of text below the carousel.
 							This is the first column.
 						</p>
-						<p>
-							<a className="btn btn-secondary" href="#">
-								View details &raquo;
-							</a>
-						</p>
 					</div>
 					<div className="col-lg-4">
 						<img
@@ -121,16 +118,8 @@ const Intro = () => {
 							role="img"
 						/>
 
-						<h2>Heading</h2>
-						<p>
-							Another exciting bit of representative placeholder content. This time, weve moved on to the
-							second column.
-						</p>
-						<p>
-							<a className="btn btn-secondary" href="#">
-								View details &raquo;
-							</a>
-						</p>
+						<h2>Fredy Moreno</h2>
+						<p>DJ de vocación, informático de profesión y freak por afición</p>
 					</div>
 					<div className="col-lg-4">
 						<img
@@ -143,11 +132,6 @@ const Intro = () => {
 
 						<h2>Heading</h2>
 						<p>And lastly this, the third column of representative placeholder content.</p>
-						<p>
-							<a className="btn btn-secondary" href="#">
-								View details &raquo;
-							</a>
-						</p>
 					</div>
 				</div>
 
@@ -156,10 +140,14 @@ const Intro = () => {
 				<div className="row featurette">
 					<div className="col-md-7">
 						<h2 className="featurette-heading">
-							Productividad. <span className="text-muted">Eficacia.</span>
+							Productividad. <span className="text-muted">Calidad.</span>
 						</h2>
 						<p className="lead">
-							Mantener el orden de tus proveedores es muy sencillo con el sistema de gestión de Investy.
+							Trabajamos cada dia para ser mas eficientes y, es por ello que en Investy ofrecemos la
+							calidad que nuestros clientes merecen. Siempre buscando la productividad, valorando el
+							tiempo que se invierte en cada proyecto y ofreciendo el cien por cien a cada cliente. Todo
+							esto acompañado de unos estándares de calidad que Investy mantiene y exige, hacen que cada
+							cliente sea uno más de nosotros; compartiendo
 						</p>
 					</div>
 					<div className="col-md-5">
