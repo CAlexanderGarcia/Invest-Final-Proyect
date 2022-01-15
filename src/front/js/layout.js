@@ -4,19 +4,20 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-
-import Navbar from "./component/navbar";
+import { Navbar } from "./component/navbar";
 import RegisterForm from "./component/registerForm";
+import Client from "./pages/client";
 import Footer from "./component/footer";
-import login from "./component/login";
-import { Suppliers } from "./pages/suppliers";
+import Supplier from "./pages/supplier";
+import Product from "./pages/product";
+import { Bills } from "./pages/bills";
+import ListBills from "./pages/listBill";
 
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
-
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
@@ -32,8 +33,20 @@ const Layout = () => {
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
-						<Route exact path="/suppliers">
-							<Suppliers />
+						<Route exact path="/client">
+							<Client />
+						</Route>
+						<Route exact path="/product">
+							<Product />
+						</Route>
+						<Route exact path="/supplier">
+							<Supplier />
+						</Route>
+						<Route exact path="/bills">
+							<Bills />
+						</Route>
+						<Route exact path="/listBills">
+							<ListBills />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

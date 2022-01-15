@@ -1,12 +1,34 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
-const Modal = () => {
+const ModalLogin = () => {
 	const { store, actions } = useContext(Context);
+	const [data, setData] = useState({});
+	const [error, setError] = useState("");
+	const history = useHistory();
+	const handleInputChange = event => {
+		setData({ ...data, [event.target.name]: event.target.value });
+	};
+	const handleOnSubmit = event => {
+		event.preventDefault();
+		const response = actions.login(data).then(res => {
+			if (res) {
+				document.querySelector(".btn-close").click();
+				history.push("/client");
+			} else {
+				setError("Email o Password Incorrectos, Inténtelo de Nuevo");
+			}
+		});
+	};
 
 	return (
 		<div>
-			<button type="button" className="btn Modal fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			<button
+				type="button"
+				className="btn fs-5 buttom-nsi text-success"
+				data-bs-toggle="modal"
+				data-bs-target="#modalLogin">
 				<span id="span5" />
 				<span id="span6" />
 				<span id="span7" />
@@ -15,7 +37,7 @@ const Modal = () => {
 			</button>
 			<div
 				className="modal fade"
-				id="exampleModal"
+				id="modalLogin"
 				tabIndex="-1"
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
@@ -30,20 +52,39 @@ const Modal = () => {
 						</div>
 
 						<div className="modal-body" />
-
-						<form className="login-form">
+						{error ? (
+							<div className={`alert alert-danger`} role="alert">
+								{error}
+							</div>
+						) : (
+							""
+						)}
+						<form className="login-form " onSubmit={handleOnSubmit}>
 							<div className="group">
 								<label htmlFor="user" className="label">
-									Username
+									Email
 								</label>
-								<input id="user" type="text" className="input" />
+								<input
+									id="user"
+									type="email"
+									className="input"
+									name="email"
+									onChange={handleInputChange}
+								/>
 							</div>
 
 							<div className="group">
 								<label htmlFor="pass" className="label">
 									Password
 								</label>
-								<input id="pass" type="password" className="input" data-type="password" />
+								<input
+									id="pass"
+									type="password"
+									className="input"
+									data-type="password"
+									name="password"
+									onChange={handleInputChange}
+								/>
 							</div>
 
 							<div className="group">
@@ -67,10 +108,4 @@ const Modal = () => {
 	);
 };
 
-export default Modal;
-
-//		<p>
-//			{store.login.map((value, index) => {
-//				return <p key={index}>{value.Username}</p>;
-//			})}
-//		</p>
+export default ModalLogin;
