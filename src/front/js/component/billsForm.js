@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext";
 
 const BillsForm = () => {
+	const { actions } = useContext(Context);
 	const [clients, setClients] = useState();
 	const [products, setProducts] = useState();
 	const [total, setTotal] = useState(0);
+	const [dateBill, setDateBill] = useState(new Date().toDateString());
+	const [numberBill, setNumberBill] = useState();
 
 	const [selectedClient, setSelectedClient] = useState();
-	const [selectedProduct, setSelectedProduct] = useState([]);
+	const [selectedProducts, setSelectedProducts] = useState([]);
 
 	useEffect(() => {
 		getClients();
@@ -16,13 +20,13 @@ const BillsForm = () => {
 	useEffect(
 		() => {
 			let sumTotal = 0;
-			for (let x in selectedProduct) {
-				sumTotal += selectedProduct[x].productPrice;
+			for (let x in selectedProducts) {
+				sumTotal += selectedProducts[x].productPrice;
 				console.log(x);
 			}
 			setTotal(sumTotal);
 		},
-		[selectedProduct]
+		[selectedProducts]
 	);
 
 	const getClients = async () => {
@@ -36,7 +40,7 @@ const BillsForm = () => {
 		const dataProduct = await responseProduct.json();
 		setProducts(
 			dataProduct.products.map(product => {
-				product["productPrice"] = 0;
+				product["productPrice"] = product.price * 1.21;
 				return product;
 			})
 		);
@@ -196,14 +200,16 @@ const BillsForm = () => {
 					</label>
 					<select
 						onChange={e => {
-							setSelectedProduct([
-								...selectedProduct,
-								{
-									...products.find(p => p.id.toString() == e.target.value),
-									quantity: 1
-								}
-							]);
-							e.target.value = 0;
+							if (!selectedProducts.map(x => x.id.toString()).includes(e.target.value)) {
+								setSelectedProducts([
+									...selectedProducts,
+									{
+										...products.find(p => p.id.toString() == e.target.value),
+										quantity: 1
+									}
+								]);
+								e.target.value = 0;
+							}
 						}}
 						className="form-select mb-3">
 						<option value={0} selected>
@@ -225,10 +231,21 @@ const BillsForm = () => {
 						Nº Factura
 						<i className="fas fa-file-invoice ms-2 text-success" />
 					</label>
-					<input type="text" className="form-control" />
+					<input
+						type="text"
+						className="form-control"
+						value={numberBill}
+						onChange={e => setNumberBill(e.target.value)}
+						required
+					/>
 				</div>
 				<div className="col-md-4 pt-0 mt-2">
-					<label htmlFor="inputDate" className="form-label my-0">
+					<label
+						htmlFor="inputDate"
+						className="form-label my-0"
+						value={dateBill}
+						onChange={e => setDateBill(e.target.value)}
+						required>
 						Fecha factura
 						<i className="fas fa-calendar-alt ms-2 text-success" />
 					</label>
@@ -243,7 +260,7 @@ const BillsForm = () => {
 
 				{/* PRODUCTS NAME */}
 				<div>
-					{selectedProduct.map((product, i) => {
+					{selectedProducts.map((product, i) => {
 						return (
 							<div className="row mb-2" key={i}>
 								<div className="col-lg-2">
@@ -320,12 +337,12 @@ const BillsForm = () => {
 									<input
 										type="number"
 										className="form-control text-end"
-										defaultValue={0}
+										defaultValue={1}
 										onChange={e => {
 											let quantity = products.find(x => x.id == product.id).quantity;
-											if (parseInt(e.target.value) <= quantity && parseInt(e.target.value) > 0) {
-												setSelectedProduct(
-													selectedProduct.map(x => {
+											if (parseInt(e.target.value) <= quantity && parseInt(e.target.value) > 1) {
+												setSelectedProducts(
+													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
@@ -342,8 +359,8 @@ const BillsForm = () => {
 												);
 											} else if (parseInt(e.target.value) > quantity) {
 												e.target.value = quantity;
-												setSelectedProduct(
-													selectedProduct.map(x => {
+												setSelectedProducts(
+													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
@@ -358,15 +375,15 @@ const BillsForm = () => {
 														}
 													})
 												);
-											} else if (parseInt(e.target.value) <= 0) {
-												e.target.value = 0;
-												setSelectedProduct(
-													selectedProduct.map(x => {
+											} else if (parseInt(e.target.value) <= 1) {
+												e.target.value = 1;
+												setSelectedProducts(
+													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
-																quantity: 0,
-																productPrice: 0
+																quantity: 1,
+																productPrice: parseInt(product.price) * 1.21
 															};
 														} else {
 															return x;
@@ -392,7 +409,9 @@ const BillsForm = () => {
 											value={product.productPrice}
 										/>
 										<i
-											onClick={() => setSelectedProduct(selectedProduct.filter((x, y) => y != i))}
+											onClick={() =>
+												setSelectedProducts(selectedProducts.filter((x, y) => y != i))
+											}
 											className="fas fa-trash-alt fs-1 ms-3 mb-0 text-danger"
 										/>
 									</div>
@@ -411,7 +430,18 @@ const BillsForm = () => {
 
 				{/* BUTTON */}
 				<div className="col-12 text-end">
-					<button type="submit" className="btn btn-success">
+					<button
+						type="submit"
+						className="btn btn-success"
+						onClick={() =>
+							actions.createBill({
+								client_id: selectedClient.id,
+								number_bill: numberBill,
+								date_bill: dateBill,
+								products: selectedProducts,
+								total: total
+							})
+						}>
 						Generar factura
 					</button>
 				</div>

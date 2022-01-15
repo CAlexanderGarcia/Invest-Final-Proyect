@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
-from api.models import db, UserData, Supplier, Client, Product, ProductToBill
+from api.models import db, UserData, Supplier, Client, Product, ProductToBill, Bill
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
@@ -231,28 +231,42 @@ def update_product(product_id):
             print(e) 
             return jsonify({"message" : "Producto no modificado", "created" : False}), 500
 
-@api.route('/product', methods=['POST'])
+@api.route('/bills', methods=['POST'])
 @jwt_required()
-def add_product():
-      current_user = get_jwt_identity()
-      name = request.json.get("name")
-      code = request.json.get("code")
-      quantity = request.json.get("quantity")
-      price = request.json.get("price")
-      supplier = request.json.get("supplier")
-      try:
+def add_bill():
+      current_user_id = get_jwt_identity()
+      user = UserData.query.get(current_user_id)
+      if not user: return jsonify({"message": "Usuario no existe"}), 400
 
-            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
-           
-            if not (new_product):
+      try:
+            client_id = request.json.get("client_id")
+            number_bill = request.json.get("number_bill")
+            date_bill = request.json.get("date_bill")
+            products = request.json.get("products")#almacenado de todos los productos
+            total = request.json.get("total")
+            if not client_id or not number_bill or not date_bill or not products or not total: return jsonify({"message": "Revisar campos que falten"}), 400
+            client = Client.query.filter_by(id=client_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
+
+            if not client:
+                  return jsonify({"message": "ID del Cliente no Existe"}), 400
+
+            bill = Bill(number=number_bill, date=date_bill, tax=21, discount=0, client_id=client_id, total=total, user_id=user.id) #Creacion de factura
+          
+            if not (bill):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
-            db.session.add(new_product)
-            db.session.commit()   
-            return jsonify({"message" : "Nuevo Producto Creado", "created" : True}), 200
+            db.session.add(bill)
+            db.session.commit()
+            for product in products: 
+                  product = Product.query.filter_by(code=product.get("code"), supplier_id=product.get("supplier_id")).first()
+                  product_to_bill = ProductToBill(quantity=product.quantity, price=product.price, bill_id=bill.id, product_id=product.id)
+                  db.session.add(product_to_bill)
+                  db.session.commit()      
+            return jsonify({"message" : "La Factura ha sido Creada", "created" : True}), 200
       except Exception as e: 
             print(e)
-            return jsonify({"message" : "Producto no Creado", "created" : False}), 500
+            return jsonify({"message" : "La Factura no se ha Creado", "created" : False}), 500
+
 
 
 """ @api.route('/product', methods=['GET'])
