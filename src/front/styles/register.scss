@@ -1,9 +1,7 @@
 
 
-.formulario {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.form {
+    height: 75vh;
 }
 
 .form-label{
@@ -19,7 +17,7 @@
 
 .form-input{
     width: 100%;
-    background: #fff;
+    background: #e9ecef;
     border: 3px solid transparent;
     border-radius: 3px;
     height: 45px;
@@ -79,7 +77,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #000;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .mensajeExito{

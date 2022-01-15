@@ -37,7 +37,9 @@ def create_user():
       
       if not exist_email and not exist_documentation: 
       # validar datos de la api      
-            if "name" not in body:                       
+            if "surname" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre", "created": False }), 400
+            if "company" not in body:                       
                   return jsonify({"message": "No se han recibido los datos de nombre/razón social", "created": False }), 400
             if "address" not in body:            
                   return jsonify({"message": "No se han recibido los datos de dirección", "created": False }), 400      
@@ -48,13 +50,13 @@ def create_user():
             if "numberDocumentation" not in body:            
                   return jsonify({"message": "No se han recibido los datos de numero de documentación", "created": False }), 400
             if "postalCode" not in body or not body["postalCode"].isdecimal():          
-                  return jsonify({"message": "No se han recibido los datos de código postal", "created": False }), 400
+                  return jsonify({"message": "Los datos de código postal no son correctos", "created": False }), 400
             if "typeDocumentation" not in body:            
                   return jsonify({"message": "No se han recibido los datos de tipo de documentación", "created": False }), 400
                     
             
             #creamos el usuario       
-            user = UserData(company=body["name"], email=body["email"], address=body["address"], password=body["password"], numberDocumentation=body["numberDocumentation"], postalCode=body["postalCode"], typeDocumentation=body["typeDocumentation"])
+            user = UserData(surname=body["surname"], company=body["company"], email=body["email"], address=body["address"], password=body["password"], numberDocumentation=body["numberDocumentation"], postalCode=body["postalCode"], typeDocumentation=body["typeDocumentation"])
             if not user:
                   return jsonify({"message": "Error datos", "created": False }), 400
             db.session.add(user)
