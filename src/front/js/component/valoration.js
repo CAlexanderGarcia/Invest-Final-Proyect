@@ -6,15 +6,15 @@ import people04 from "../../img/people04.png";
 
 const Valoration = () => {
 	return (
-		<div className="row py-4 mb-4">
-			<h2 className="ms-4 fs-1">VALORACIONES</h2>
-			<hr />
+		<div className="container py-4 mb-4">
+			<h2 className="featurette-heading bluedark-investy">Valoraciones</h2>
+			<hr className="bluedark-investy" />
 			<div className="col-md-6 offset-md-3 my-5 text-center">
 				<div id="carouselExampleControls" className="carousel slide shadow-lg" data-bs-ride="carousel">
 					<div className="carousel-inner">
 						<div className="carousel-item active">
 							<div className="card">
-								<div className="card-header">
+								<div className="card-header bg-bluedark-investy">
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
@@ -37,7 +37,7 @@ const Valoration = () => {
 						</div>
 						<div className="carousel-item">
 							<div className="card">
-								<div className="card-header">
+								<div className="card-header bg-bluedark-investy">
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
@@ -59,7 +59,7 @@ const Valoration = () => {
 						</div>
 						<div className="carousel-item">
 							<div className="card">
-								<div className="card-header">
+								<div className="card-header bg-bluedark-investy">
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
@@ -82,7 +82,7 @@ const Valoration = () => {
 						</div>
 						<div className="carousel-item">
 							<div className="card">
-								<div className="card-header">
+								<div className="card-header bg-bluedark-investy">
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />
 									<i className="fas fa-star text-warning fs-2" />

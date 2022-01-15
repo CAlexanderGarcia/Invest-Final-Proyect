@@ -4,7 +4,7 @@ const Footer = () => {
 	const [dropend, setDropend] = useState(false);
 	return (
 		<footer className="sticky-bottom">
-			<div className="container-fluid d-flex bg-dark">
+			<div className="container-fluid d-flex bg-bluedark-investy">
 				<div className="align-start d-flex">
 					<div className="btn-group dropend">
 						<a
@@ -30,7 +30,7 @@ const Footer = () => {
 								<>Teléfono:</>
 								<span className="text-muted col"> (+34) 910 000 000</span>
 								<>Horario de atención al cliente:</>
-								<span className="text-muted col"> 09:00 a 18:00 todos los días</span>
+								<span className="text-muted col"> 24 horas, 365 dias al año.</span>
 							</div>
 						</a>
 					</ul>
