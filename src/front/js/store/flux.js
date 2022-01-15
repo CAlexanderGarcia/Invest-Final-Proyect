@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 			createUser: data => {
-				const response = fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu25.gitpod.io/api/register", {
+				const response = fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu27.gitpod.io/api/register", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"

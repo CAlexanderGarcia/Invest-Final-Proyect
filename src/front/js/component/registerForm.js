@@ -22,20 +22,20 @@ const RegisterForm = () => {
 	};
 	const submitForm = event => {
 		event.preventDefault();
-		actions
-			.createUser(data)
-			.then(result => {
-				if (result.created) {
-					setRegister(true);
-				}
-			})
-			.catch(error => {
-				setMessage({ show: true, text: "error en datos del formulario" });
-			});
+		actions.createUser(data).then(result => {
+			if (result && !result.created) {
+				return setMessage({ show: true, text: result.message });
+			} else {
+				setRegister(true);
+				return setMessage({ show: false, text: "" });
+			}
+		});
 	};
 
 	return register ? (
-		<h4 className="text-start text-primary">El usuario fue creado correctamente</h4>
+		<div className="alert alert-light" role="alert">
+			Su usuario se ha creado correctamente
+		</div>
 	) : (
 		<form
 			onSubmit={e => {
@@ -55,6 +55,7 @@ const RegisterForm = () => {
 						placeholder="Investy"
 						name="name"
 						onChange={handleInputChange}
+						required
 					/>
 				</div>
 			</div>
@@ -68,9 +69,10 @@ const RegisterForm = () => {
 						type="text"
 						className="form-input"
 						id="postalCode"
-						placeholder="00000"
+						placeholder="Sólo números"
 						name="postalCode"
 						onChange={handleInputChange}
+						required
 					/>
 				</div>
 			</div>
@@ -86,6 +88,7 @@ const RegisterForm = () => {
 						placeholder="correo@correo.com"
 						name="email"
 						onChange={handleInputChange}
+						required
 					/>
 				</div>
 			</div>
@@ -103,6 +106,7 @@ const RegisterForm = () => {
 						aria-label="adress"
 						name="address"
 						onChange={handleInputChange}
+						required
 					/>
 				</div>
 			</div>
@@ -111,7 +115,14 @@ const RegisterForm = () => {
 				<label htmlFor="specificSizeInputDocNumber" className="form-label">
 					Numero de identificación
 				</label>
-				<input type="text" className="form-input" name="numberDocumentation" onChange={handleInputChange} />
+				<input
+					type="text"
+					className="form-input"
+					name="numberDocumentation"
+					onChange={handleInputChange}
+					placeholder="Y99990000D"
+					required
+				/>
 			</div>
 			<div className="col-md-4">
 				<label htmlFor="inputState" className="form-label">
@@ -138,6 +149,8 @@ const RegisterForm = () => {
 						id="password"
 						name="password"
 						onChange={handleInputChange}
+						placeholder="Recomendada letras y números"
+						required
 					/>
 				</div>
 			</div>
@@ -161,7 +174,11 @@ const RegisterForm = () => {
 					Registrarse
 				</button>
 			</div>
-			{message.show ? <h5 className="text-start text-primary">{message.text}</h5> : ""}
+			{message.show && (
+				<div className="alert" role="alert">
+					{message.text}
+				</div>
+			)}
 		</form>
 	);
 };
