@@ -13,7 +13,6 @@ const ModalLogin = () => {
 	const handleOnSubmit = event => {
 		event.preventDefault();
 		const response = actions.login(data).then(res => {
-			console.log(res);
 			if (res) {
 				document.querySelector(".btn-close").click();
 				history.push("/client");

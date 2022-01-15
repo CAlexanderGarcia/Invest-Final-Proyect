@@ -72,11 +72,12 @@ class Client(db.Model):
     
     def serialize(self):
         return {
-            "id" : self.id,
-            "name" : self.name,
-            "nif" : self.nif,
+            "id": self.id,
+            "name": self.name,
+            "nif": self.nif,
             "address": self.address,
             "postalCode": self.postalCode,
+            "userData_id": self.userData_id
         }
 
 class ProductToBill(db.Model):
@@ -96,13 +97,13 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'), nullable=False)
     productToBills = db.relationship('ProductToBill', backref='product', lazy=True)
-    
+
     def serialize(self):
         return {
-            "id" : self.id,
-            "name" : self.name,
-            "code" : self.code,
-            "quantity" : self.quantity,
+            "id": self.id,
+            "name": self.name,
+            "code": self.code,
+            "quantity": self.quantity,
             "price": self.price,
-            "supplier": self.supplier.name
+            "supplier_id": self.supplier_id
         }
