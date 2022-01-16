@@ -34,7 +34,13 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<Informacion />
+								<a className="btn buttom-nsi mx-5 fs-5 text-white" href="#informacion-link">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Información
+								</a>
 							</li>
 							<li className="nav-item">
 								<Servicios />

@@ -120,7 +120,7 @@ const Intro = () => {
 				<hr className="featurette-divider bluedark-investy" />
 
 				<div className="row featurette">
-					<div className="col-md-7">
+					<div className="col-md-7" id="informacion-link">
 						<h2 className="featurette-heading bluedark-investy">
 							Productividad. <span className="grey-investy">Calidad.</span>
 						</h2>
