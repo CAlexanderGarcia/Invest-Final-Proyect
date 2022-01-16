@@ -11,7 +11,7 @@ export const PrivateNavbar = () => {
 		history.push("/");
 	};
 	return (
-		<nav className="row navbar navbar-expand-xl navbar-dark bg-dark">
+		<nav className="row navbar navbar-expand-xl navbar-dark bg-bluedark-investy">
 			<div className="col-10 container-fluid d-flex justify-content-between">
 				<div className="navbar-brand">
 					<Link to="/">

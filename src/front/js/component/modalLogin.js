@@ -26,7 +26,7 @@ const ModalLogin = () => {
 		<div>
 			<button
 				type="button"
-				className="btn fs-5 buttom-nsi text-success"
+				className="btn fs-5 buttom-nsi bluelight-investy"
 				data-bs-toggle="modal"
 				data-bs-target="#modalLogin">
 				<span id="span5" />

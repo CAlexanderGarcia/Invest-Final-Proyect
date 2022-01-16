@@ -19,15 +19,10 @@ const BillDetail = () => {
 					<h2 className="">Datos personales</h2>
 					<hr className="text-success m-0" />
 				</div>
-				<div className="col-md-6">
+
+				<div className="col-md-12">
 					<div className="input-group">
 						<span className="input-group-text bg-dark text-white">Nombre</span>
-						<input type="text" className="form-control" readOnly disabled />
-					</div>
-				</div>
-				<div className="col-md-6">
-					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Apellido</span>
 						<input type="text" className="form-control" value={data.user.surname} readOnly disabled />
 					</div>
 				</div>
@@ -72,11 +67,8 @@ const BillDetail = () => {
 
 			{/* INICIO DATOS CLIENTES */}
 			<div className="p-0 mt-5">
-				<h2 className="">Datos de cliente</h2>
-				<hr className="text-success m-0" />
-			</div>
-			<div className="col-12 pt-0 mt-2 ">
-				<span className="input-group-text bg-dark text-white" />
+				<h2 className="mt-5">Datos de cliente</h2>
+				<hr className="text-success m-0 mb-3" />
 			</div>
 
 			<div className="row g-3">
@@ -135,73 +127,58 @@ const BillDetail = () => {
 				{/* FIN DATOS CLIENTES */}
 
 				{/* INICIO FORMULARIO FACTURA */}
-				<div className="p-0 mt-5">
-					<h2 className="">Datos de factura</h2>
-					<hr className="text-success m-0" />
-				</div>
-				{/* PRODUCT SELECT */}
-				<div className="col-md-4 pt-0 mt-2">
-					<span className="input-group-text bg-dark text-white">Nombre</span>
-					<input readOnly disabled />
-				</div>
-				<div className="col-md-4 pt-0 mt-2">
-					<label htmlFor="inputBillId" className="form-label my-0">
-						Nº Factura
-						<i className="fas fa-file-invoice ms-2 text-success" />
-					</label>
-					<input type="text" className="form-control" readOnly disabled />
-				</div>
-				<div className="col-md-4 pt-0 mt-2">
-					<label htmlFor="inputDate" className="form-label my-0">
-						Fecha factura
-						<i className="fas fa-calendar-alt ms-2 text-success" />
-					</label>
-					<input type="text" className="form-control" readOnly disabled />
-				</div>
-
-				{/* PRODUCTS NAME */}
-				<div>
-					<div className="row mb-2">
-						<div className="col-lg-2">
-							<input type="text" className="form-control" name="code" readOnly disabled />
-						</div>
-						<div className="col-lg-5">
-							<input type="text" className="form-control" name="nameProduct" readOnly disabled />
-						</div>
-
-						{/* PRICE */}
-						<div className="col-lg-1">
-							<label htmlFor="inputQuantityUnity" className="form-label text-center">
-								P.U.
-							</label>
-
-							<input type="number" className="form-control text-end" name="price" readOnly disabled />
-						</div>
-
-						{/* TAX */}
-						<div className="col-lg-1 col-sm-4">
-							<label htmlFor="inputTax" className="form-label text-center">
-								IVA
-							</label>
-
-							<input type="text" className="form-control text-end" name="tax" readOnly disabled />
-						</div>
-
-						{/* QUANTITY */}
-						<div className="col-lg-1 col-sm-4">
-							<label htmlFor="inputQuantity" className="form-label text-end">
-								Cantidad
-							</label>
-
-							<input type="number" className="form-control text-end" readOnly disabled />
+				<div className="row g-3">
+					{/* DATOS PERSONALES */}
+					<div className="p-0 mt-5">
+						<h2 className="">Datos de factura</h2>
+						<hr className="text-success m-0" />
+					</div>
+					<div className="col-md-8">
+						<div className="input-group">
+							<span className="input-group-text bg-dark text-white">Número de Factura</span>
+							<input type="text" className="form-control" readOnly disabled value={data.bill.number} />
 						</div>
 					</div>
-				</div>
+					<div className="col-md-4">
+						<div className="input-group">
+							<span className="input-group-text bg-dark text-white">Fecha de Factura</span>
+							<input type="text" className="form-control" readOnly disabled value={data.bill.date} />
+						</div>
+					</div>
+					<div className="col-md-12 ">
+						<table className="container">
+							<tr>
+								<th>Nombre del Producto</th>
+								<th>Precio Unitario</th>
+								<th>IVA</th>
+								<th>Cantidad</th>
+								<th>Precio Total</th>
+							</tr>
+							{data.products.map((value, index) => {
+								return (
+									<tr key={index}>
+										<td>{value.product.name}</td>
+										<td>{value.product.price}</td>
+										<td>{value.product.tax}</td>
+										<td>{value.quantity}</td>
+										<td>{value.price}</td>
+									</tr>
+								);
+							})}
+						</table>
+					</div>
 
-				<div className="col-3 offset-9 text-end mt-5">
-					<div className="input-group">
-						<span className="input-group-text fw-bold">Total €</span>
-						<input type="number" className="form-control text-end fw-bold" readOnly disabled />
+					<div className="col-md-8">
+						<div className="input-group">
+							<span className="input-group-text bg-danger text-white">TOTAL</span>
+							<input
+								type="text"
+								className="form-control fw-bold"
+								value={data.bill.total}
+								readOnly
+								disabled
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

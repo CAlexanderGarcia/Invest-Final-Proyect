@@ -10,8 +10,6 @@ const ListBills = () => {
 	}, []);
 	return (
 		<div>
-			<h1 className="text-center fw-bolder mt-5 ">FACTURAS</h1>
-
 			<Link to="bills">
 				<button type="button" className="btn buttom-nsi fs-5 ms-5" data-bs-toggle="modal" data-bs-target="">
 					<span id="span5" />
@@ -22,27 +20,39 @@ const ListBills = () => {
 				</button>
 			</Link>
 
-			<table className="table container my-5 shadow ">
+			<table className="table container my-5 shadow table-fill ">
 				<thead className="table-success text-center">
-					<tr>
-						<th scope="col text-info">ID</th>
-						<th scope="col">Número de Factura</th>
-						<th scope="col">NIF</th>
-						<th scope="col">Día</th>
-						<th scope="col">Total</th>
+					<tr className="tr-CPP">
+						<th scope="col" className="text-left th-CPP">
+							ID
+						</th>
+						<th scope="col" className="text-left th-CPP">
+							Número de Factura
+						</th>
+						<th scope="col" className="text-left th-CPP">
+							NIF
+						</th>
+						<th scope="col" className="text-left th-CPP">
+							Día
+						</th>
+						<th scope="col" className="text-left th-CPP">
+							Total
+						</th>
 						<th scope="col" />
 					</tr>
 				</thead>
-				<tbody className="text-center ">
+				<tbody className="table-hover">
 					{store.listBills ? (
 						store.listBills.map((value, index) => {
 							return (
 								<tr key={index}>
-									<th scope="row">{value.id}</th>
-									<td>{value.number}</td>
-									<td>{value.nif}</td>
-									<td>{value.date}</td>
-									<td className="fw-bold">{value.total}</td>
+									<th scope="row" className="text-center td-CPP">
+										{value.id}
+									</th>
+									<td className="text-center">{value.number}</td>
+									<td className="text-center">{value.nif}</td>
+									<td className="text-center">{value.date}</td>
+									<td className="fw-bold text-center">{value.total}</td>
 									<td>
 										<Link to="billdetail">
 											<button className="btn btn-outline-success">Detalles</button>
