@@ -60,13 +60,13 @@ const ListClient = () => {
 											onClick={() => {
 												setCurrentClient(value);
 											}}
-											className="px-2 ms-3 link-pen btn btn-link" //editar boton
+											className="px-2 ms-3 link-pen btn btn-link" //Botón Editar
 											data-bs-toggle="modal"
 											data-bs-target={"#modal-change-client"}>
 											<i className="fas fa-pen" />
 										</button>
 										<button
-											className="px-2 me-1 link-trash btn btn-link "
+											className="px-2 me-1 link-trash btn btn-link " // Botón Borrar
 											onClick={() => {
 												actions.deleteClient(value.id).then(data => actions.listClient());
 											}}>

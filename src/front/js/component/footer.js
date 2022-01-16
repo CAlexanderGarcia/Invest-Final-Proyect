@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const Footer = () => {
 	const [dropend, setDropend] = useState(false);
 	return (
-		<footer className="sticky-bottom">
-			<div className="container-fluid d-flex bg-dark">
+		<footer className="sticky-bottom mt-5">
+			<div className="container-fluid d-flex bg-bluedark-investy">
 				<div className="align-start d-flex">
 					<div className="btn-group dropend">
 						<a
@@ -30,7 +30,7 @@ const Footer = () => {
 								<>Teléfono:</>
 								<span className="text-muted col"> (+34) 910 000 000</span>
 								<>Horario de atención al cliente:</>
-								<span className="text-muted col"> 09:00 a 18:00 todos los días</span>
+								<span className="text-muted col"> 24 horas, 365 dias al año.</span>
 							</div>
 						</a>
 					</ul>
@@ -38,7 +38,7 @@ const Footer = () => {
 				<div className=" container-fluid d-flex">
 					<span className="encuentranos text-white">Encuéntranos en:</span>
 					<span className="navbar-brand social-buttons d-flex">
-						<a href="https://www.instagram.com/">
+						<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
 							<button
 								className="navbar-toggler social-buttons__button social-button social-button--instagram"
 								type="button"
@@ -50,7 +50,7 @@ const Footer = () => {
 								<i className="fab fa-instagram fs-5" />
 							</button>
 						</a>
-						<a href="https://twitter.com/?lang=en">
+						<a href="https://twitter.com/?lang=en" target="_blank" rel="noopener noreferrer">
 							<button
 								className="navbar-toggler social-buttons__button social-button social-button--twitter"
 								type="button"
@@ -62,7 +62,7 @@ const Footer = () => {
 								<i className="fab fa-twitter fs-5" />
 							</button>
 						</a>
-						<a href="https://www.facebook.com/">
+						<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
 							<button
 								className="navbar-toggler social-buttons__button social-button social-button--facebook"
 								type="button"
@@ -74,7 +74,7 @@ const Footer = () => {
 								<i className="fab fa-facebook fs-5" />
 							</button>
 						</a>
-						<a href="https://mail.google.com/mail/u/0/">
+						<a href="https://mail.google.com/mail/u/0/" target="_blank" rel="noopener noreferrer">
 							<button
 								className="navbar-toggler social-buttons__button social-button social-button--mail"
 								type="button"
@@ -86,7 +86,7 @@ const Footer = () => {
 								<i className="fas fa-envelope fs-5" />
 							</button>
 						</a>
-						<a href="https://www.youtube.com/">
+						<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
 							<button
 								className="navbar-toggler social-buttons__button social-button social-button--youtube"
 								type="button"
@@ -98,7 +98,7 @@ const Footer = () => {
 								<i className="fab fa-youtube fs-5" />
 							</button>
 						</a>
-						<a href="https://www.linkedin.com/">
+						<a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
 							<button
 								className="navbar-toggler social-buttons__button social-button social-button--linkedin"
 								type="button"

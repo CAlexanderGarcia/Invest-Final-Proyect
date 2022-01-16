@@ -5,6 +5,7 @@ import Valoration from "../component/valoration";
 import Faq from "../component/faq";
 import Pricing from "../component/pricing";
 import Intro from "../component/intro";
+import ComingSoon from "../component/comingSoon";
 
 export const Home = () => {
 	return (
@@ -13,6 +14,7 @@ export const Home = () => {
 			<Pricing />
 			<Valoration />
 			<Faq />
+			<ComingSoon />
 		</div>
 	);
 };

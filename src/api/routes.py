@@ -5,6 +5,8 @@ from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
 from api.models import db, UserData, Supplier, Client, Product, ProductToBill, Bill
 from api.utils import generate_sitemap, APIException
+import json 
+
 
 api = Blueprint('api', __name__)
 #############################TOKEN#################################
@@ -28,27 +30,43 @@ def create_token():
 @api.route('/register', methods=['POST'])
 def create_user():
 #obtenemos datos que nos llegan en el api
-      name = request.json.get('name', None)       
-      surname = request.json.get('surname', None)
-      email = request.json.get('email', None)
-      address = request.json.get('address', None)
-      company = request.json.get('company', None)
-      password = request.json.get('password', None)
-      numberDocumentation = request.json.get('numberDocumentation', None)
-      typeDocumentation = request.json.get('typeDocumentation', None)
-      postalCode = request.json.get('postalCode', None)
-
-
-      # validar datos de la api
+      body = json.loads(request.data) 
+      # validar si el usuario existe o no.
+      exist_email = UserData.query.filter_by(email=body["email"]).first()
+      exist_documentation = UserData.query.filter_by(numberDocumentation=body["numberDocumentation"]).first()
       
-      #creamos el usuario 
-      user = UserData(name=name, surname=surname, email=email, address=address, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode)
-      if not (user):
-            return jsonify({"message": "Error datos", "created": False }), 400
-      db.session.add(user)
-      db.session.commit()   
-      #retornamos respuesta el usuario se ha creado
-      return jsonify({"message" : "usuario creado", "created" : True}), 200
+      if not exist_email and not exist_documentation: 
+      # validar datos de la api      
+            if "surname" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre", "created": False }), 400
+            if "company" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre/razón social", "created": False }), 400
+            if "address" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de dirección", "created": False }), 400      
+            if "email" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de email", "created": False }), 400      
+            if "password" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de contraseña", "created": False }), 400
+            if "numberDocumentation" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de numero de documentación", "created": False }), 400
+            if "postalCode" not in body or not body["postalCode"].isdecimal():          
+                  return jsonify({"message": "Los datos de código postal no son correctos", "created": False }), 400
+            if "typeDocumentation" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de tipo de documentación", "created": False }), 400
+                    
+            
+            #creamos el usuario       
+            user = UserData(surname=body["surname"], company=body["company"], email=body["email"], address=body["address"], password=body["password"], numberDocumentation=body["numberDocumentation"], postalCode=body["postalCode"], typeDocumentation=body["typeDocumentation"])
+            if not user:
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            db.session.add(user)
+            db.session.commit()   
+            #retornamos respuesta el usuario se ha creado
+            return jsonify({"message" : "usuario creado", "created" : True}), 200
+      else:
+            return jsonify({"message" : "Los datos de correo electrónico o número de identificación ya se encuentran registrados en nuestar base de datos", "created" : False}), 400 
+           
+            
 
 #############################PROVEEDORES#################################
 
@@ -73,18 +91,6 @@ def create_supplier():
       except Exception as e: 
             print(e)
             return jsonify({"message" : "supplier no creado", "created" : False}), 500
-
-@api.route('/clients', methods=['GET'])
-def get_clients():
-      clients = Client.query.filter_by(userData_id = 1).all()
-      serialized_clients = list(map(lambda x: x.serialize(), clients))
-      return jsonify({"clients": serialized_clients}), 200
-
-@api.route('/products', methods=['GET'])
-def get_products():
-      products = Product.query.filter_by(supplier_id = 1).all()
-      serialized_products = list(map(lambda p: p.serialize(), products))
-      return jsonify({"products": serialized_products}), 200
 
 @api.route('/supplier', methods=['GET'])
 @jwt_required()
@@ -139,6 +145,14 @@ def update_supplier(supplier_id):
 
 #############################CLIENTES#################################
 
+@api.route('/clients', methods=['GET'])
+@jwt_required()
+def get_clients():
+      current_user = get_jwt_identity()
+      clients = Client.query.filter_by(userData_id=current_user)
+      serialized_clients = list(map(lambda x: x.serialize(), clients))
+      return jsonify({"clients": serialized_clients}), 200
+
 @api.route('/client', methods=['POST'])
 @jwt_required()
 def add_client():
@@ -161,14 +175,6 @@ def add_client():
             print(e)
             return jsonify({"message" : "Cliente no Creado", "created" : False}), 500
 
-
-""" @api.route('/client', methods=['GET'])
-@jwt_required()
-def get_clients():
-      current_user = get_jwt_identity()
-      clients = Client.query.filter_by(userData_id=current_user)
-      data = [client.serialize() for client in clients]
-      return jsonify(data), 200 """
 
 @api.route('/client/<int:client_id>', methods=['DELETE'])
 @jwt_required()
@@ -233,11 +239,17 @@ def update_product(product_id):
 
 @api.route('/bills', methods=['POST'])
 @jwt_required()
-def add_bill():
-      current_user_id = get_jwt_identity()
-      user = UserData.query.get(current_user_id)
-      if not user: return jsonify({"message": "Usuario no existe"}), 400
-
+def create_bill():
+      current_user = get_jwt_identity()
+      name = request.json.get("name")
+      code = request.json.get("code")
+      quantity = request.json.get("quantity")
+      price = request.json.get("price")
+      supplier = request.json.get("supplier")
+      print(request.json)
+      user = UserData.query.get(current_user)    
+      if user is None:
+            return jsonify({"msg": "Email o Contraseñas Incorrectas"}), 401
       try:
             client_id = request.json.get("client_id")
             number_bill = request.json.get("number_bill")
@@ -268,16 +280,16 @@ def add_bill():
             return jsonify({"message" : "La Factura no se ha Creado", "created" : False}), 500
 
 
-
-""" @api.route('/product', methods=['GET'])
+@api.route('/products', methods=['GET'])
 @jwt_required()
 def get_products():
       current_user = get_jwt_identity()
       suppliers = Supplier.query.filter_by(userData_id=current_user)
       suppliers_ids = [supplier.id for supplier in suppliers]
       products = Product.query.filter(Product.supplier_id.in_(suppliers_ids))#buscamos todos los productos del listado de proveedores
-      data = [product.serialize() for product in products] 
-      return jsonify(data), 200 """
+      serialized_products = list(map(lambda p: p.serialize(), products))
+      return jsonify({"products": serialized_products}), 200
+
 
 @api.route('/product/<int:product_id>', methods=['DELETE'])
 @jwt_required()
@@ -291,4 +303,51 @@ def delete_products(product_id):
       db.session.commit()
       return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
 
+@api.route('/product', methods=['POST'])
+@jwt_required()
+def add_product():
+      current_user = get_jwt_identity()
+      name = request.json.get("name")
+      code = request.json.get("code")
+      quantity = request.json.get("quantity")
+      price = request.json.get("price")
+      supplier = request.json.get("supplier")
+      print(request.json)
+      try:
 
+            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
+           
+            if not (new_product):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            db.session.add(new_product)
+            db.session.commit()   
+            return jsonify({"message" : "Nuevo Producto Creado", "created" : True}), 200
+      except Exception as e: 
+            print(e)
+            return jsonify({"message" : "Producto no Creado", "created" : False}), 500
+
+#############################FACTURAS#################################
+
+@api.route('/bills', methods=['GET'])
+@jwt_required()
+def list_bills():
+      current_user = get_jwt_identity()
+      clients = Client.query.filter_by(userData_id=current_user)
+      clients_ids=[client.id for client in clients]
+      bills = Bill.query.filter(Bill.client_id.in_(clients_ids))#buscar facturas asociados a esos clientes
+      serialized_bills = list(map(lambda b: b.serialize(), bills))
+      return jsonify({"bills": serialized_bills}), 200
+
+@api.route('/bills/<int:id>', methods=['GET'])
+@jwt_required()
+def get_bill(id):
+      current_user = get_jwt_identity()#id user
+      user = UserData.query.get(current_user) #buscamos al usuario por id
+      bill = Bill.query.get(id) #buscar la factura en BD
+      data = {}
+      data["bill"] = bill.serialize()
+      data["client"] = bill.client.serialize()
+      data["user"] = user.serialize()
+      data["products"] = [product.serialize() for product in bill.productToBills]
+      return jsonify({"data": data}), 200      

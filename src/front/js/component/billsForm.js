@@ -30,13 +30,25 @@ const BillsForm = () => {
 	);
 
 	const getClients = async () => {
-		const response = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu27.gitpod.io/api/clients");
+		const response = await fetch(process.env.BACKEND_URL + "/clients", {
+			method: "GET",
+			headers: {
+				Authorization: "Bearer " + actions.getToken(),
+				"Content-Type": "application/json"
+			}
+		});
 		const data = await response.json();
 		setClients(data.clients);
 	};
 
 	const getProducts = async () => {
-		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu27.gitpod.io/api/products");
+		const responseProduct = await fetch(process.env.BACKEND_URL + "/products", {
+			method: "GET",
+			headers: {
+				Authorization: "Bearer " + actions.getToken(),
+				"Content-Type": "application/json"
+			}
+		});
 		const dataProduct = await responseProduct.json();
 		setProducts(
 			dataProduct.products.map(product => {

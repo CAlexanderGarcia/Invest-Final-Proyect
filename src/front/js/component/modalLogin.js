@@ -13,7 +13,6 @@ const ModalLogin = () => {
 	const handleOnSubmit = event => {
 		event.preventDefault();
 		const response = actions.login(data).then(res => {
-			console.log(res);
 			if (res) {
 				document.querySelector(".btn-close").click();
 				history.push("/client");
@@ -27,7 +26,7 @@ const ModalLogin = () => {
 		<div>
 			<button
 				type="button"
-				className="btn fs-5 buttom-nsi text-success"
+				className="btn fs-5 buttom-nsi bluelight-investy"
 				data-bs-toggle="modal"
 				data-bs-target="#modalLogin">
 				<span id="span5" />

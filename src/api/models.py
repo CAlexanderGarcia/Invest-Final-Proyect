@@ -32,11 +32,11 @@ class UserData(db.Model):
 class Supplier(db.Model):
     __tablename__ = 'supplier'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    nif = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    nif = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), unique=False, nullable=False)
     postalCode = db.Column(db.String(120), unique=False, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
     phoneNumber = db.Column(db.String(120), unique=False, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
     products = db.relationship('Product', backref='supplier', lazy=True)
@@ -62,7 +62,19 @@ class Bill(db.Model): #factura
     user_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     productToBills = db.relationship('ProductToBill', backref='bill', lazy=True)
-
+    def serialize(self):
+        prices = [product.price for product in self.productToBills]
+        total = sum(prices)
+        return {
+            "id" : self.id,
+            "number" : self.number,
+            "date" : self.date,
+            "tax": self.tax,
+            "discount": self.discount,
+            "nif":self.client.nif,
+            "total":total
+            
+        }
 class Client(db.Model):
     __tablename__ = 'client'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -86,10 +98,19 @@ class Client(db.Model):
 class ProductToBill(db.Model):
     __tablename__ = 'producttobill'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    quantity = db.Column(db.Integer,nullable=False)#quantity de que?
+    quantity = db.Column(db.Integer,nullable=False)
     price = db.Column(db.Float, nullable=False)
     bill_id = db.Column(db.Integer, db.ForeignKey('bill.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "quantity" : self.quantity,
+            "price": self.price,
+            "product": self.product.serialize(),
+            
+        }
 
 class Product(db.Model):
     __tablename__ = 'product'
@@ -108,5 +129,6 @@ class Product(db.Model):
             "code": self.code,
             "quantity": self.quantity,
             "price": self.price,
-            "supplier_id": self.supplier_id
+            "supplier_id": self.supplier_id,
+            "supplier_name":self.supplier.name
         }
