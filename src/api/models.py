@@ -95,10 +95,19 @@ class Client(db.Model):
 class ProductToBill(db.Model):
     __tablename__ = 'producttobill'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    quantity = db.Column(db.Integer,nullable=False)#quantity de que?
+    quantity = db.Column(db.Integer,nullable=False)
     price = db.Column(db.Float, nullable=False)
     bill_id = db.Column(db.Integer, db.ForeignKey('bill.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
+    def serialize(self):
+        return {
+            "id" : self.id,
+            "quantity" : self.quantity,
+            "price": self.price,
+            "product": self.product.serialize(),
+            
+        }
 
 class Product(db.Model):
     __tablename__ = 'product'

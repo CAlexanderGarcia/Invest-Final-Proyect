@@ -249,6 +249,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => setStore({ listBills: data.bills }));
+			},
+			detailBill: id => {
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/bills/" + id, {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + getActions().getToken(),
+						"Content-Type": "application/json"
+					}
+				}).then(resp => resp.json());
+				return response;
 			}
 		}
 	};

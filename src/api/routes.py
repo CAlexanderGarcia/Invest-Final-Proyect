@@ -37,18 +37,13 @@ def create_user():
       numberDocumentation = request.json.get('numberDocumentation', None)
       typeDocumentation = request.json.get('typeDocumentation', None)
       postalCode = request.json.get('postalCode', None)
-
-
-      # validar datos de la api
       
-      #creamos el usuario 
-      user = UserData(name=name, surname=surname, email=email, address=address, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode)
-      if not (user):
+      user = UserData(name=name, surname=surname, email=email, address=address, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode) #creamos el usuario
+      if not (user):# validar datos de la api
             return jsonify({"message": "Error datos", "created": False }), 400
       db.session.add(user)
       db.session.commit()   
-      #retornamos respuesta el usuario se ha creado
-      return jsonify({"message" : "usuario creado", "created" : True}), 200
+      return jsonify({"message" : "usuario creado", "created" : True}), 200#retornamos respuesta el usuario se ha creado
 
 #############################PROVEEDORES#################################
 
@@ -301,10 +296,23 @@ def add_bill():
 
 @api.route('/bills', methods=['GET'])
 @jwt_required()
-def get_bills():
+def list_bills():
       current_user = get_jwt_identity()
       clients = Client.query.filter_by(userData_id=current_user)
       clients_ids=[client.id for client in clients]
       bills = Bill.query.filter(Bill.client_id.in_(clients_ids))#buscar facturas asociados a esos clientes
       serialized_bills = list(map(lambda b: b.serialize(), bills))
       return jsonify({"bills": serialized_bills}), 200
+
+@api.route('/bills/<int:id>', methods=['GET'])
+@jwt_required()
+def get_bill(id):
+      current_user = get_jwt_identity()#id user
+      user = UserData.query.get(current_user) #buscamos al usuario por id
+      bill = Bill.query.get(id) #buscar la factura en BD
+      data = {}
+      data["bill"] = bill.serialize()
+      data["client"] = bill.client.serialize()
+      data["user"] = user.serialize()
+      data["products"] = [product.serialize() for product in bill.productToBills]
+      return jsonify({"data": data}), 200      

@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const ListBills = () => {
 	const [bills, setBills] = useState([]);
@@ -10,6 +11,17 @@ const ListBills = () => {
 	return (
 		<div>
 			<h1 className="text-center fw-bolder mt-5 ">FACTURAS</h1>
+
+			<Link to="bills">
+				<button type="button" className="btn buttom-nsi fs-5 ms-5" data-bs-toggle="modal" data-bs-target="">
+					<span id="span5" />
+					<span id="span6" />
+					<span id="span7" />
+					<span id="span8" />
+					Crear Factura
+				</button>
+			</Link>
+
 			<table className="table container my-5 shadow ">
 				<thead className="table-success text-center">
 					<tr>
@@ -32,9 +44,9 @@ const ListBills = () => {
 									<td>{value.date}</td>
 									<td className="fw-bold">{value.total}</td>
 									<td>
-										<button className="btn btn-outline-success">
-											<i className="fas fa-plus" />
-										</button>
+										<Link to="billdetail">
+											<button className="btn btn-outline-success">Detalles</button>
+										</Link>
 									</td>
 								</tr>
 							);
