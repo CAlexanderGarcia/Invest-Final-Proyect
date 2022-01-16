@@ -5,19 +5,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			listClients: [],
 			listProducts: [],
 			listSuppliers: [],
-			tokenUser: {}
+			tokenUser: {},
+			listBills: []
 		},
 		actions: {
-			createUser: async data => {
-				const response = await fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu23.gitpod.io/api/register", {
+			createUser: data => {
+				const response = fetch(process.env.BACKEND_URL + "/register", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
-				});
-				const resp = await response.json();
-				return resp;
+				})
+					.then(resp => resp.json())
+					.catch(error => console.log("User can not be created", error));
+				console.log(response);
+				return response;
 			},
 			/*************************************LOGIN**********************************/
 			login: async data => {
@@ -234,6 +237,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => setStore({ listProducts: data.products }));
+			},
+			/********************FACTURAS**********************/
+
+			listBill: () => {
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/bills", {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + getActions().getToken(),
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => setStore({ listBills: data.bills }));
+			},
+			detailBill: id => {
+				const store = getStore();
+				const response = fetch(process.env.BACKEND_URL + "/bills/" + id, {
+					method: "GET",
+					headers: {
+						Authorization: "Bearer " + getActions().getToken(),
+						"Content-Type": "application/json"
+					}
+				}).then(resp => resp.json());
+				return response;
 			}
 		}
 	};

@@ -3,8 +3,10 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
-from api.models import db, UserData, Supplier, Client, Product, ProductToBill
+from api.models import db, UserData, Supplier, Client, Product, ProductToBill, Bill
 from api.utils import generate_sitemap, APIException
+import json 
+
 
 api = Blueprint('api', __name__)
 #############################TOKEN#################################
@@ -28,27 +30,43 @@ def create_token():
 @api.route('/register', methods=['POST'])
 def create_user():
 #obtenemos datos que nos llegan en el api
-      name = request.json.get('name', None)       
-      surname = request.json.get('surname', None)
-      email = request.json.get('email', None)
-      address = request.json.get('address', None)
-      company = request.json.get('company', None)
-      password = request.json.get('password', None)
-      numberDocumentation = request.json.get('numberDocumentation', None)
-      typeDocumentation = request.json.get('typeDocumentation', None)
-      postalCode = request.json.get('postalCode', None)
-
-
-      # validar datos de la api
+      body = json.loads(request.data) 
+      # validar si el usuario existe o no.
+      exist_email = UserData.query.filter_by(email=body["email"]).first()
+      exist_documentation = UserData.query.filter_by(numberDocumentation=body["numberDocumentation"]).first()
       
-      #creamos el usuario 
-      user = UserData(name=name, surname=surname, email=email, address=address, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode)
-      if not (user):
-            return jsonify({"message": "Error datos", "created": False }), 400
-      db.session.add(user)
-      db.session.commit()   
-      #retornamos respuesta el usuario se ha creado
-      return jsonify({"message" : "usuario creado", "created" : True}), 200
+      if not exist_email and not exist_documentation: 
+      # validar datos de la api      
+            if "surname" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre", "created": False }), 400
+            if "company" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre/razón social", "created": False }), 400
+            if "address" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de dirección", "created": False }), 400      
+            if "email" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de email", "created": False }), 400      
+            if "password" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de contraseña", "created": False }), 400
+            if "numberDocumentation" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de numero de documentación", "created": False }), 400
+            if "postalCode" not in body or not body["postalCode"].isdecimal():          
+                  return jsonify({"message": "Los datos de código postal no son correctos", "created": False }), 400
+            if "typeDocumentation" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de tipo de documentación", "created": False }), 400
+                    
+            
+            #creamos el usuario       
+            user = UserData(surname=body["surname"], company=body["company"], email=body["email"], address=body["address"], password=body["password"], numberDocumentation=body["numberDocumentation"], postalCode=body["postalCode"], typeDocumentation=body["typeDocumentation"])
+            if not user:
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            db.session.add(user)
+            db.session.commit()   
+            #retornamos respuesta el usuario se ha creado
+            return jsonify({"message" : "usuario creado", "created" : True}), 200
+      else:
+            return jsonify({"message" : "Los datos de correo electrónico o número de identificación ya se encuentran registrados en nuestar base de datos", "created" : False}), 400 
+           
+            
 
 #############################PROVEEDORES#################################
 
@@ -228,6 +246,7 @@ def add_product():
       quantity = request.json.get("quantity")
       price = request.json.get("price")
       supplier = request.json.get("supplier")
+      print(request.json)
       try:
 
             new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
@@ -265,4 +284,59 @@ def delete_products(product_id):
       db.session.commit()
       return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
 
+#############################FACTURAS#################################
 
+@api.route('/bills', methods=['POST'])
+@jwt_required()
+def add_bill():
+      current_user = get_jwt_identity()
+      client_id = request.json.get("client")
+      number_bill = request.json.get("number_bill")
+      date_bill = request.json.get("date_bill")
+      products = request.json.get("products")#almacenado de todos los productos
+      
+      try:
+            client = Client.query.filter_by(id=client_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
+
+            if not client:
+                  return jsonify({"message": "ID del Cliente no Existe"}), 400
+
+            bill = Bill(number=number_bill, date=date_bill, tax=21, discount=0, client_id=client_id) #Creacion de factura
+          
+            if not (bill):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            db.session.add(bill)
+            db.session.commit()
+            for product in products: 
+                  product = Product.query.filter_by(code=product.get("code"), supplier_id=product.get("supplier_id")).first()
+                  product_to_bill = ProductToBill(quantity=product.get("quantity"), price=product.get("productPrice"), bill_id=bill.id, product_id=product.id)
+                  db.session.add(product_to_bill)
+                  db.session.commit()      
+            return jsonify({"message" : "La Factura ha sido Creada", "created" : True}), 200
+      except Exception as e: 
+            print(e)
+            return jsonify({"message" : "La Factura no se ha Creado", "created" : False}), 500
+
+@api.route('/bills', methods=['GET'])
+@jwt_required()
+def list_bills():
+      current_user = get_jwt_identity()
+      clients = Client.query.filter_by(userData_id=current_user)
+      clients_ids=[client.id for client in clients]
+      bills = Bill.query.filter(Bill.client_id.in_(clients_ids))#buscar facturas asociados a esos clientes
+      serialized_bills = list(map(lambda b: b.serialize(), bills))
+      return jsonify({"bills": serialized_bills}), 200
+
+@api.route('/bills/<int:id>', methods=['GET'])
+@jwt_required()
+def get_bill(id):
+      current_user = get_jwt_identity()#id user
+      user = UserData.query.get(current_user) #buscamos al usuario por id
+      bill = Bill.query.get(id) #buscar la factura en BD
+      data = {}
+      data["bill"] = bill.serialize()
+      data["client"] = bill.client.serialize()
+      data["user"] = user.serialize()
+      data["products"] = [product.serialize() for product in bill.productToBills]
+      return jsonify({"data": data}), 200      

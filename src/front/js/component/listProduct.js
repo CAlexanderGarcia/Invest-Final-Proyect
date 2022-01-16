@@ -58,7 +58,7 @@ const ListProduct = () => {
 									<td className="text-center #td-CPP">{value.code}</td>
 									<td className="text-center #td-CPP">{value.quantity}</td>
 									<td className="text-center #td-CPP">{value.price}</td>
-									<td className="text-center #td-CPP">{value.supplier}</td>
+									<td className="text-center #td-CPP">{value.supplier_name}</td>
 									<td>
 										<button
 											onClick={() => {
