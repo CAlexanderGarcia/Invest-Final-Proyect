@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1e8ea7cf2135
+Revision ID: f461bbcc7bbc
 Revises: 
-Create Date: 2022-01-16 15:34:15.983530
+Create Date: 2022-01-16 18:40:48.304092
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1e8ea7cf2135'
+revision = 'f461bbcc7bbc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -55,12 +55,15 @@ def upgrade():
     )
     op.create_table('bill',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('number', sa.Integer(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('number', sa.String(length=120), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
     sa.Column('tax', sa.Integer(), nullable=False),
     sa.Column('discount', sa.Integer(), nullable=False),
+    sa.Column('total', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('client_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['client_id'], ['client.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['userdata.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('number')
     )
