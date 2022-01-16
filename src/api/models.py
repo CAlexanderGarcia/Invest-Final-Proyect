@@ -31,11 +31,11 @@ class UserData(db.Model):
 class Supplier(db.Model):
     __tablename__ = 'supplier'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(120), unique=True, nullable=False)
-    nif = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    nif = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), unique=False, nullable=False)
     postalCode = db.Column(db.String(120), unique=False, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
     phoneNumber = db.Column(db.String(120), unique=False, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
     products = db.relationship('Product', backref='supplier', lazy=True)

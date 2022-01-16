@@ -246,6 +246,7 @@ def add_product():
       quantity = request.json.get("quantity")
       price = request.json.get("price")
       supplier = request.json.get("supplier")
+      print(request.json)
       try:
 
             new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
