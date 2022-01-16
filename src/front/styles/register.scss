@@ -1,9 +1,7 @@
 
 
-.formulario {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.form {
+    height: 75vh;
 }
 
 .form-label{
@@ -13,13 +11,13 @@
     cursor: pointer; 
 }
 
-.formulario-grupo-input{
+.form-grupo-input{
     position: relative;
 }
 
 .form-input{
     width: 100%;
-    background: #fff;
+    background: #e9ecef;
     border: 3px solid transparent;
     border-radius: 3px;
     height: 45px;
@@ -29,7 +27,7 @@
 }
 
 .form-input:focus{
-    border: 3px solid #0075ff;
+    border: 6px solid #0c0e0f;
     outline: none;    
 }
 
@@ -43,7 +41,7 @@
     display: block
 }
 
-.formulario-validacion-estado{
+.form-validacion-estado{
    position: absolute;
    right: 215px;
    bottom: 7px;
@@ -52,13 +50,13 @@
    opacity: 0;
 }
 
-.formulario-grupo-terminos,
-.formulario-mensaje,
-.formulario-grupo-btn-enviar{
+.form-grupo-terminos,
+.form-mensaje,
+.form-grupo-btn-enviar{
     grid-column:span 2;
 }
 
-.formulario-mensaje{
+.form-mensaje{
     height: 45px;
     line-height: 45px;
     background: #f66868;
@@ -67,44 +65,39 @@
     display: none;
 }
 
-.formulario-mensaje-activo {
+.form-mensaje-activo {
    display: block;
 }
 
-.formulario-mensaje p {
+.form-mensaje p {
     margin: 0;
 }
 
-.formulario-grupo-btn-enviar {
+.form-grupo-btn-enviar {    
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
-.formulario-mensaje-exito{
+.mensajeExito{
     font-size: 14px;
     color: #119208;
     display: none;
 }
 
-.formulario-mensaje-exito-activado{
-    display: block;
-}
-
-.formulario-grupo-correcto .formulario-validacion-estado{
-  color: #1ed12d;
-  opacity: 1;
-}
-
 @media screen and (max-width: 800px) {
-    .formulario {
+    .form {
         grid-template-columns: 1fr;
     }
 
-    .formulario-grupo-terminos,
-    .formulario-mensaje,
-    .formulario-grupo-btn-enviar{
+    .form-grupo-terminos,
+    .form-mensaje,
+    .form-grupo-btn-enviar{
     grid-column: 1;
     }
 }
+
+
     

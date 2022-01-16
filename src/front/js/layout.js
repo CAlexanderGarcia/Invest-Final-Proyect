@@ -5,7 +5,7 @@ import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
-import RegisterForm from "./component/registerForm";
+import { RegisterPage } from "./pages/registerPage";
 import Client from "./pages/client";
 import Footer from "./component/footer";
 import Supplier from "./pages/supplier";
@@ -29,7 +29,7 @@ const Layout = () => {
 							<Home />
 						</Route>
 						<Route exact path="/register-form">
-							<RegisterForm />
+							<RegisterPage />
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />

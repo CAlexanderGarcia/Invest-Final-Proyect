@@ -5,6 +5,8 @@ from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
 from api.models import db, UserData, Supplier, Client, Product, ProductToBill, Bill
 from api.utils import generate_sitemap, APIException
+import json 
+
 
 api = Blueprint('api', __name__)
 #############################TOKEN#################################
@@ -28,22 +30,43 @@ def create_token():
 @api.route('/register', methods=['POST'])
 def create_user():
 #obtenemos datos que nos llegan en el api
-      name = request.json.get('name', None)       
-      surname = request.json.get('surname', None)
-      email = request.json.get('email', None)
-      address = request.json.get('address', None)
-      company = request.json.get('company', None)
-      password = request.json.get('password', None)
-      numberDocumentation = request.json.get('numberDocumentation', None)
-      typeDocumentation = request.json.get('typeDocumentation', None)
-      postalCode = request.json.get('postalCode', None)
+      body = json.loads(request.data) 
+      # validar si el usuario existe o no.
+      exist_email = UserData.query.filter_by(email=body["email"]).first()
+      exist_documentation = UserData.query.filter_by(numberDocumentation=body["numberDocumentation"]).first()
       
-      user = UserData(name=name, surname=surname, email=email, address=address, company=company, password=password, numberDocumentation=numberDocumentation, typeDocumentation=typeDocumentation, postalCode=postalCode) #creamos el usuario
-      if not (user):# validar datos de la api
-            return jsonify({"message": "Error datos", "created": False }), 400
-      db.session.add(user)
-      db.session.commit()   
-      return jsonify({"message" : "usuario creado", "created" : True}), 200#retornamos respuesta el usuario se ha creado
+      if not exist_email and not exist_documentation: 
+      # validar datos de la api      
+            if "surname" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre", "created": False }), 400
+            if "company" not in body:                       
+                  return jsonify({"message": "No se han recibido los datos de nombre/razón social", "created": False }), 400
+            if "address" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de dirección", "created": False }), 400      
+            if "email" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de email", "created": False }), 400      
+            if "password" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de contraseña", "created": False }), 400
+            if "numberDocumentation" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de numero de documentación", "created": False }), 400
+            if "postalCode" not in body or not body["postalCode"].isdecimal():          
+                  return jsonify({"message": "Los datos de código postal no son correctos", "created": False }), 400
+            if "typeDocumentation" not in body:            
+                  return jsonify({"message": "No se han recibido los datos de tipo de documentación", "created": False }), 400
+                    
+            
+            #creamos el usuario       
+            user = UserData(surname=body["surname"], company=body["company"], email=body["email"], address=body["address"], password=body["password"], numberDocumentation=body["numberDocumentation"], postalCode=body["postalCode"], typeDocumentation=body["typeDocumentation"])
+            if not user:
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            db.session.add(user)
+            db.session.commit()   
+            #retornamos respuesta el usuario se ha creado
+            return jsonify({"message" : "usuario creado", "created" : True}), 200
+      else:
+            return jsonify({"message" : "Los datos de correo electrónico o número de identificación ya se encuentran registrados en nuestar base de datos", "created" : False}), 400 
+           
+            
 
 #############################PROVEEDORES#################################
 

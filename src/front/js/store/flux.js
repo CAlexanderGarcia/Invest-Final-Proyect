@@ -9,16 +9,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			listBills: []
 		},
 		actions: {
-			createUser: async data => {
-				const response = await fetch("https://3001-chocolate-dog-a2eawcn9.ws-eu23.gitpod.io/api/register", {
+			createUser: data => {
+				const response = fetch(process.env.BACKEND_URL + "/register", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
-				});
-				const resp = await response.json();
-				return resp;
+				})
+					.then(resp => resp.json())
+					.catch(error => console.log("User can not be created", error));
+				console.log(response);
+				return response;
 			},
 			/*************************************LOGIN**********************************/
 			login: async data => {
