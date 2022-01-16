@@ -5,13 +5,14 @@ import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
-import RegisterForm from "./component/registerForm";
+import { RegisterPage } from "./pages/registerPage";
 import Client from "./pages/client";
 import Footer from "./component/footer";
 import Supplier from "./pages/supplier";
 import Product from "./pages/product";
 import { Bills } from "./pages/bills";
 import ListBills from "./pages/listBill";
+import BillDetail from "./pages/billdetail";
 
 //create your first component
 const Layout = () => {
@@ -28,7 +29,7 @@ const Layout = () => {
 							<Home />
 						</Route>
 						<Route exact path="/register-form">
-							<RegisterForm />
+							<RegisterPage />
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
@@ -47,6 +48,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/listBills">
 							<ListBills />
+						</Route>
+						<Route exact path="/billDetail">
+							<BillDetail />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
 const BillsForm = () => {
+	const { actions, store } = useContext(Context);
 	const [clients, setClients] = useState();
 	const [products, setProducts] = useState();
 	const [total, setTotal] = useState(0);
@@ -26,13 +28,25 @@ const BillsForm = () => {
 	);
 
 	const getClients = async () => {
-		const response = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu27.gitpod.io/api/clients");
+		const response = await fetch("https://3001-blue-anteater-g71sf0ld.ws-eu27.gitpod.io/api/clients", {
+			method: "GET",
+			headers: {
+				Authorization: "Bearer " + actions.getToken(),
+				"Content-Type": "application/json"
+			}
+		});
 		const data = await response.json();
 		setClients(data.clients);
 	};
 
 	const getProducts = async () => {
-		const responseProduct = await fetch("https://3001-silver-donkey-kv3s3fuw.ws-eu27.gitpod.io/api/products");
+		const responseProduct = await fetch("https://3001-blue-anteater-g71sf0ld.ws-eu27.gitpod.io/api/products", {
+			method: "GET",
+			headers: {
+				Authorization: "Bearer " + actions.getToken(),
+				"Content-Type": "application/json"
+			}
+		});
 		const dataProduct = await responseProduct.json();
 		setProducts(
 			dataProduct.products.map(product => {

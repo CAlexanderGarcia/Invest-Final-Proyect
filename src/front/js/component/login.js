@@ -3,7 +3,6 @@ import ModalLogin from "./modalLogin.js";
 
 const Login = () => {
 	const [show, setShow] = useState(false);
-	
 
 	return (
 		<div>
@@ -16,7 +15,7 @@ const Login = () => {
 				<span id="span6" />
 				<span id="span7" />
 				<span id="span8" />
-				<i class="fas fa-user-alt"></i>
+				<i className="fas fa-user-alt" />
 			</a>
 
 			<ul>

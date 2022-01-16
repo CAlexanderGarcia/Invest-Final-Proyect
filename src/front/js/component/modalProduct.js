@@ -142,7 +142,7 @@ const ModalProduct = props => {
 										onChange={handleInputChange}
 										required
 										defaultValue="DEFAULT">
-										<option disabled hidden>
+										<option disabled selected>
 											-Choose here-
 										</option>
 										{store.listSuppliers.map((value, index) => {

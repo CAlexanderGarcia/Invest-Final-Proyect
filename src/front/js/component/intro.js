@@ -125,7 +125,7 @@ const Intro = () => {
 							Productividad. <span className="grey-investy">Calidad.</span>
 						</h2>
 						<p className="lead">
-							Trabajamos cada dia para ser mas eficientes y, es por ello que en Investy ofrecemos la
+							Trabajamos cada día para ser mas eficientes y, es por ello que en Investy ofrecemos la
 							calidad que nuestros clientes merecen. Siempre buscando la productividad, valorando el
 							tiempo que se invierte en cada proyecto y ofreciendo el cien por cien a cada cliente. Todo
 							esto acompañado de unos estándares de calidad que Investy mantiene y exige, hacen que cada
@@ -181,7 +181,7 @@ const Intro = () => {
 							Gracias a Investy no dependeras siempre de tu oficina. LLeva en tu portátil toda tu
 							documentación, genera una factura en tiempo real y envíasela a tu cliente sin más necesidad
 							que conexión a internet. Estamos siempre disponibles para ti, habilitando nuestro chat en
-							vivo par solucionar los principales problemas que puedan surgir. Y por supuesto, nos
+							vivo para solucionar los principales problemas que puedan surgir. Y por supuesto, nos
 							encantaría conocer tu experiencia y tu valoración; para que juntos podamos seguir creciendo.
 						</p>
 					</div>

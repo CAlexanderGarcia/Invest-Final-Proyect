@@ -9,7 +9,7 @@ const Pricing = () => {
 				<p className="fs-5 text-muted">
 					Como un sitio de membresías, siempre nos enfocamos en reducir la cancelación y aumentar la
 					satisfacción. Sabemos que recopilar el feedback de los clientes a lo largo del ciclo de vida del
-					cliente nos ha permitido lograr ambos objetivos
+					mismo nos ha permitido lograr ambos objetivos
 				</p>
 			</div>
 
@@ -51,9 +51,14 @@ const Pricing = () => {
 								<li>Prioridad de Soporte Email</li>
 								<li>Acceso a Help Center</li>
 							</ul>
-							<button type="button" className="w-100 btn btn-lg btn-primary">
+							<a
+								type="button"
+								href="https://www.grupbancsabadell.com/corp/es/inicio.html"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-100 btn btn-lg btn-primary">
 								Comienza Ahora
-							</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -73,9 +78,14 @@ const Pricing = () => {
 								<li>Soporte Email y Telefónico</li>
 								<li>Acceso y Prioridad en Help Center</li>
 							</ul>
-							<button type="button" className="w-100 btn btn-lg btn-primary">
+							<a
+								type="button"
+								className="w-100 btn btn-lg btn-primary"
+								href="https://www.grupbancsabadell.com/corp/es/inicio.html"
+								target="_blank"
+								rel="noopener noreferrer">
 								Contáctanos
-							</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -96,36 +106,36 @@ const Pricing = () => {
 					<tbody>
 						<tr className="">
 							<th scope="row" className="text-start table-primary">
-								Public
+								Público
 							</th>
 							<td>
-								<svg className="bi table-info " width="24" height="24">
+								<svg className="bi table-success " width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi table-info" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi table-info" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row" className="text-start table-primary">
-								Private
+								Privacidad
 							</th>
 							<td />
-							<td>
-								<svg className="bi" width="24" height="24">
+							<td className="table-success">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
@@ -133,23 +143,22 @@ const Pricing = () => {
 					</tbody>
 
 					<tbody>
-						<tr>
+						<tr className="table-front">
 							<th scope="row" className="text-start table-primary">
-								Permissions
+								Permisos
 							</th>
-							<td>
-								<svg className="bi" width="24" height="24">
-									<use xlinkHref="#check" />
+							<td className="table-front">
+								<svg className="bi table-success" width="24" height="24">
 									<i className="fas fa-check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
@@ -160,40 +169,40 @@ const Pricing = () => {
 							</th>
 							<td />
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 							<td>
-								<svg className="bi" width="24" height="24">
-									<use xlinkHref="#check" />
-								</svg>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row" className="text-start table-primary">
-								Unlimited members
-							</th>
-							<td />
-							<td>
-								<svg className="bi" width="24" height="24">
-									<use xlinkHref="#check" />
-								</svg>
-							</td>
-							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row" className="text-start table-primary">
-								Extra security
+								Miembros Ilimitados
+							</th>
+							<td />
+							<td>
+								<svg className="bi table-success" width="24" height="24">
+									<use xlinkHref="#check" />
+								</svg>
+							</td>
+							<td>
+								<svg className="bi table-success" width="24" height="24">
+									<use xlinkHref="#check" />
+								</svg>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" className="text-start table-primary">
+								Extra Seguridad
 							</th>
 							<td />
 							<td />
 							<td>
-								<svg className="bi" width="24" height="24">
+								<svg className="bi table-success" width="24" height="24">
 									<use xlinkHref="#check" />
 								</svg>
 							</td>
