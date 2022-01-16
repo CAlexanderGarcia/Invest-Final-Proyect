@@ -1,14 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 
 const BillsForm = () => {
-	const { actions, store } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [clients, setClients] = useState();
 	const [products, setProducts] = useState();
 	const [total, setTotal] = useState(0);
+	const [dateBill, setDateBill] = useState(new Date().toDateString());
+	const [numberBill, setNumberBill] = useState();
 
 	const [selectedClient, setSelectedClient] = useState();
-	const [selectedProduct, setSelectedProduct] = useState([]);
+	const [selectedProducts, setSelectedProducts] = useState([]);
 
 	useEffect(() => {
 		getClients();
@@ -18,17 +20,17 @@ const BillsForm = () => {
 	useEffect(
 		() => {
 			let sumTotal = 0;
-			for (let x in selectedProduct) {
-				sumTotal += selectedProduct[x].productPrice;
+			for (let x in selectedProducts) {
+				sumTotal += selectedProducts[x].productPrice;
 				console.log(x);
 			}
 			setTotal(sumTotal);
 		},
-		[selectedProduct]
+		[selectedProducts]
 	);
 
 	const getClients = async () => {
-		const response = await fetch("https://3001-blue-anteater-g71sf0ld.ws-eu27.gitpod.io/api/clients", {
+		const response = await fetch(process.env.BACKEND_URL + "/clients", {
 			method: "GET",
 			headers: {
 				Authorization: "Bearer " + actions.getToken(),
@@ -40,7 +42,7 @@ const BillsForm = () => {
 	};
 
 	const getProducts = async () => {
-		const responseProduct = await fetch("https://3001-blue-anteater-g71sf0ld.ws-eu27.gitpod.io/api/products", {
+		const responseProduct = await fetch(process.env.BACKEND_URL + "/products", {
 			method: "GET",
 			headers: {
 				Authorization: "Bearer " + actions.getToken(),
@@ -50,7 +52,7 @@ const BillsForm = () => {
 		const dataProduct = await responseProduct.json();
 		setProducts(
 			dataProduct.products.map(product => {
-				product["productPrice"] = 0;
+				product["productPrice"] = product.price * 1.21;
 				return product;
 			})
 		);
@@ -60,22 +62,25 @@ const BillsForm = () => {
 		<div className="container">
 			<div className="row g-3">
 				{/* DATOS PERSONALES */}
-				<h2>Datos personales</h2>
+				<div className="p-0 mt-5">
+					<h2 className="">Datos personales</h2>
+					<hr className="text-success m-0" />
+				</div>
 				<div className="col-md-6">
 					<div className="input-group">
-						<span className="input-group-text">Nombre</span>
+						<span className="input-group-text bg-dark text-white">Nombre</span>
 						<input type="text" className="form-control" value="Fredy" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-6">
 					<div className="input-group">
-						<span className="input-group-text">Apellidos</span>
+						<span className="input-group-text bg-dark text-white">Apellidos</span>
 						<input type="text" className="form-control" value="Moreno" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
-						<span className="input-group-text">Dirección</span>
+						<span className="input-group-text bg-dark text-white">Dirección</span>
 						<input
 							type="text"
 							className="form-control"
@@ -87,25 +92,25 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-4">
 					<div className="input-group">
-						<span className="input-group-text">Compañia</span>
+						<span className="input-group-text bg-dark text-white">Compañia</span>
 						<input type="text" className="form-control" value="Coca-Cola" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text">C.P.</span>
+						<span className="input-group-text bg-dark text-white">C.P.</span>
 						<input type="text" className="form-control" value="12345" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
-						<span className="input-group-text">Email</span>
+						<span className="input-group-text bg-dark text-white">Email</span>
 						<input type="email" className="form-control" value="info@fredymoreno.es" readOnly disabled />
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text">DNI</span>
+						<span className="input-group-text bg-dark text-white">DNI</span>
 						<input type="text" className="form-control" value="1234567" readOnly disabled />
 					</div>
 				</div>
@@ -113,16 +118,20 @@ const BillsForm = () => {
 			{/* FIN DATOS PERSONALES */}
 
 			{/* INICIO DATOS CLIENTES */}
-			<h2 className="mt-4">Datos Cliente</h2>
-			<div className="col-12">
-				<label htmlFor="inputState" className="form-label">
+			<div className="p-0 mt-5">
+				<h2 className="">Datos de cliente</h2>
+				<hr className="text-success m-0" />
+			</div>
+			<div className="col-12 pt-0 mt-2">
+				<label htmlFor="inputState" className="form-label my-0">
 					Lista de clientes
+					<i className="fas fa-plus ms-2 text-success" />
 				</label>
 				<select
 					onChange={e => setSelectedClient(clients.find(x => x.id.toString() == e.target.value))}
 					id="inputState"
-					className="form-select mb-3">
-					<option selected>Seleccionar cliente...</option>
+					className="form-select mb-3 border border-success">
+					<option selected>Pulsa aquí para agregar un cliente</option>
 					{clients
 						? clients.map((x, y) => {
 								return (
@@ -138,7 +147,7 @@ const BillsForm = () => {
 			<div className="row g-3">
 				<div className="col-md-9">
 					<div className="input-group">
-						<span className="input-group-text">Nombre</span>
+						<span className="input-group-text bg-dark text-white">Nombre</span>
 						<input
 							type="text"
 							className="form-control"
@@ -151,7 +160,7 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-3">
 					<div className="input-group">
-						<span className="input-group-text">NIF</span>
+						<span className="input-group-text bg-dark text-white">NIF</span>
 						<input
 							type="text"
 							className="form-control"
@@ -164,7 +173,7 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-10">
 					<div className="input-group">
-						<span className="input-group-text">Dirección</span>
+						<span className="input-group-text bg-dark text-white">Dirección</span>
 						<input
 							type="text"
 							className="form-control"
@@ -177,7 +186,7 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text">C.P.</span>
+						<span className="input-group-text bg-dark text-white">C.P.</span>
 						<input
 							type="text"
 							className="form-control"
@@ -191,58 +200,32 @@ const BillsForm = () => {
 				{/* FIN DATOS CLIENTES */}
 
 				{/* INICIO FORMULARIO FACTURA */}
-				<h2 className="mt-4">Datos Factura</h2>
-				<div className="col-md-4">
-					<label htmlFor="inputBillId" className="form-label">
-						Nº Factura
-					</label>
-					<input type="text" className="form-control" />
+				<div className="p-0 mt-5">
+					<h2 className="">Datos de factura</h2>
+					<hr className="text-success m-0" />
 				</div>
-				<div className="col-md-4">
-					<label htmlFor="inputDate" className="form-label">
-						Fecha factura
-					</label>
-					<input
-						type="text"
-						className="form-control"
-						value={new Date().toLocaleString() + ""}
-						readOnly
-						disabled
-					/>
-				</div>
-				<div className="col-md-4">
-					<label htmlFor="inputCode" className="form-label">
-						Referencia
-					</label>
-					<input
-						type="text"
-						className="form-control"
-						name="code"
-						value={selectedProduct ? selectedProduct.code : ""}
-						readOnly
-						disabled
-					/>
-				</div>
-
 				{/* PRODUCT SELECT */}
-				<div className="col-lg-12">
-					<label htmlFor="inputProduct" className="form-label">
-						Producto
+				<div className="col-md-4 pt-0 mt-2">
+					<label htmlFor="inputProduct" className="form-label my-0">
+						Lista de productos
+						<i className="fas fa-plus ms-2 text-success" />
 					</label>
 					<select
 						onChange={e => {
-							setSelectedProduct([
-								...selectedProduct,
-								{
-									...products.find(p => p.id.toString() == e.target.value),
-									quantity: 1
-								}
-							]);
-							e.target.value = 0;
+							if (!selectedProducts.map(x => x.id.toString()).includes(e.target.value)) {
+								setSelectedProducts([
+									...selectedProducts,
+									{
+										...products.find(p => p.id.toString() == e.target.value),
+										quantity: 1
+									}
+								]);
+								e.target.value = 0;
+							}
 						}}
 						className="form-select mb-3">
 						<option value={0} selected>
-							Seleccionar producto...
+							Pulsa aquí para agregar un producto
 						</option>
 						{products
 							? products.map((p, y) => {
@@ -255,15 +238,61 @@ const BillsForm = () => {
 							: null}
 					</select>
 				</div>
+				<div className="col-md-4 pt-0 mt-2">
+					<label htmlFor="inputBillId" className="form-label my-0">
+						Nº Factura
+						<i className="fas fa-file-invoice ms-2 text-success" />
+					</label>
+					<input
+						type="text"
+						className="form-control"
+						value={numberBill}
+						onChange={e => setNumberBill(e.target.value)}
+						required
+					/>
+				</div>
+				<div className="col-md-4 pt-0 mt-2">
+					<label
+						htmlFor="inputDate"
+						className="form-label my-0"
+						value={dateBill}
+						onChange={e => setDateBill(e.target.value)}
+						required>
+						Fecha factura
+						<i className="fas fa-calendar-alt ms-2 text-success" />
+					</label>
+					<input
+						type="text"
+						className="form-control"
+						value={new Date().toLocaleString() + ""}
+						readOnly
+						disabled
+					/>
+				</div>
 
 				{/* PRODUCTS NAME */}
 				<div>
-					{selectedProduct.map((product, i) => {
+					{selectedProducts.map((product, i) => {
 						return (
-							<div className="row" key={i}>
-								<div className="col-lg-6">
+							<div className="row mb-2" key={i}>
+								<div className="col-lg-2">
 									{i == 0 ? (
-										<label htmlFor="nameProducts" className="form-label">
+										<label htmlFor="inputCode" className="form-label text-center">
+											Referencia
+										</label>
+									) : null}
+									<input
+										type="text"
+										className="form-control"
+										name="code"
+										value={product.code}
+										readOnly
+										disabled
+									/>
+								</div>
+								<div className="col-lg-5">
+									{i == 0 ? (
+										<label htmlFor="nameProducts" className="form-label text-center">
 											Nombre del producto
 										</label>
 									) : null}
@@ -278,13 +307,15 @@ const BillsForm = () => {
 								</div>
 
 								{/* PRICE */}
-								<div className="col-lg-2">
-									<label htmlFor="inputQuantityUnity" className="form-label">
-										Precio €/U
-									</label>
+								<div className="col-lg-1">
+									{i == 0 ? (
+										<label htmlFor="inputQuantityUnity" className="form-label text-center">
+											P.U.
+										</label>
+									) : null}
 									<input
 										type="number"
-										className="form-control"
+										className="form-control text-end"
 										name="price"
 										value={product.price}
 										readOnly
@@ -294,26 +325,36 @@ const BillsForm = () => {
 
 								{/* TAX */}
 								<div className="col-lg-1 col-sm-4">
-									<label htmlFor="inputTax" className="form-label">
-										IVA
-									</label>
-									<input type="text" className="form-control" name="tax" value={21} readOnly />
+									{i == 0 ? (
+										<label htmlFor="inputTax" className="form-label text-center">
+											IVA
+										</label>
+									) : null}
+									<input
+										type="text"
+										className="form-control text-end"
+										name="tax"
+										value={21}
+										readOnly
+									/>
 								</div>
 
 								{/* QUANTITY */}
 								<div className="col-lg-1 col-sm-4">
-									<label htmlFor="inputQuantity" className="form-label">
-										Cantidad
-									</label>
+									{i == 0 ? (
+										<label htmlFor="inputQuantity" className="form-label text-end">
+											Cantidad
+										</label>
+									) : null}
 									<input
 										type="number"
-										className="form-control"
-										defaultValue={0}
+										className="form-control text-end"
+										defaultValue={1}
 										onChange={e => {
 											let quantity = products.find(x => x.id == product.id).quantity;
-											if (parseInt(e.target.value) <= quantity && parseInt(e.target.value) > 0) {
-												setSelectedProduct(
-													selectedProduct.map(x => {
+											if (parseInt(e.target.value) <= quantity && parseInt(e.target.value) > 1) {
+												setSelectedProducts(
+													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
@@ -330,8 +371,8 @@ const BillsForm = () => {
 												);
 											} else if (parseInt(e.target.value) > quantity) {
 												e.target.value = quantity;
-												setSelectedProduct(
-													selectedProduct.map(x => {
+												setSelectedProducts(
+													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
@@ -346,15 +387,15 @@ const BillsForm = () => {
 														}
 													})
 												);
-											} else if (parseInt(e.target.value) <= 0) {
-												e.target.value = 0;
-												setSelectedProduct(
-													selectedProduct.map(x => {
+											} else if (parseInt(e.target.value) <= 1) {
+												e.target.value = 1;
+												setSelectedProducts(
+													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
-																quantity: 0,
-																productPrice: 0
+																quantity: 1,
+																productPrice: parseInt(product.price) * 1.21
 															};
 														} else {
 															return x;
@@ -368,14 +409,22 @@ const BillsForm = () => {
 
 								{/* PRICE * QUANTITY */}
 								<div className="col-lg-2 col-sm-4">
-									<label htmlFor="inputPrice" className="form-label">
-										Precio €
-									</label>
+									{i == 0 ? (
+										<label htmlFor="inputPrice" className="form-label text-center">
+											Precio €
+										</label>
+									) : null}
 									<div className="d-flex">
-										<input type="number" className="form-control" value={product.productPrice} />
+										<input
+											type="number"
+											className="form-control text-end"
+											value={product.productPrice}
+										/>
 										<i
-											onClick={() => setSelectedProduct(selectedProduct.filter((x, y) => y != i))}
-											className="fas fa-trash-alt fs-1 ms-3 mb-0"
+											onClick={() =>
+												setSelectedProducts(selectedProducts.filter((x, y) => y != i))
+											}
+											className="fas fa-trash-alt fs-1 ms-3 mb-0 text-danger"
 										/>
 									</div>
 								</div>
@@ -384,11 +433,27 @@ const BillsForm = () => {
 					})}
 				</div>
 
-				<div>{total}</div>
+				<div className="col-3 offset-9 text-end mt-5">
+					<div className="input-group">
+						<span className="input-group-text fw-bold">Total €</span>
+						<input type="number" className="form-control text-end fw-bold" readOnly value={total} />
+					</div>
+				</div>
 
 				{/* BUTTON */}
-				<div className="col-12 text-center">
-					<button type="submit" className="btn btn-primary">
+				<div className="col-12 text-end">
+					<button
+						type="submit"
+						className="btn btn-success"
+						onClick={() =>
+							actions.createBill({
+								client_id: selectedClient.id,
+								number_bill: numberBill,
+								date_bill: dateBill,
+								products: selectedProducts,
+								total: total
+							})
+						}>
 						Generar factura
 					</button>
 				</div>

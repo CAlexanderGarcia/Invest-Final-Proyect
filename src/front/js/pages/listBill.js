@@ -6,7 +6,7 @@ const ListBills = () => {
 	const [bills, setBills] = useState([]);
 	const { actions, store } = useContext(Context);
 	useEffect(() => {
-		setBills(actions.listBill());
+		actions.listBill();
 	}, []);
 	return (
 		<div>
