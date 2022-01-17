@@ -21,7 +21,7 @@ const ListBills = () => {
 			</Link>
 
 			<table className="table container my-5 shadow table-fill ">
-				<thead className="table-success text-center">
+				<thead className=" text-center">
 					<tr className="tr-CPP">
 						<th scope="col" className="text-left th-CPP">
 							ID

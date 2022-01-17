@@ -146,22 +146,22 @@ const BillDetail = () => {
 						</div>
 					</div>
 					<div className="col-md-12 ">
-						<table className="container">
-							<tr>
-								<th>Nombre del Producto</th>
-								<th>Precio Unitario</th>
-								<th>IVA</th>
-								<th>Cantidad</th>
-								<th>Precio Total</th>
+						<table className="container table table-striped text-center table-fill my-5">
+							<tr className="tr-CPP">
+								<th className="text-left th-CPP">Nombre del Producto</th>
+								<th className="text-left  th-CPP">Precio Unitario</th>
+								<th className="text-left  th-CPP">IVA</th>
+								<th className="text-left  th-CPP">Cantidad</th>
+								<th className="text-left  th-CPP">Subtotal €</th>
 							</tr>
 							{data.products.map((value, index) => {
 								return (
 									<tr key={index}>
-										<td>{value.product.name}</td>
-										<td>{value.product.price}</td>
-										<td>{value.product.tax}</td>
-										<td>{value.quantity}</td>
-										<td>{value.price}</td>
+										<td className="text-center td-CPP">{value.product.name}</td>
+										<td className="text-center td-CPP">{value.product.price}</td>
+										<td className="text-center td-CPP">{value.product.tax}</td>
+										<td className="text-center td-CPP">{value.quantity}</td>
+										<td className="text-center td-CPP">{value.price}</td>
 									</tr>
 								);
 							})}

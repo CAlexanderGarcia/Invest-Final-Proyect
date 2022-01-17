@@ -23,7 +23,7 @@ const ListClient = () => {
 				client={currentClient ? currentClient : {}}
 			/>
 			<table className="container table table-striped text-center table-fill my-5">
-				<thead>
+				<thead className="">
 					<tr className="tr-CPP">
 						<th scope="col" className="text-left th-CPP">
 							ID

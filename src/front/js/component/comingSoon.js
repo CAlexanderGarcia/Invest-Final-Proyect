@@ -5,10 +5,12 @@ const ComingSoon = () => {
 		<div className="container">
 			<hr className="bluedark-investy mb-5" />
 			<h1 className="fw-bold text-center">PRÓXIMAMENTE...</h1>
-			<p>Poder realizar cualquier tipo de gráficas en tiempo real para un mayor control sobre tu empresa</p>
-			<div className="board">
-				<div className="titulo_grafica">
-					<h3 className="t_grafica">Ventas</h3>
+			<p className="text-center">
+				Poder realizar cualquier tipo de gráficas en tiempo real para un mayor control sobre tu empresa
+			</p>
+			<div className="board row">
+				<div>
+					<h3 className="text-center">Ventas</h3>
 				</div>
 				<div className="sub_board">
 					<div className="sep_board" />

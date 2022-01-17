@@ -520,36 +520,25 @@ a{color:inherit;text-decoration:none}
 //Graficos
 .board{
   margin: auto;
-  width: 55%;
-  height: 450px;
+  width: 0,010rem;
+  height: 28.125rem;
   background-color: white;
-  padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
 }
-.titulo_grafica{
-  width: 100%;
-  height: 10%;
-}
+
 .titulo_grafica>h3{
-  padding: 0;
-  margin: 0px;
+ 
   text-align: center;
   color: black;
 }
 .sub_board{
-  width: 100%;
-  height: 90%;
-  padding: 10px;
-  margin-top: 0px;
-  background-color:#f4f4f4;
+  
+  background-color:white;
   overflow: hidden;
   box-sizing: border-box;
 }
-.sep_board{
-  width: 100%;
-  height: 10%;
-}
+
 .cont_board{
   width: 100%;
   height: 80%;
