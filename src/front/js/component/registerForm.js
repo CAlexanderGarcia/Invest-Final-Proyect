@@ -38,7 +38,7 @@ const RegisterForm = () => {
 		</div>
 	) : (
 		<div className="container form">
-			<h2 className="mt-4">Registro</h2>
+			<h2 className="featurette-heading bluedark-investy">Registro</h2>
 			<form
 				onSubmit={e => {
 					e.preventDefault();
@@ -48,7 +48,7 @@ const RegisterForm = () => {
 				<div className="row g-3 mt-1">
 					<div className="col-md-6">
 						<div className="input-group" id="name">
-							<span className="input-group-text">Razón Social</span>
+							<span className="input-group-text bg-bluedark-investy text-white">Razón Social</span>
 
 							<input
 								type="text"
@@ -63,7 +63,7 @@ const RegisterForm = () => {
 					</div>
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Nombre</span>
+							<span className="input-group-text bg-bluedark-investy text-white">Nombre</span>
 
 							<input
 								type="text"
@@ -79,7 +79,7 @@ const RegisterForm = () => {
 				<div className="row g-3 mt-1">
 					<div className="col-md-12">
 						<div className="input-group">
-							<span className="input-group-text">Correo electrónico</span>
+							<span className="input-group-text bg-bluedark-investy text-white">Correo electrónico</span>
 							<input
 								type="email"
 								className="form-control"
@@ -94,7 +94,9 @@ const RegisterForm = () => {
 				<div className="row g-3 mt-1">
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Dirección de empresa</span>
+							<span className="input-group-text bg-bluedark-investy text-white">
+								Dirección de empresa
+							</span>
 							<input
 								type="text"
 								className="form-control"
@@ -109,7 +111,7 @@ const RegisterForm = () => {
 					</div>
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Código postal</span>
+							<span className="input-group-text bg-bluedark-investy text-white">Código postal</span>
 							<input
 								type="text"
 								className="form-control"
@@ -125,7 +127,9 @@ const RegisterForm = () => {
 				<div className="row g-3 mt-1">
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Número de identificación</span>
+							<span className="input-group-text bg-bluedark-investy text-white">
+								Número de identificación
+							</span>
 							<input
 								type="text"
 								className="form-control"
@@ -138,7 +142,9 @@ const RegisterForm = () => {
 					</div>
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Tipo de documentación</span>
+							<span className="input-group-text bg-bluedark-investy text-white">
+								Tipo de documentación
+							</span>
 							<select
 								id="inputState"
 								className="form-select"
@@ -158,7 +164,7 @@ const RegisterForm = () => {
 				<div className="row g-3 mt-1">
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Contraseña</span>
+							<span className="input-group-text bg-bluedark-investy text-white">Contraseña</span>
 
 							<input
 								type="password"
@@ -173,7 +179,7 @@ const RegisterForm = () => {
 					</div>
 					<div className="col-md-6">
 						<div className="input-group">
-							<span className="input-group-text">Repetir Contraseña</span>
+							<span className="input-group-text bg-bluedark-investy text-white">Repetir Contraseña</span>
 
 							<input type="password" className="form-control" id="passwordTwo" name="passwordTwo" />
 						</div>
@@ -183,7 +189,7 @@ const RegisterForm = () => {
 				<div className="form-grupo form-grupo-btn-enviar">
 					<button
 						type="submit"
-						className="btn btn-primary"
+						className="btn bg-bluedark-investy text-white"
 						onKeyPress={e => {
 							e.key == "Enter" && e.preventDefault();
 						}}>

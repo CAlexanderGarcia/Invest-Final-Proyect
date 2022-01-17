@@ -6,6 +6,7 @@ import Faq from "../component/faq";
 import Pricing from "../component/pricing";
 import Intro from "../component/intro";
 import ComingSoon from "../component/comingSoon";
+import Team from "../component/team";
 
 export const Home = () => {
 	return (
@@ -13,6 +14,7 @@ export const Home = () => {
 			<Intro />
 			<Pricing />
 			<Valoration />
+			<Team />
 			<Faq />
 			<ComingSoon />
 		</div>

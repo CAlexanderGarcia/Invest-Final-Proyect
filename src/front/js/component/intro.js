@@ -5,9 +5,6 @@ import office03 from "../../img/office03.png";
 import jumbo01 from "../../img/jumbo01.png";
 import jumbo02 from "../../img/jumbo02.png";
 import jumbo03 from "../../img/jumbo03.png";
-import fredy from "../../img/fredy.png";
-import juan from "../../img/juan.png";
-import alex from "../../img/alex.png";
 
 const Intro = () => {
 	return (
@@ -75,50 +72,7 @@ const Intro = () => {
 				</button>
 			</div>
 
-			<div className="container marketing my-5">
-				<h2 className="featurette-heading bluedark-investy">Nuestro equipo</h2>
-				<hr className="bluedark-investy mb-5" />
-				<div className="row text-center">
-					<div className="col-lg-4">
-						<img
-							src={alex}
-							className="bd-placeholder-img rounded-circle"
-							width="140"
-							height="140"
-							role="img"
-						/>
-
-						<h2 className="bluedark-investy">Alexander García</h2>
-						<p>Búsqueda en la vida, sensaciones por la música, aventura en la programación.</p>
-					</div>
-					<div className="col-lg-4">
-						<img
-							src={fredy}
-							className="bd-placeholder-img rounded-circle"
-							width="140"
-							height="140"
-							role="img"
-						/>
-
-						<h2 className="bluedark-investy">Fredy Moreno</h2>
-						<p>DJ de vocación, informático de profesión y freak por afición</p>
-					</div>
-					<div className="col-lg-4">
-						<img
-							src={juan}
-							className="bd-placeholder-img rounded-circle"
-							width="140"
-							height="140"
-							role="img"
-						/>
-
-						<h2 className="bluedark-investy">Juan David Escobar</h2>
-						<p>Con gusto por la lectura, la musica y la programacion...</p>
-					</div>
-				</div>
-
-				<hr className="featurette-divider bluedark-investy" />
-
+			<div className="container marketing my-5" id="informacion-link">
 				<div className="row featurette">
 					<div className="col-md-7">
 						<h2 className="featurette-heading bluedark-investy">
@@ -195,8 +149,6 @@ const Intro = () => {
 						/>
 					</div>
 				</div>
-
-				<hr className="featurette-divider bluedark-investy" />
 			</div>
 		</div>
 	);

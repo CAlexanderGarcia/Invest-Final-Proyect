@@ -45,7 +45,7 @@ const ModalLogin = () => {
 					<div className="modal-content login-html ">
 						<div className="modal-header">
 							<label htmlFor="tab-1" className="tab text-center text-white">
-								Sign In
+								Login
 							</label>
 
 							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />

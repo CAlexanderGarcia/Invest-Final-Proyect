@@ -1,8 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Nosotros from "./nosotros.js";
-import Servicios from "./servicios.js";
-import Informacion from "./informacion.js";
 import ModalLogin from "../component/modalLogin";
 import { Context } from "../store/appContext";
 import PrivateNavbar from "../component/privateNavbar";
@@ -34,21 +31,39 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<Informacion />
+								<a className="btn buttom-nsi fs-5 text-white" href="#informacion-link">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Información
+								</a>
 							</li>
 							<li className="nav-item">
-								<Servicios />
+								<a className="btn buttom-nsi fs-5 text-white" href="#suscripciones-link">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Suscripciones
+								</a>
 							</li>
 							<li className="nav-item">
-								<Nosotros />
+								<a className="btn buttom-nsi fs-5 text-white" href="#nosotros-link">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Nosotros
+								</a>
 							</li>
 							<li className="nav-item">
-								<Link to="register-form" className="btn buttom-nsi fs-5 me-4 text-white">
+								<Link to="register-form" className="btn buttom-nsi fs-5 text-white">
 									<span id="span1" />
 									<span id="span2" />
 									<span id="span3" />
 									<span id="span4" />
-									Regístrese
+									Regístrate
 								</Link>
 							</li>
 							<li className="nav-item">
