@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import FooterFixed from "../component/footerFixed";
 
 const ListBills = () => {
 	const [bills, setBills] = useState([]);
@@ -137,6 +138,7 @@ const ListBills = () => {
 					</li>
 				</ul>
 			</nav>*/}
+			<FooterFixed />
 		</div>
 	);
 };

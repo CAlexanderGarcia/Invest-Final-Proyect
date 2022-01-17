@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/register.scss";
+import FooterFixed from "../component/footerFixed";
 
 const RegisterForm = () => {
 	const { store, actions } = useContext(Context);
@@ -35,6 +36,7 @@ const RegisterForm = () => {
 			<div className="alert alert-success mt-4" role="alert">
 				Su usuario se ha creado correctamente
 			</div>
+			<FooterFixed />
 		</div>
 	) : (
 		<div className="container form">
@@ -202,6 +204,7 @@ const RegisterForm = () => {
 					</div>
 				)}
 			</form>
+			<FooterFixed />
 		</div>
 	);
 };

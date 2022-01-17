@@ -7,6 +7,7 @@ import Pricing from "../component/pricing";
 import Intro from "../component/intro";
 import ComingSoon from "../component/comingSoon";
 import Team from "../component/team";
+import Footer from "../component/footer";
 
 export const Home = () => {
 	return (
@@ -17,6 +18,7 @@ export const Home = () => {
 			<Team id="nosotros-link" />
 			<Faq />
 			<ComingSoon />
+			<Footer />
 		</div>
 	);
 };
