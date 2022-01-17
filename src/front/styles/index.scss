@@ -478,6 +478,24 @@ a{color:inherit;text-decoration:none}
     animation: gradient 15s ease infinite;
 }
 
+.btn-formClose{
+  color:white;
+}
+
+.btn-formClose:hover{
+  color:#003444;
+}
+
+.btn-formCreate{
+  background-color: white;
+  color: #003444;
+}
+
+.btn-formCreate:hover{
+    background-color: #003444;
+    color: white;
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;

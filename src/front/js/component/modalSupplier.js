@@ -50,13 +50,13 @@ const ModalSupplier = props => {
 		<>
 			<div className="modal fade" tabIndex="-1" id={props.idModal}>
 				<div className="modal-dialog">
-					<div className="modal-content modalCSP ">
+					<div className="modal-content modalCSP container-fluid">
 						<form onSubmit={handleFormSubmit} id="myform">
 							<div className="modal-header">
-								<h5 className="modal-title">{props.modalHeader}</h5>
+								<h5 className="modal-title text-white">{props.modalHeader}</h5>
 								<button
 									type="button"
-									className="btn-close"
+									className="btn-close btn-close-white"
 									data-bs-dismiss="modal"
 									aria-label="Close"
 								/>
@@ -71,95 +71,101 @@ const ModalSupplier = props => {
 								) : (
 									""
 								)}
-								<div className="m-3 p-2">
-									<label htmlFor="supplier_name" className="col-sm-2 col-form-label fw-bold">
+								<div className="col-12 mb-3">
+									<label htmlFor="supplier_name" className="col-2 text-white">
 										Nombre
 									</label>
 									<input
 										id="supplier_name"
 										type="text"
-										className="input col-sm-10 rounded"
+										className="col-10"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.supplier.name}
 									/>
 								</div>
 
-								<div className="m-3 p-2">
-									<label htmlFor="supplier_nif" className="col-sm-2 col-form-label fw-bold">
-										NIF
-									</label>
-									<input
-										id="supplier_nif"
-										type="text"
-										className="input col-sm-10 rounded"
-										name="nif"
-										data-type="text"
-										onChange={handleInputChange}
-										defaultValue={props.supplier.nif}
-									/>
-								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="supplier_address" className="col-sm-2 col-form-label fw-bold">
+								<div className="col-12 mb-3">
+									<label htmlFor="supplier_address" className="col-2 text-white">
 										Dirección
 									</label>
 									<input
 										id="supplier_address"
 										type="text"
-										className="input col-sm-10 rounded"
+										className="col-10"
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
 										defaultValue={props.supplier.address}
 									/>
 								</div>
-								<div className="m-3 p-2">
-									<label
-										htmlFor="supplier_postalcode"
-										className="col-2 col-form-label cd-supplier fw-bold">
-										Código Postal
-									</label>
-									<input
-										id="supplier_postalcode"
-										type="number"
-										className="input col-sm-10 rounded"
-										name="postalCode"
-										data-type="number"
-										onChange={handleInputChange}
-										defaultValue={props.supplier.postalCode}
-									/>
+
+								<div className="row mb-3">
+									<div className="col-6">
+										<label htmlFor="supplier_postalcode" className="col-7 text-white">
+											Código Postal
+										</label>
+										<input
+											id="supplier_postalcode"
+											type="number"
+											className="col-5"
+											name="postalCode"
+											data-type="number"
+											onChange={handleInputChange}
+											defaultValue={props.supplier.postalCode}
+										/>
+									</div>
+
+									<div className="col-6">
+										<label htmlFor="supplier_phoneNumber" className="col-5 text-white">
+											Teléfono
+										</label>
+										<input
+											id="supplier_phoneNumber"
+											type="number"
+											className="col-7"
+											name="phoneNumber"
+											data-type="number"
+											onChange={handleInputChange}
+											defaultValue={props.supplier.phoneNumber}
+										/>
+									</div>
 								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="supplier_email" className="col-2 col-form-label fw-bold">
-										Email
-									</label>
-									<input
-										id="supplier_postalcode"
-										type="email"
-										className="input col-sm-10 rounded"
-										name="email"
-										data-type="email"
-										onChange={handleInputChange}
-										defaultValue={props.supplier.email}
-									/>
-								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="supplier_phoneNumber" className="col-2 col-form-label fw-bold">
-										Teléfono
-									</label>
-									<input
-										id="supplier_phoneNumber"
-										type="number"
-										className="input col-sm-10 rounded"
-										name="phoneNumber"
-										data-type="number"
-										onChange={handleInputChange}
-										defaultValue={props.supplier.phoneNumber}
-									/>
+
+								<div className="row">
+									<div className="col-7">
+										<label htmlFor="supplier_email" className="col-3 text-white">
+											Email
+										</label>
+										<input
+											id="supplier_postalcode"
+											type="email"
+											className="col-9"
+											name="email"
+											data-type="email"
+											onChange={handleInputChange}
+											defaultValue={props.supplier.email}
+										/>
+									</div>
+
+									<div className="col-5">
+										<label htmlFor="supplier_nif" className="col-3 text-white">
+											NIF
+										</label>
+										<input
+											id="supplier_nif"
+											type="text"
+											className="col-9"
+											name="nif"
+											data-type="text"
+											onChange={handleInputChange}
+											defaultValue={props.supplier.nif}
+										/>
+									</div>
 								</div>
 							</div>
 							<div className="modal-footer">
-								<button type="submit" className="btn btn-lg text-info shadow mb-1 bg-body rounded">
+								<button type="submit" className="btn btn-lg shadow-lg mb-1 btn-formCreate rounded">
 									{props.nameButton}
 								</button>
 							</div>

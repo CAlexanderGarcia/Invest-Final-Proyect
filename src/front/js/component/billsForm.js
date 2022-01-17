@@ -453,7 +453,7 @@ const BillsForm = () => {
 								<div className="col-lg-2 col-sm-4">
 									{i == 0 ? (
 										<label htmlFor="inputPrice" className="form-label text-center bluedark-investy">
-											Precio €
+											Subtotal
 										</label>
 									) : null}
 									<div className="d-flex">

@@ -55,15 +55,15 @@ const ModalClient = props => {
 					<div className="modal-content modalCSP container-fluid">
 						<form onSubmit={handleFormSubmit} id="myform">
 							<div className="modal-header">
-								<h5 className="modal-title">{props.modalHeader}</h5>
+								<h5 className="modal-title text-white">{props.modalHeader}</h5>
 								<button
 									type="button"
-									className="btn-close"
+									className="btn-close btn-close-white"
 									data-bs-dismiss="modal"
 									aria-label="Close"
 								/>
 							</div>
-							<div className="modal-body row">
+							<div className="modal-body container">
 								{showMessage && showMessage.message ? (
 									<div
 										className={`alert alert-${showMessage.error ? "danger" : "success"}`}
@@ -74,13 +74,13 @@ const ModalClient = props => {
 									""
 								)}
 								<div className="col-12">
-									<label htmlFor="client_name" className="col-2">
+									<label htmlFor="client_name" className="col-2 text-white">
 										Nombre
 									</label>
 									<input
 										id="client_name"
 										type="text"
-										className="col-10 rounded"
+										className="col-10"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.client.name}
@@ -88,13 +88,13 @@ const ModalClient = props => {
 								</div>
 
 								<div className="col-12 my-3">
-									<label htmlFor="client_address" className="col-3">
+									<label htmlFor="client_address" className="col-2 text-white">
 										Dirección
 									</label>
 									<input
 										id="client_address"
 										type="text"
-										className="col-9"
+										className="col-10"
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
@@ -103,14 +103,14 @@ const ModalClient = props => {
 								</div>
 
 								<div className="row">
-									<div className="col-5">
-										<label htmlFor="client_nif" className="col-3">
+									<div className="col-6">
+										<label htmlFor="client_nif" className="col-2 text-white">
 											NIF
 										</label>
 										<input
 											id="client_nif"
 											type="text"
-											className="col-9 rounded"
+											className="col-10"
 											name="nif"
 											data-type="text"
 											onChange={handleInputChange}
@@ -118,14 +118,14 @@ const ModalClient = props => {
 										/>
 									</div>
 
-									<div className="col-7">
-										<label htmlFor="client_postalcode" className="col-6">
+									<div className="col-6">
+										<label htmlFor="client_postalcode" className="col-6 text-white">
 											Código Postal
 										</label>
 										<input
 											id="client_postalcode"
 											type="number"
-											className="col-6 rounded"
+											className="col-6"
 											name="postalCode"
 											data-type="number"
 											onChange={handleInputChange}
@@ -135,7 +135,7 @@ const ModalClient = props => {
 								</div>
 							</div>
 							<div className="modal-footer">
-								<button type="submit" className="btn btn-lg text-info shadow mb-1 bg-body rounded">
+								<button type="submit" className="btn btn-lg shadow-lg mb-1 rounded btn-formCreate">
 									{props.nameButton}
 								</button>
 							</div>
