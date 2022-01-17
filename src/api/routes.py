@@ -66,7 +66,13 @@ def create_user():
       else:
             return jsonify({"message" : "Los datos de correo electrónico o número de identificación ya se encuentran registrados en nuestar base de datos", "created" : False}), 400 
            
-            
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_by_id():
+      current_user_id = get_jwt_identity()
+      user = UserData.query.get(current_user_id)
+      return jsonify({"user": user.serialize()}), 200
+    
 
 #############################PROVEEDORES#################################
 

@@ -20,7 +20,7 @@ export const PrivateNavbar = () => {
 				</div>
 				<div className="navbar-brand">
 					<button
-						className="navbar-toggler float-right"
+						className="navbar-toggler"
 						type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarNav"

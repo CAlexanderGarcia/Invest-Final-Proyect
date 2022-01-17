@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import FooterFixed from "../component/footerFixed";
 
 const ListBills = () => {
 	const [bills, setBills] = useState([]);
@@ -20,40 +21,38 @@ const ListBills = () => {
 				</button>
 			</Link>
 
-			<table className="table container my-5 shadow table-fill ">
-				<thead className="table-success text-center">
-					<tr className="tr-CPP">
-						<th scope="col" className="text-left th-CPP">
+			<table className="container table table-striped my-5 shadow-lg">
+				<thead>
+					<tr className="tr-CPP bluedark-investy">
+						<th scope="col" className="th-CPP">
 							ID
 						</th>
-						<th scope="col" className="text-left th-CPP">
-							Número de Factura
+						<th scope="col" className="th-CPP">
+							Nº Factura
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							NIF
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Día
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Total
 						</th>
-						<th scope="col" />
+						<th />
 					</tr>
 				</thead>
 				<tbody className="table-hover">
-					{store.listBills ? (
+					{store.listBills.length > 0 ? (
 						store.listBills.map((value, index) => {
 							return (
 								<tr key={index}>
-									<th scope="row" className="text-center td-CPP">
-										{value.id}
-									</th>
-									<td className="text-center">{value.number}</td>
-									<td className="text-center">{value.nif}</td>
-									<td className="text-center">{value.date}</td>
-									<td className="fw-bold text-center">{value.total}</td>
-									<td>
+									<td className="col-1 td-CPP">{value.id}</td>
+									<td className="col-2 text-center">{value.number}</td>
+									<td className="col-2 text-center">{value.nif}</td>
+									<td className="col-4 text-center">{value.date}</td>
+									<td className="col-2 fw-bold text-center">{value.total}</td>
+									<td className="col-1">
 										<Link to="billdetail">
 											<button className="btn btn-outline-success">Detalles</button>
 										</Link>
@@ -71,15 +70,15 @@ const ListBills = () => {
 			<nav aria-label="...">
 				<ul className="pagination justify-content-center">
 					<li className="page-item">
-						<a className="page-link">Previous</a>
+						<a className="page-link bluedark-investy">Previous</a>
 					</li>
 					<li className="page-item">
-						<a className="page-link" href="#">
+						<a className="page-link bluedark-investy" href="#">
 							1
 						</a>
 					</li>
 					<li className="page-item">
-						<a className="page-link" href="#">
+						<a className="page-link bluedark-investy" href="#">
 							Next
 						</a>
 					</li>
@@ -139,6 +138,7 @@ const ListBills = () => {
 					</li>
 				</ul>
 			</nav>*/}
+			<FooterFixed />
 		</div>
 	);
 };

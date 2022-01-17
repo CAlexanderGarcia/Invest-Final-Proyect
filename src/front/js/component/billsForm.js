@@ -8,11 +8,13 @@ const BillsForm = () => {
 	const [total, setTotal] = useState(0);
 	const [dateBill, setDateBill] = useState(new Date().toDateString());
 	const [numberBill, setNumberBill] = useState();
+	const [currentUser, setCurrentUser] = useState();
 
 	const [selectedClient, setSelectedClient] = useState();
 	const [selectedProducts, setSelectedProducts] = useState([]);
 
 	useEffect(() => {
+		getUser();
 		getClients();
 		getProducts();
 	}, []);
@@ -58,33 +60,45 @@ const BillsForm = () => {
 		);
 	};
 
+	const getUser = async () => {
+		const response = await fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				Authorization: "Bearer " + actions.getToken(),
+				"Content-Type": "application/json"
+			}
+		});
+		const user = await response.json();
+		setCurrentUser(user.user);
+	};
+
 	return (
 		<div className="container">
 			<div className="row g-3">
 				{/* DATOS PERSONALES */}
 				<div className="p-0 mt-5">
-					<h2 className="">Datos personales</h2>
-					<hr className="text-success m-0" />
+					<h2 className="featurette-heading bluedark-investy">Datos personales</h2>
+					<hr className="featurette-divider bluedark-investy m-0" />
 				</div>
-				<div className="col-md-6">
+				<div className="col-md-12">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Nombre</span>
-						<input type="text" className="form-control" value="Fredy" readOnly disabled />
-					</div>
-				</div>
-				<div className="col-md-6">
-					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Apellidos</span>
-						<input type="text" className="form-control" value="Moreno" readOnly disabled />
+						<span className="input-group-text bg-bluedark-investy text-white">Nombre</span>
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.surname : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Dirección</span>
+						<span className="input-group-text bg-bluedark-investy text-white">Dirección</span>
 						<input
 							type="text"
 							className="form-control"
-							value="Avenida Principal 4, Madrid"
+							value={currentUser ? currentUser.address : null}
 							readOnly
 							disabled
 						/>
@@ -92,26 +106,50 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-4">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Compañia</span>
-						<input type="text" className="form-control" value="Coca-Cola" readOnly disabled />
+						<span className="input-group-text bg-bluedark-investy text-white">Compañia</span>
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.company : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">C.P.</span>
-						<input type="text" className="form-control" value="12345" readOnly disabled />
+						<span className="input-group-text bg-bluedark-investy text-white">C.P.</span>
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.postalCode : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Email</span>
-						<input type="email" className="form-control" value="info@fredymoreno.es" readOnly disabled />
+						<span className="input-group-text bg-bluedark-investy text-white">Email</span>
+						<input
+							type="email"
+							className="form-control"
+							value={currentUser ? currentUser.email : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">DNI</span>
-						<input type="text" className="form-control" value="1234567" readOnly disabled />
+						<span className="input-group-text bg-bluedark-investy text-white">DNI</span>
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.numberDocumentation : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 			</div>
@@ -119,18 +157,18 @@ const BillsForm = () => {
 
 			{/* INICIO DATOS CLIENTES */}
 			<div className="p-0 mt-5">
-				<h2 className="">Datos de cliente</h2>
-				<hr className="text-success m-0" />
+				<h2 className="featurette-heading bluedark-investy">Datos de cliente</h2>
+				<hr className="featurette-divider bluedark-investy m-0" />
 			</div>
 			<div className="col-12 pt-0 mt-2">
-				<label htmlFor="inputState" className="form-label my-0">
+				<label htmlFor="inputState" className="form-label my-0 bluedark-investy">
 					Lista de clientes
-					<i className="fas fa-plus ms-2 text-success" />
+					<i className="fas fa-plus ms-2 bluedark-investy" />
 				</label>
 				<select
 					onChange={e => setSelectedClient(clients.find(x => x.id.toString() == e.target.value))}
 					id="inputState"
-					className="form-select mb-3 border border-success">
+					className="form-select mb-3 border-1 border-bluedark-investy">
 					<option selected>Pulsa aquí para agregar un cliente</option>
 					{clients
 						? clients.map((x, y) => {
@@ -147,7 +185,7 @@ const BillsForm = () => {
 			<div className="row g-3">
 				<div className="col-md-9">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Nombre</span>
+						<span className="input-group-text bg-bluedark-investy text-white">Nombre</span>
 						<input
 							type="text"
 							className="form-control"
@@ -160,7 +198,7 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-3">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">NIF</span>
+						<span className="input-group-text bg-bluedark-investy text-white">NIF</span>
 						<input
 							type="text"
 							className="form-control"
@@ -173,7 +211,7 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-10">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">Dirección</span>
+						<span className="input-group-text bg-bluedark-investy text-white">Dirección</span>
 						<input
 							type="text"
 							className="form-control"
@@ -186,7 +224,7 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text bg-dark text-white">C.P.</span>
+						<span className="input-group-text bg-bluedark-investy text-white">C.P.</span>
 						<input
 							type="text"
 							className="form-control"
@@ -201,14 +239,14 @@ const BillsForm = () => {
 
 				{/* INICIO FORMULARIO FACTURA */}
 				<div className="p-0 mt-5">
-					<h2 className="">Datos de factura</h2>
-					<hr className="text-success m-0" />
+					<h2 className="featurette-heading bluedark-investy">Datos de factura</h2>
+					<hr className="featurette-divider bluedark-investy m-0" />
 				</div>
 				{/* PRODUCT SELECT */}
 				<div className="col-md-4 pt-0 mt-2">
 					<label htmlFor="inputProduct" className="form-label my-0">
 						Lista de productos
-						<i className="fas fa-plus ms-2 text-success" />
+						<i className="fas fa-plus ms-2 bluedark-investy" />
 					</label>
 					<select
 						onChange={e => {
@@ -223,7 +261,7 @@ const BillsForm = () => {
 								e.target.value = 0;
 							}
 						}}
-						className="form-select mb-3">
+						className="form-select mb-3 border-1 border-bluedark-investy">
 						<option value={0} selected>
 							Pulsa aquí para agregar un producto
 						</option>
@@ -241,7 +279,7 @@ const BillsForm = () => {
 				<div className="col-md-4 pt-0 mt-2">
 					<label htmlFor="inputBillId" className="form-label my-0">
 						Nº Factura
-						<i className="fas fa-file-invoice ms-2 text-success" />
+						<i className="fas fa-file-invoice ms-2 bluedark-investy" />
 					</label>
 					<input
 						type="text"
@@ -259,7 +297,7 @@ const BillsForm = () => {
 						onChange={e => setDateBill(e.target.value)}
 						required>
 						Fecha factura
-						<i className="fas fa-calendar-alt ms-2 text-success" />
+						<i className="fas fa-calendar-alt ms-2 bluedark-investy" />
 					</label>
 					<input
 						type="text"
@@ -277,7 +315,7 @@ const BillsForm = () => {
 							<div className="row mb-2" key={i}>
 								<div className="col-lg-2">
 									{i == 0 ? (
-										<label htmlFor="inputCode" className="form-label text-center">
+										<label htmlFor="inputCode" className="form-label text-center bluedark-investy">
 											Referencia
 										</label>
 									) : null}
@@ -292,7 +330,9 @@ const BillsForm = () => {
 								</div>
 								<div className="col-lg-5">
 									{i == 0 ? (
-										<label htmlFor="nameProducts" className="form-label text-center">
+										<label
+											htmlFor="nameProducts"
+											className="form-label text-center bluedark-investy">
 											Nombre del producto
 										</label>
 									) : null}
@@ -309,7 +349,9 @@ const BillsForm = () => {
 								{/* PRICE */}
 								<div className="col-lg-1">
 									{i == 0 ? (
-										<label htmlFor="inputQuantityUnity" className="form-label text-center">
+										<label
+											htmlFor="inputQuantityUnity"
+											className="form-label text-center bluedark-investy">
 											P.U.
 										</label>
 									) : null}
@@ -326,7 +368,7 @@ const BillsForm = () => {
 								{/* TAX */}
 								<div className="col-lg-1 col-sm-4">
 									{i == 0 ? (
-										<label htmlFor="inputTax" className="form-label text-center">
+										<label htmlFor="inputTax" className="form-label text-center bluedark-investy">
 											IVA
 										</label>
 									) : null}
@@ -342,7 +384,7 @@ const BillsForm = () => {
 								{/* QUANTITY */}
 								<div className="col-lg-1 col-sm-4">
 									{i == 0 ? (
-										<label htmlFor="inputQuantity" className="form-label text-end">
+										<label htmlFor="inputQuantity" className="form-label text-end bluedark-investy">
 											Cantidad
 										</label>
 									) : null}
@@ -410,8 +452,8 @@ const BillsForm = () => {
 								{/* PRICE * QUANTITY */}
 								<div className="col-lg-2 col-sm-4">
 									{i == 0 ? (
-										<label htmlFor="inputPrice" className="form-label text-center">
-											Precio €
+										<label htmlFor="inputPrice" className="form-label text-center bluedark-investy">
+											Subtotal
 										</label>
 									) : null}
 									<div className="d-flex">
@@ -444,7 +486,7 @@ const BillsForm = () => {
 				<div className="col-12 text-end">
 					<button
 						type="submit"
-						className="btn btn-success"
+						className="btn text-white bg-bluedark-investy"
 						onClick={() =>
 							actions.createBill({
 								client_id: selectedClient.id,

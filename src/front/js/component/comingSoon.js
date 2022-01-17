@@ -3,9 +3,9 @@ import React from "react";
 const ComingSoon = () => {
 	return (
 		<div className="container">
-			<hr className="bluedark-investy mb-5" />
-			<h1 className="fw-bold text-center">PRÓXIMAMENTE...</h1>
-			<p>Poder realizar cualquier tipo de gráficas en tiempo real para un mayor control sobre tu empresa</p>
+			<h2 className="featurette-heading bluedark-investy">Muy pronto disponible</h2>
+			<hr className="bluedark-investy" />
+			<p>Creación de reportes gráficos en tiempo real para un mayor control sobre tu empresa.</p>
 			<div className="board">
 				<div className="titulo_grafica">
 					<h3 className="t_grafica">Ventas</h3>

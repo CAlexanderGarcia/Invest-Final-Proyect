@@ -1,6 +1,8 @@
 import React from "react";
 import ListProduct from "../component/listProduct";
 import ModalProduct from "../component/modalProduct";
+import FooterFixed from "../component/footerFixed";
+
 const Product = () => {
 	return (
 		<div className="container-fluid justify-content-between">
@@ -28,6 +30,7 @@ const Product = () => {
 				/>
 			</div>
 			<ListProduct />
+			<FooterFixed />
 		</div>
 	);
 };

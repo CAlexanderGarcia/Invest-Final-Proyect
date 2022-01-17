@@ -54,18 +54,18 @@ const ModalProduct = props => {
 		<>
 			<div className="modal fade" tabIndex="-1" id={props.idModal}>
 				<div className="modal-dialog">
-					<div className="modal-content modalCSP">
+					<div className="modal-content modalCSP container-fluid">
 						<form onSubmit={handleFormSubmit} id="myform">
 							<div className="modal-header">
-								<h5 className="modal-title">{props.modalHeader}</h5>
+								<h5 className="modal-title text-white">{props.modalHeader}</h5>
 								<button
 									type="button"
-									className="btn-close"
+									className="btn-close btn-close-white"
 									data-bs-dismiss="modal"
 									aria-label="Close"
 								/>
 							</div>
-							<div className="modal-body myform">
+							<div className="modal-body container">
 								{showMessage && showMessage.message ? (
 									<div
 										className={`alert alert-${showMessage.error ? "danger" : "success"}`}
@@ -75,69 +75,71 @@ const ModalProduct = props => {
 								) : (
 									""
 								)}
-								<div className="m-3 p-2">
-									<label htmlFor="product_name" className="col-sm-2 col-form-label fw-bold">
+								<div className="col-12">
+									<label htmlFor="product_name" className="col-2 text-white">
 										Nombre
 									</label>
 									<input
 										id="product_name"
 										type="text"
-										className="input col-sm-10 rounded"
+										className="col-10"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.product.name}
 									/>
 								</div>
 
-								<div className="m-3 p-2">
-									<label htmlFor="product_code" className="col-sm-2 col-form-label fw-bold">
-										Código
-									</label>
-									<input
-										id="product_code"
-										type="text"
-										className="input col-sm-10 rounded"
-										name="code"
-										data-type="text"
-										onChange={handleInputChange}
-										defaultValue={props.product.code}
-									/>
+								<div className="row my-3">
+									<div className="col-5">
+										<label htmlFor="product_code" className="col-4 text-white">
+											Código
+										</label>
+										<input
+											id="product_code"
+											type="text"
+											className="col-8"
+											name="code"
+											data-type="text"
+											onChange={handleInputChange}
+											defaultValue={props.product.code}
+										/>
+									</div>
+									<div className="col-3 px-0">
+										<label htmlFor="product_quantity" className="col-8 text-white">
+											Cantidad
+										</label>
+										<input
+											id="product_quantity"
+											type="text"
+											className="col-4"
+											name="quantity"
+											data-type="text"
+											onChange={handleInputChange}
+											defaultValue={props.product.quantity}
+										/>
+									</div>
+									<div className="col-4">
+										<label htmlFor="product_price" className="col-5 text-white">
+											Precio
+										</label>
+										<input
+											id="product_price"
+											type="number"
+											className="col-7"
+											name="price"
+											data-type="number"
+											onChange={handleInputChange}
+											defaultValue={props.product.price}
+										/>
+									</div>
 								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="product_quantity" className="col-sm-2 col-form-label fw-bold">
-										Cantidad
-									</label>
-									<input
-										id="product_quantity"
-										type="text"
-										className="input col-sm-10 rounded"
-										name="quantity"
-										data-type="text"
-										onChange={handleInputChange}
-										defaultValue={props.product.quantity}
-									/>
-								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="product_price" className="col-2 col-form-label fw-bold">
-										Precio
-									</label>
-									<input
-										id="product_price"
-										type="number"
-										className="input col-sm-10 rounded"
-										name="price"
-										data-type="number"
-										onChange={handleInputChange}
-										defaultValue={props.product.price}
-									/>
-								</div>
-								<div className="m-3 p-2 ms-1 row">
-									<label htmlFor="product_supplier" className="col-3 col-form-label fw-bold">
+								<div className="col-12">
+									<label htmlFor="product_supplier" className="col-3 text-white">
 										Proveedores
 									</label>
 									<select
 										id="product_supplier"
-										className="input col-9 rounded text-center"
+										className="col-9 p-2"
 										name="supplier"
 										onChange={handleInputChange}
 										required
@@ -156,7 +158,7 @@ const ModalProduct = props => {
 								</div>
 							</div>
 							<div className="modal-footer">
-								<button type="submit" className="btn btn-lg text-info shadow mb-1 bg-body rounded">
+								<button type="submit" className="btn btn-lg shadow-lg mb-1 rounded btn-formCreate">
 									{props.nameButton}
 								</button>
 							</div>
