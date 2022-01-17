@@ -38,7 +38,7 @@ const RegisterForm = () => {
 		</div>
 	) : (
 		<div className="container form">
-			<h2 className="featurette-heading bluedark-investy">Registro</h2>
+			<h2 className="featurette-heading bluedark-investy mt-4">Registro</h2>
 			<form
 				onSubmit={e => {
 					e.preventDefault();

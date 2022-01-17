@@ -4,6 +4,7 @@ import ModalLogin from "../component/modalLogin";
 import { Context } from "../store/appContext";
 import PrivateNavbar from "../component/privateNavbar";
 import INVESTY_HORIZONTAL_BLANCO from "../../img/INVESTY_HORIZONTAL_BLANCO.png";
+import { HashLink } from "react-router-hash-link";
 
 export const Navbar = () => {
 	const { actions } = useContext(Context);
@@ -31,31 +32,31 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<a className="btn buttom-nsi fs-5 text-white" href="#informacion-link">
+								<HashLink to="/#informacion-link" className="btn buttom-nsi fs-5 text-white">
 									<span id="span9" />
 									<span id="span10" />
 									<span id="span11" />
 									<span id="span12" />
 									Información
-								</a>
+								</HashLink>
 							</li>
 							<li className="nav-item">
-								<a className="btn buttom-nsi fs-5 text-white" href="#suscripciones-link">
+								<HashLink to="/#suscripciones-link" className="btn buttom-nsi fs-5 text-white">
 									<span id="span9" />
 									<span id="span10" />
 									<span id="span11" />
 									<span id="span12" />
 									Suscripciones
-								</a>
+								</HashLink>
 							</li>
 							<li className="nav-item">
-								<a className="btn buttom-nsi fs-5 text-white" href="#nosotros-link">
+								<HashLink to="/#nosotros-link" className="btn buttom-nsi fs-5 text-white">
 									<span id="span9" />
 									<span id="span10" />
 									<span id="span11" />
 									<span id="span12" />
 									Nosotros
-								</a>
+								</HashLink>
 							</li>
 							<li className="nav-item">
 								<Link to="register-form" className="btn buttom-nsi fs-5 text-white">

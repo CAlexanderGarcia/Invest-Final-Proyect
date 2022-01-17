@@ -63,7 +63,7 @@ const ModalClient = props => {
 									aria-label="Close"
 								/>
 							</div>
-							<div className="modal-body">
+							<div className="modal-body row">
 								{showMessage && showMessage.message ? (
 									<div
 										className={`alert alert-${showMessage.error ? "danger" : "success"}`}
@@ -73,61 +73,65 @@ const ModalClient = props => {
 								) : (
 									""
 								)}
-								<div className="m-3 p-2">
-									<label htmlFor="client_name" className="col-sm-2 fw-bold">
+								<div className="col-12">
+									<label htmlFor="client_name" className="col-2">
 										Nombre
 									</label>
 									<input
 										id="client_name"
 										type="text"
-										className="col-sm-10 rounded"
+										className="col-10 rounded"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.client.name}
 									/>
 								</div>
 
-								<div className="m-3 p-2">
-									<label htmlFor="client_nif" className="col-sm-2 col-form-label fw-bold">
-										NIF
-									</label>
-									<input
-										id="client_nif"
-										type="text"
-										className="input col-sm-10 rounded"
-										name="nif"
-										data-type="text"
-										onChange={handleInputChange}
-										defaultValue={props.client.nif}
-									/>
-								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="client_address" className="col-sm-2 col-form-label fw-bold">
+								<div className="col-12 my-3">
+									<label htmlFor="client_address" className="col-3">
 										Dirección
 									</label>
 									<input
 										id="client_address"
 										type="text"
-										className="input col-sm-10 rounded "
+										className="col-9"
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
 										defaultValue={props.client.address}
 									/>
 								</div>
-								<div className="m-3 p-2">
-									<label htmlFor="client_postalcode" className="col-2 col-form-label fw-bold">
-										Código Postal
-									</label>
-									<input
-										id="client_postalcode"
-										type="number"
-										className="input col-sm-10 rounded"
-										name="postalCode"
-										data-type="number"
-										onChange={handleInputChange}
-										defaultValue={props.client.postalCode}
-									/>
+
+								<div className="row">
+									<div className="col-5">
+										<label htmlFor="client_nif" className="col-3">
+											NIF
+										</label>
+										<input
+											id="client_nif"
+											type="text"
+											className="col-9 rounded"
+											name="nif"
+											data-type="text"
+											onChange={handleInputChange}
+											defaultValue={props.client.nif}
+										/>
+									</div>
+
+									<div className="col-7">
+										<label htmlFor="client_postalcode" className="col-6">
+											Código Postal
+										</label>
+										<input
+											id="client_postalcode"
+											type="number"
+											className="col-6 rounded"
+											name="postalCode"
+											data-type="number"
+											onChange={handleInputChange}
+											defaultValue={props.client.postalCode}
+										/>
+									</div>
 								</div>
 							</div>
 							<div className="modal-footer">

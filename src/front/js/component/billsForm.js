@@ -8,11 +8,13 @@ const BillsForm = () => {
 	const [total, setTotal] = useState(0);
 	const [dateBill, setDateBill] = useState(new Date().toDateString());
 	const [numberBill, setNumberBill] = useState();
+	const [currentUser, setCurrentUser] = useState();
 
 	const [selectedClient, setSelectedClient] = useState();
 	const [selectedProducts, setSelectedProducts] = useState([]);
 
 	useEffect(() => {
+		getUser();
 		getClients();
 		getProducts();
 	}, []);
@@ -58,6 +60,18 @@ const BillsForm = () => {
 		);
 	};
 
+	const getUser = async () => {
+		const response = await fetch(process.env.BACKEND_URL + "/user", {
+			method: "GET",
+			headers: {
+				Authorization: "Bearer " + actions.getToken(),
+				"Content-Type": "application/json"
+			}
+		});
+		const user = await response.json();
+		setCurrentUser(user.user);
+	};
+
 	return (
 		<div className="container">
 			<div className="row g-3">
@@ -66,16 +80,16 @@ const BillsForm = () => {
 					<h2 className="featurette-heading bluedark-investy">Datos personales</h2>
 					<hr className="featurette-divider bluedark-investy m-0" />
 				</div>
-				<div className="col-md-6">
+				<div className="col-md-12">
 					<div className="input-group">
 						<span className="input-group-text bg-bluedark-investy text-white">Nombre</span>
-						<input type="text" className="form-control" value="Fredy" readOnly disabled />
-					</div>
-				</div>
-				<div className="col-md-6">
-					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Apellidos</span>
-						<input type="text" className="form-control" value="Moreno" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.surname : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-8">
@@ -84,7 +98,7 @@ const BillsForm = () => {
 						<input
 							type="text"
 							className="form-control"
-							value="Avenida Principal 4, Madrid"
+							value={currentUser ? currentUser.address : null}
 							readOnly
 							disabled
 						/>
@@ -93,25 +107,49 @@ const BillsForm = () => {
 				<div className="col-md-4">
 					<div className="input-group">
 						<span className="input-group-text bg-bluedark-investy text-white">Compañia</span>
-						<input type="text" className="form-control" value="Coca-Cola" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.company : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
 						<span className="input-group-text bg-bluedark-investy text-white">C.P.</span>
-						<input type="text" className="form-control" value="12345" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.postalCode : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
 						<span className="input-group-text bg-bluedark-investy text-white">Email</span>
-						<input type="email" className="form-control" value="info@fredymoreno.es" readOnly disabled />
+						<input
+							type="email"
+							className="form-control"
+							value={currentUser ? currentUser.email : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
 						<span className="input-group-text bg-bluedark-investy text-white">DNI</span>
-						<input type="text" className="form-control" value="1234567" readOnly disabled />
+						<input
+							type="text"
+							className="form-control"
+							value={currentUser ? currentUser.numberDocumentation : null}
+							readOnly
+							disabled
+						/>
 					</div>
 				</div>
 			</div>

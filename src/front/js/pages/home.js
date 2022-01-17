@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import "../../styles/home.scss";
 import Valoration from "../component/valoration";
@@ -11,10 +11,10 @@ import Team from "../component/team";
 export const Home = () => {
 	return (
 		<div className="container-fluid">
-			<Intro />
-			<Pricing />
+			<Intro id="informacion-link" />
+			<Pricing id="suscripciones-link" />
 			<Valoration />
-			<Team />
+			<Team id="nosotros-link" />
 			<Faq />
 			<ComingSoon />
 		</div>
