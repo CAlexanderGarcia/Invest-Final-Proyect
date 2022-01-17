@@ -12,6 +12,10 @@ const RegisterForm = () => {
 		text: ""
 	});
 
+	const validateSamePassword = (password, passwordTwo) => {
+		return password === passwordTwo;
+	};
+
 	const handleInputChange = event => {
 		setData({
 			...data,
@@ -20,14 +24,19 @@ const RegisterForm = () => {
 	};
 	const submitForm = event => {
 		event.preventDefault();
-		actions.createUser(data).then(result => {
-			if (result && !result.created) {
-				return setMessage({ show: true, text: result.message });
-			} else {
-				setRegister(true);
-				return setMessage({ show: false, text: "" });
-			}
-		});
+		const samePassword = validateSamePassword(data.password, data.passwordTwo);
+		if (samePassword) {
+			actions.createUser(data).then(result => {
+				if (result && !result.created) {
+					return setMessage({ show: true, text: result.message });
+				} else {
+					setRegister(true);
+					return setMessage({ show: false, text: "" });
+				}
+			});
+		} else {
+			return setMessage({ show: true, text: "Las contraseñas no coinciden" });
+		}
 	};
 
 	return register ? (
@@ -175,7 +184,15 @@ const RegisterForm = () => {
 						<div className="input-group">
 							<span className="input-group-text">Repetir Contraseña</span>
 
-							<input type="password" className="form-control" id="passwordTwo" name="passwordTwo" />
+							<input
+								type="password"
+								className="form-control"
+								id="passwordTwo"
+								name="passwordTwo"
+								onChange={handleInputChange}
+								placeholder="Escriba la misma contraseña"
+								required
+							/>
 						</div>
 					</div>
 				</div>
