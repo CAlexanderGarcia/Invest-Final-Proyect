@@ -61,7 +61,7 @@ class Bill(db.Model): #factura
     total = db.Column(db.Float,nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
-    productToBills = db.relationship('ProductToBill', backref='bill', lazy=True)
+    productToBills = db.relationship('ProductToBill', backref='bill', lazy=True, cascade="all,delete")
 
     def serialize(self):
         return {
@@ -82,7 +82,7 @@ class Client(db.Model):
     address = db.Column(db.String(50), nullable=False)
     postalCode = db.Column(db.Integer, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
-    bills = db.relationship('Bill', backref='client', lazy=True)
+    bills = db.relationship('Bill', backref='client', lazy=True, cascade="all,delete")
     
     def serialize(self):
         return {

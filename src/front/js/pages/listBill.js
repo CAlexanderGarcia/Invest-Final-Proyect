@@ -65,7 +65,7 @@ const ListBills = () => {
 					</tr>
 				</thead>
 				<tbody className="table-hover">
-					{store.listBills.length > 0 ? (
+					{store.listBills && store.listBills.length > 0 ? (
 						store.listBills.map((value, index) => {
 							return (
 								<tr key={index}>
