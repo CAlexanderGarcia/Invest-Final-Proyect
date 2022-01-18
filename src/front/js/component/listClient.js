@@ -76,7 +76,9 @@ const ListClient = () => {
 						})
 					) : (
 						<tr>
-							<td colSpan="6">No tiene clientes</td>
+							<td colSpan="6" className="text-center">
+								No tiene clientes añadidos
+							</td>
 						</tr>
 					)}
 				</tbody>

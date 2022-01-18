@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import FooterFixed from "../component/footerFixed";
+import billsPhoto from "../../img/bills.png";
 
 const ListBills = () => {
 	const [bills, setBills] = useState([]);
@@ -10,17 +11,38 @@ const ListBills = () => {
 		actions.listBill();
 	}, []);
 	return (
-		<div>
-			<Link to="bills">
-				<button type="button" className="btn buttom-nsi fs-5 ms-5" data-bs-toggle="modal" data-bs-target="">
-					<span id="span5" />
-					<span id="span6" />
-					<span id="span7" />
-					<span id="span8" />
-					Crear Factura
-				</button>
-			</Link>
+		<div className="container justify-content-between">
+			<h2 className="featurette-heading bluedark-investy mt-3">Facturas</h2>
+			<hr className="featurette-divider bluedark-investy" />
+			<div className="container">
+				<div className="row">
+					<div className="col-md-4">
+						<img src={billsPhoto} className="img-fluid" />
+					</div>
 
+					<div className="col-md-8">
+						<p className="lead">
+							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
+							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
+						</p>
+						<div className="bg-white text-center">
+							<Link to="bills">
+								<button
+									type="button"
+									className="btn fs-4 buttom-nsi mt-5 fw-bold"
+									data-bs-toggle="modal"
+									data-bs-target="">
+									<span id="span5" />
+									<span id="span6" />
+									<span id="span7" />
+									<span id="span8" />
+									CREAR FACTURA
+								</button>
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
 			<table className="container table table-striped my-5 shadow-lg">
 				<thead>
 					<tr className="tr-CPP bluedark-investy">
@@ -53,8 +75,8 @@ const ListBills = () => {
 									<td className="col-4 text-center">{value.date}</td>
 									<td className="col-2 fw-bold text-center">{value.total}</td>
 									<td className="col-1">
-										<Link to="billdetail">
-											<button className="btn btn-outline-success">Detalles</button>
+										<Link to={"billdetail/" + value.id}>
+											<button className="btn btn-formCreate2 shadow-lg">Detalles</button>
 										</Link>
 									</td>
 								</tr>
@@ -62,7 +84,9 @@ const ListBills = () => {
 						})
 					) : (
 						<tr>
-							<td colSpan="6">No Hay Facturas</td>
+							<td colSpan="6" className="text-center">
+								No tiene facturas añadidas
+							</td>
 						</tr>
 					)}
 				</tbody>

@@ -86,7 +86,9 @@ const ListSupplier = () => {
 						})
 					) : (
 						<tr>
-							<td colSpan="10">No tiene proveedores</td>
+							<td colSpan="8" className="text-center">
+								No tiene proveedores añadidos
+							</td>
 						</tr>
 					)}
 				</tbody>
