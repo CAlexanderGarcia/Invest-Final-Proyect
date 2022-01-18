@@ -49,7 +49,7 @@ const Layout = () => {
 						<Route exact path="/listBills">
 							<ListBills />
 						</Route>
-						<Route exact path="/billDetail">
+						<Route exact path="/billDetail/:id">
 							<BillDetail />
 						</Route>
 						<Route>

@@ -239,6 +239,14 @@
     color: white !important;
 }
 
+.aviso-legal{
+  color: #fff;
+}
+
+.aviso-legal:hover{
+  color: #00B4CD;
+}
+
 //END-NOSOTROS-SERVICIOS-INFORMACION
 
 .encuentranos{
@@ -248,7 +256,6 @@
     margin-left:auto;
     color: black;
     letter-spacing: 4px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -262,7 +269,7 @@ a{color:inherit;text-decoration:none}
 
 .social-buttons {
     &__button {
-      margin: 10px 5px 0;
+      margin: 5px 5px;
     }
   }
   
@@ -364,9 +371,43 @@ a{color:inherit;text-decoration:none}
   color: #003444;
 }
 
+.btn-formCreate2{
+  background-color: white;
+  color: #003444;
+}
+
+.btn-formCreate2:hover{
+  background-color: #00B4CD;
+  color: white;
+}
+
 .btn-formCreate:hover{
     background-color: #003444;
     color: white;
+}
+
+.btn-valoration1{
+    background-color: #fff;
+    color: #003444;
+    border: 1px solid #003444;
+}
+
+.btn-valoration1:hover{
+  background-color: #003444;
+  color: #fff;
+  border: 1px solid #003444;
+}
+
+.btn-valoration2{
+  background-color: #003444;
+  color: #fff;
+  border: 1px solid #003444;
+}
+
+.btn-valoration2:hover{
+  background-color: #fff;
+  color: #003444;
+  border: 1px solid #003444;
 }
 
 @keyframes gradient {

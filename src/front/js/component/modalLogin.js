@@ -91,7 +91,7 @@ const ModalLogin = () => {
 									/>
 								</div>
 
-								<button type="submit" className="mt-4 btn btn-lg btn-formCreate btn-formClose">
+								<button type="submit" className="mt-4 btn btn-lg btn-formCreate2 w-100">
 									LOGIN
 								</button>
 							</form>

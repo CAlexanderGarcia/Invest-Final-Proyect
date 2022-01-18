@@ -31,7 +31,7 @@ const Pricing = () => {
 								<li>Soporte Email</li>
 								<li>Ayuda a través de Help Center</li>
 							</ul>
-							<button type="button" className="w-100 btn btn-lg border-bluedark-investy">
+							<button type="button" className="w-100 btn btn-lg btn-valoration1">
 								<Link to="/register-form">Regístrate Gratis</Link>
 							</button>
 						</div>
@@ -58,7 +58,7 @@ const Pricing = () => {
 								href="https://www.grupbancsabadell.com/corp/es/inicio.html"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="w-100 btn btn-lg bg-bluedark-investy text-white">
+								className="w-100 btn btn-lg btn-valoration2">
 								Comienza Ahora
 							</a>
 						</div>
@@ -82,7 +82,7 @@ const Pricing = () => {
 							</ul>
 							<a
 								type="button"
-								className="w-100 btn btn-lg bg-bluedark-investy text-white"
+								className="w-100 btn btn-lg btn-valoration2"
 								href="https://www.grupbancsabadell.com/corp/es/inicio.html"
 								target="_blank"
 								rel="noopener noreferrer">

@@ -252,15 +252,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => setStore({ listBills: data.bills }));
 			},
-			createBill: data => {
-				const response = fetch(process.env.BACKEND_URL + "/bills", {
+			createBill: async data => {
+				const response = await fetch(process.env.BACKEND_URL + "/bills", {
 					method: "POST",
 					headers: {
 						Authorization: "Bearer " + getActions().getToken(),
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify(data)
-				}).then(data => setStore({ listBills: data.bills }));
+				}).then(data => {
+					setStore({ listBills: data.bills });
+					return data;
+				});
+				return response.ok;
 			},
 			detailBill: id => {
 				const store = getStore();
