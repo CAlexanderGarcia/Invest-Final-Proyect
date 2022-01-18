@@ -11,7 +11,7 @@ export const PrivateNavbar = () => {
 		history.push("/");
 	};
 	return (
-		<nav className="row navbar navbar-expand-xl navbar-dark bg-dark">
+		<nav className="row navbar navbar-expand-xl navbar-dark bg-bluedark-investy">
 			<div className="col-10 container-fluid d-flex justify-content-between">
 				<div className="navbar-brand">
 					<Link to="/">
@@ -20,7 +20,7 @@ export const PrivateNavbar = () => {
 				</div>
 				<div className="navbar-brand">
 					<button
-						className="navbar-toggler float-right"
+						className="navbar-toggler"
 						type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarNav"
@@ -59,7 +59,7 @@ export const PrivateNavbar = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
-								<Link to="/bills" className="btn buttom-nsi fs-5 text-white">
+								<Link to="/listbills" className="btn buttom-nsi fs-5 text-white">
 									<span id="span9" />
 									<span id="span10" />
 									<span id="span11" />

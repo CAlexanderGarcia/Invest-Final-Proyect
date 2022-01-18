@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, url_for, redirect, Blueprint
 from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity, create_access_token #dar de alta JWT y el token
-from api.models import db, UserData, Supplier, Client, Product, ProductToBill
+from api.models import db, UserData, Supplier, Client, Product, ProductToBill, Bill
 from api.utils import generate_sitemap, APIException
 import json 
 
@@ -66,7 +66,13 @@ def create_user():
       else:
             return jsonify({"message" : "Los datos de correo electrónico o número de identificación ya se encuentran registrados en nuestar base de datos", "created" : False}), 400 
            
-            
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_by_id():
+      current_user_id = get_jwt_identity()
+      user = UserData.query.get(current_user_id)
+      return jsonify({"user": user.serialize()}), 200
+    
 
 #############################PROVEEDORES#################################
 
@@ -237,28 +243,48 @@ def update_product(product_id):
             print(e) 
             return jsonify({"message" : "Producto no modificado", "created" : False}), 500
 
-@api.route('/product', methods=['POST'])
+@api.route('/bills', methods=['POST'])
 @jwt_required()
-def add_product():
+def create_bill():
       current_user = get_jwt_identity()
       name = request.json.get("name")
       code = request.json.get("code")
       quantity = request.json.get("quantity")
       price = request.json.get("price")
       supplier = request.json.get("supplier")
+      print(request.json)
+      user = UserData.query.get(current_user)    
+      if user is None:
+            return jsonify({"msg": "Email o Contraseñas Incorrectas"}), 401
       try:
+            client_id = request.json.get("client_id")
+            number_bill = request.json.get("number_bill")
+            date_bill = request.json.get("date_bill")
+            products = request.json.get("products")#almacenado de todos los productos
+            total = request.json.get("total")
+            if not client_id or not number_bill or not date_bill or not products or not total: return jsonify({"message": "Revisar campos que falten"}), 400
+            client = Client.query.filter_by(id=client_id).first() #o podemos usar el filter_by que siempre nos retorna un array(vacio o no)//.get:busca si no lo encuentra nos dice que no existe
 
-            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
-           
-            if not (new_product):
+            if not client:
+                  return jsonify({"message": "ID del Cliente no Existe"}), 400
+
+            bill = Bill(number=number_bill, date=date_bill, tax=21, discount=0, client_id=client_id, total=total, user_id=user.id) #Creacion de factura
+          
+            if not (bill):
                   return jsonify({"message": "Error datos", "created": False }), 400
             
-            db.session.add(new_product)
-            db.session.commit()   
-            return jsonify({"message" : "Nuevo Producto Creado", "created" : True}), 200
+            db.session.add(bill)
+            db.session.commit()
+            for product in products: 
+                  product = Product.query.filter_by(code=product.get("code"), supplier_id=product.get("supplier_id")).first()
+                  product_to_bill = ProductToBill(quantity=product.quantity, price=product.price, bill_id=bill.id, product_id=product.id)
+                  db.session.add(product_to_bill)
+                  db.session.commit()      
+            return jsonify({"message" : "La Factura ha sido Creada", "created" : True}), 200
       except Exception as e: 
             print(e)
-            return jsonify({"message" : "Producto no Creado", "created" : False}), 500
+            return jsonify({"message" : "La Factura no se ha Creado", "created" : False}), 500
+
 
 @api.route('/products', methods=['GET'])
 @jwt_required()
@@ -283,4 +309,51 @@ def delete_products(product_id):
       db.session.commit()
       return jsonify({"message" : "El Producto fue borrado con éxito"}), 200
 
+@api.route('/product', methods=['POST'])
+@jwt_required()
+def add_product():
+      current_user = get_jwt_identity()
+      name = request.json.get("name")
+      code = request.json.get("code")
+      quantity = request.json.get("quantity")
+      price = request.json.get("price")
+      supplier = request.json.get("supplier")
+      print(request.json)
+      try:
 
+            new_product = Product(name=name, code=code, quantity=quantity, price=price, supplier_id=supplier )
+           
+            if not (new_product):
+                  return jsonify({"message": "Error datos", "created": False }), 400
+            
+            db.session.add(new_product)
+            db.session.commit()   
+            return jsonify({"message" : "Nuevo Producto Creado", "created" : True}), 200
+      except Exception as e: 
+            print(e)
+            return jsonify({"message" : "Producto no Creado", "created" : False}), 500
+
+#############################FACTURAS#################################
+
+@api.route('/bills', methods=['GET'])
+@jwt_required()
+def list_bills():
+      current_user = get_jwt_identity()
+      clients = Client.query.filter_by(userData_id=current_user)
+      clients_ids=[client.id for client in clients]
+      bills = Bill.query.filter(Bill.client_id.in_(clients_ids))#buscar facturas asociados a esos clientes
+      serialized_bills = list(map(lambda b: b.serialize(), bills))
+      return jsonify({"bills": serialized_bills}), 200
+
+@api.route('/bills/<int:id>', methods=['GET'])
+@jwt_required()
+def get_bill(id):
+      current_user = get_jwt_identity()#id user
+      user = UserData.query.get(current_user) #buscamos al usuario por id
+      bill = Bill.query.get(id) #buscar la factura en BD
+      data = {}
+      data["bill"] = bill.serialize()
+      data["client"] = bill.client.serialize()
+      data["user"] = user.serialize()
+      data["products"] = [product.serialize() for product in bill.productToBills]
+      return jsonify({"data": data}), 200      

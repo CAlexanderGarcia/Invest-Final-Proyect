@@ -22,25 +22,25 @@ const ListProduct = () => {
 				isCreated={false}
 				product={currentProduct ? currentProduct : {}}
 			/>
-			<table className="container table table-striped text-center table-fill my-5">
+			<table className="container table table-striped my-5 shadow-lg">
 				<thead>
-					<tr className="tr-CPP">
-						<th scope="col" className="text-left th-CPP">
+					<tr className="tr-CPP bluedark-investy">
+						<th scope="col" className="th-CPP">
 							ID
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Nombre
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Código
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Cantidad
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Precio
 						</th>
-						<th scope="col" className="text-left th-CPP">
+						<th scope="col" className="th-CPP">
 							Proveedor
 						</th>
 						<th />
@@ -51,26 +51,24 @@ const ListProduct = () => {
 						store.listProducts.map((value, index) => {
 							return (
 								<tr key={index}>
-									<td scope="row" className="text-center td-CPP">
-										{value.id}
-									</td>
-									<td className="text-center #td-CPP">{value.name}</td>
-									<td className="text-center #td-CPP">{value.code}</td>
-									<td className="text-center #td-CPP">{value.quantity}</td>
-									<td className="text-center #td-CPP">{value.price}</td>
-									<td className="text-center #td-CPP">{value.supplier}</td>
-									<td>
+									<td className="col-1 td-CPP">{value.id}</td>
+									<td className="col-3 text-center">{value.name}</td>
+									<td className="col-2 text-center">{value.code}</td>
+									<td className="col-1 text-center">{value.quantity}</td>
+									<td className="col-2 text-center">{value.price}</td>
+									<td className="col-2 text-center">{value.supplier_name}</td>
+									<td className="col-1 text-center">
 										<button
 											onClick={() => {
 												setCurrentProduct(value);
 											}}
-											className="px-2 ms-3 link-pen btn btn-link"
+											className="link-pen btn btn-link p-0 mx-1"
 											data-bs-toggle="modal"
 											data-bs-target={"#modal-change-product"}>
 											<i className="fas fa-pen" />
 										</button>
 										<button
-											className="px-2 me-1 link-trash btn btn-link "
+											className="link-trash btn btn-link p-0 mx-1"
 											onClick={() => {
 												actions.deleteProduct(value.id).then(() => {
 													actions.listProduct();

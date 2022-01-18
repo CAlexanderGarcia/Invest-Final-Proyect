@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const Footer = () => {
+const FooterFixed = () => {
 	const [dropend, setDropend] = useState(false);
 	return (
-		<footer className="sticky-bottom mt-5">
+		<footer className="fixed-bottom mt-5">
 			<div className="container-fluid d-flex bg-bluedark-investy">
 				<div className="align-start d-flex">
 					<div className="btn-group dropend">
@@ -117,4 +117,4 @@ const Footer = () => {
 	);
 };
 
-export default Footer;
+export default FooterFixed;

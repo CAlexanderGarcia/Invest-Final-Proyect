@@ -1,19 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Nosotros from "./nosotros.js";
-import Servicios from "./servicios.js";
-import Informacion from "./informacion.js";
 import ModalLogin from "../component/modalLogin";
 import { Context } from "../store/appContext";
 import PrivateNavbar from "../component/privateNavbar";
 import INVESTY_HORIZONTAL_BLANCO from "../../img/INVESTY_HORIZONTAL_BLANCO.png";
+import { HashLink } from "react-router-hash-link";
 
 export const Navbar = () => {
 	const { actions } = useContext(Context);
 	return actions.getToken() ? (
 		<PrivateNavbar />
 	) : (
-		<nav className="row navbar navbar-expand-xl navbar-dark bg-dark">
+		<nav className="row navbar navbar-expand-xl navbar-dark bg-bluedark-investy">
 			<div className="col-10 container-fluid d-flex justify-content-between">
 				<div className="navbar-nav">
 					<Link to="/">
@@ -34,21 +32,39 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNav">
 						<ul className="navbar-nav">
 							<li className="nav-item">
-								<Informacion />
+								<HashLink to="/#informacion-link" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Información
+								</HashLink>
 							</li>
 							<li className="nav-item">
-								<Servicios />
+								<HashLink to="/#suscripciones-link" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Suscripciones
+								</HashLink>
 							</li>
 							<li className="nav-item">
-								<Nosotros />
+								<HashLink to="/#nosotros-link" className="btn buttom-nsi fs-5 text-white">
+									<span id="span9" />
+									<span id="span10" />
+									<span id="span11" />
+									<span id="span12" />
+									Nosotros
+								</HashLink>
 							</li>
 							<li className="nav-item">
-								<Link to="register-form" className="btn buttom-nsi fs-5 me-4 text-white">
+								<Link to="register-form" className="btn buttom-nsi fs-5 text-white">
 									<span id="span1" />
 									<span id="span2" />
 									<span id="span3" />
 									<span id="span4" />
-									Regístrese
+									Regístrate
 								</Link>
 							</li>
 							<li className="nav-item">

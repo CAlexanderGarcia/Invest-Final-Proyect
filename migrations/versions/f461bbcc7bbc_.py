@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c7f0accd2335
+Revision ID: f461bbcc7bbc
 Revises: 
-Create Date: 2022-01-08 09:52:59.770305
+Create Date: 2022-01-16 18:40:48.304092
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c7f0accd2335'
+revision = 'f461bbcc7bbc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,22 +51,19 @@ def upgrade():
     sa.Column('phoneNumber', sa.String(length=120), nullable=False),
     sa.Column('userData_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['userData_id'], ['userdata.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('address'),
-    sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('name'),
-    sa.UniqueConstraint('nif'),
-    sa.UniqueConstraint('phoneNumber'),
-    sa.UniqueConstraint('postalCode')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('bill',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('number', sa.Integer(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('number', sa.String(length=120), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
     sa.Column('tax', sa.Integer(), nullable=False),
     sa.Column('discount', sa.Integer(), nullable=False),
+    sa.Column('total', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('client_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['client_id'], ['client.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['userdata.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('number')
     )
