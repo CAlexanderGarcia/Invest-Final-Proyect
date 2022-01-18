@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import Footer from "../component/footer";
+import { useParams } from "react-router-dom";
 
 const BillDetail = () => {
 	const { store, actions } = useContext(Context);
 	const [data, setData] = useState();
+	let id = useParams().id;
 
 	useEffect(() => {
-		actions.detailBill(1).then(res => {
+		actions.detailBill(id).then(res => {
 			setData(res.data);
 		});
 	}, []);
@@ -141,7 +143,7 @@ const BillDetail = () => {
 							<h2 className="">Datos de factura</h2>
 							<hr className="text-success m-0" />
 						</div>
-						<div className="col-md-8">
+						<div className="col-md-6">
 							<div className="input-group">
 								<span className="input-group-text bg-dark text-white">Número de Factura</span>
 								<input
@@ -153,41 +155,45 @@ const BillDetail = () => {
 								/>
 							</div>
 						</div>
-						<div className="col-md-4">
+						<div className="col-md-6">
 							<div className="input-group">
 								<span className="input-group-text bg-dark text-white">Fecha de Factura</span>
 								<input type="text" className="form-control" readOnly disabled value={data.bill.date} />
 							</div>
 						</div>
-						<div className="col-md-12 ">
+						<div className="col-md-12">
 							<table className="container">
-								<tr>
-									<th>Nombre del Producto</th>
-									<th>Precio Unitario</th>
-									<th>IVA</th>
-									<th>Cantidad</th>
-									<th>Precio Total</th>
-								</tr>
+								<thead>
+									<tr>
+										<th className="text-center bluedark-investy">Nombre del Producto</th>
+										<th className="text-center bluedark-investy">Precio Unitario</th>
+										<th className="text-center bluedark-investy">IVA</th>
+										<th className="text-center bluedark-investy">Cantidad</th>
+										<th className="text-center bluedark-investy">Subtotal</th>
+									</tr>
+								</thead>
 								{data.products.map((value, index) => {
 									return (
-										<tr key={index}>
-											<td>{value.product.name}</td>
-											<td>{value.product.price}</td>
-											<td>{value.product.tax}</td>
-											<td>{value.quantity}</td>
-											<td>{value.price}</td>
-										</tr>
+										<tbody key={index}>
+											<tr>
+												<td className="text-center">{value.product.name}</td>
+												<td className="text-center">{value.product.price}</td>
+												<td className="text-center">21%</td>
+												<td className="text-center">{value.quantity}</td>
+												<td className="text-center">{value.price * value.quantity * 1.21}</td>
+											</tr>
+										</tbody>
 									);
 								})}
 							</table>
 						</div>
 
-						<div className="col-md-8">
+						<div className="col-md-3 offset-9">
 							<div className="input-group">
 								<span className="input-group-text bg-danger text-white">TOTAL</span>
 								<input
 									type="text"
-									className="form-control fw-bold"
+									className="form-control fw-bold text-center"
 									value={data.bill.total}
 									readOnly
 									disabled

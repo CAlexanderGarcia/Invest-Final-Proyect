@@ -208,7 +208,7 @@ const RegisterForm = () => {
 				<div className="form-grupo form-grupo-btn-enviar">
 					<button
 						type="submit"
-						className="btn bg-bluedark-investy text-white"
+						className="btn btn-valoration2"
 						onKeyPress={e => {
 							e.key == "Enter" && e.preventDefault();
 						}}>

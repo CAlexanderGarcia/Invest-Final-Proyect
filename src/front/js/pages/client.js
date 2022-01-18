@@ -6,65 +6,46 @@ import clientes from "../../img/clientes.png";
 
 const Client = () => {
 	return (
-		<div className="container-fluid justify-content-between">
-			<div className="container-fluid navbar navbar-white bg-white">
-				<button
-					type="button"
-					className="btn fs-5 buttom-nsi"
-					data-bs-toggle="modal"
-					data-bs-target={`#modal-create-client`}>
-					<span id="span9" />
-					<span id="span10" />
-					<span id="span11" />
-					<span id="span12" />
-					Crear Cliente
-				</button>
-				<ModalClient
-					idModal="modal-create-client"
-					buttonTitle="Crear Cliente"
-					modalHeader="Creación de Clientes"
-					nameButton="Crear cliente"
-					messageSuccess="El Cliente fue creado con Exito"
-					messageError="El Cliente no fue creado"
-					isCreated={true}
-					client={{}}
-				/>
-			</div>
-			{/* <div className="container d-flex justify-content-around">
-				<div className="col-4">
-					<img src={clientes} className="img-fluid" />
-				</div>
+		<div className="container justify-content-between">
+			<h2 className="featurette-heading bluedark-investy mt-3">Clientes</h2>
+			<hr className="featurette-divider bluedark-investy" />
+			<div className="container">
+				<div className="row">
+					<div className="col-md-4">
+						<img src={clientes} className="img-fluid" />
+					</div>
 
-				<div className="col-8">
-					<p className="lead">
-						Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su eliminación.
-						Posteriormente podrás visualizarlos y seleccionarlos en factura.
-					</p>
-					<div className="bg-white">
-						<button
-							type="button"
-							className="btn fs-5 buttom-nsi"
-							data-bs-toggle="modal"
-							data-bs-target={`#modal-create-client`}>
-							<span id="span9" />
-							<span id="span10" />
-							<span id="span11" />
-							<span id="span12" />
-							Crear Cliente
-						</button>
-						<ModalClient
-							idModal="modal-create-client"
-							buttonTitle="Crear Cliente"
-							modalHeader="Creación de Clientes"
-							nameButton="Crear cliente"
-							messageSuccess="El Cliente fue creado con Exito"
-							messageError="El Cliente no fue creado"
-							isCreated={true}
-							client={{}}
-						/>
+					<div className="col-md-8">
+						<p className="lead">
+							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
+							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
+						</p>
+						<div className="bg-white text-center">
+							<button
+								type="button"
+								className="btn fs-4 buttom-nsi mt-5 fw-bold"
+								data-bs-toggle="modal"
+								data-bs-target={`#modal-create-client`}>
+								<span id="span9" />
+								<span id="span10" />
+								<span id="span11" />
+								<span id="span12" />
+								CREAR CLIENTE
+							</button>
+							<ModalClient
+								idModal="modal-create-client"
+								buttonTitle="Crear Cliente"
+								modalHeader="Creación de Clientes"
+								nameButton="Crear cliente"
+								messageSuccess="El Cliente fue creado con Exito"
+								messageError="El Cliente no fue creado"
+								isCreated={true}
+								client={{}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div> */}
+			</div>
 			<ListClient />
 			<FooterFixed />
 		</div>

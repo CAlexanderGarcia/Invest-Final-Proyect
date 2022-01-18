@@ -11,7 +11,7 @@ export const Navbar = () => {
 	return actions.getToken() ? (
 		<PrivateNavbar />
 	) : (
-		<nav className="row navbar navbar-expand-xl navbar-dark bg-bluedark-investy">
+		<nav className="row navbar navbar-expand-xl navbar-dark bg-bluedark-investy m-0">
 			<div className="col-10 container-fluid d-flex justify-content-between">
 				<div className="navbar-nav">
 					<Link to="/">

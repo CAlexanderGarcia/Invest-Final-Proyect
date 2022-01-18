@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const BillsForm = () => {
 	const { actions } = useContext(Context);
@@ -9,6 +10,7 @@ const BillsForm = () => {
 	const [dateBill, setDateBill] = useState(new Date().toDateString());
 	const [numberBill, setNumberBill] = useState();
 	const [currentUser, setCurrentUser] = useState();
+	const [message, setMessage] = useState();
 
 	const [selectedClient, setSelectedClient] = useState();
 	const [selectedProducts, setSelectedProducts] = useState([]);
@@ -394,16 +396,19 @@ const BillsForm = () => {
 										defaultValue={1}
 										onChange={e => {
 											let quantity = products.find(x => x.id == product.id).quantity;
-											if (parseInt(e.target.value) <= quantity && parseInt(e.target.value) > 1) {
+											if (
+												parseFloat(e.target.value) <= quantity &&
+												parseFloat(e.target.value) > 1
+											) {
 												setSelectedProducts(
 													selectedProducts.map(x => {
 														if (x.id == product.id) {
 															return {
 																...product,
-																quantity: parseInt(e.target.value),
+																quantity: parseFloat(e.target.value),
 																productPrice:
-																	parseInt(e.target.value) *
-																	parseInt(product.price) *
+																	parseFloat(e.target.value) *
+																	parseFloat(product.price) *
 																	1.21
 															};
 														} else {
@@ -411,7 +416,7 @@ const BillsForm = () => {
 														}
 													})
 												);
-											} else if (parseInt(e.target.value) > quantity) {
+											} else if (parseFloat(e.target.value) > quantity) {
 												e.target.value = quantity;
 												setSelectedProducts(
 													selectedProducts.map(x => {
@@ -420,8 +425,8 @@ const BillsForm = () => {
 																...product,
 																quantity: quantity,
 																productPrice:
-																	parseInt(e.target.value) *
-																	parseInt(product.price) *
+																	parseFloat(e.target.value) *
+																	parseFloat(product.price) *
 																	1.21
 															};
 														} else {
@@ -429,7 +434,7 @@ const BillsForm = () => {
 														}
 													})
 												);
-											} else if (parseInt(e.target.value) <= 1) {
+											} else if (parseFloat(e.target.value) <= 1) {
 												e.target.value = 1;
 												setSelectedProducts(
 													selectedProducts.map(x => {
@@ -437,7 +442,7 @@ const BillsForm = () => {
 															return {
 																...product,
 																quantity: 1,
-																productPrice: parseInt(product.price) * 1.21
+																productPrice: parseFloat(product.price) * 1.21
 															};
 														} else {
 															return x;
@@ -487,19 +492,36 @@ const BillsForm = () => {
 					<button
 						type="submit"
 						className="btn text-white bg-bluedark-investy"
-						onClick={() =>
-							actions.createBill({
+						onClick={async () => {
+							let response = await actions.createBill({
 								client_id: selectedClient.id,
 								number_bill: numberBill,
 								date_bill: dateBill,
 								products: selectedProducts,
 								total: total
-							})
-						}>
+							});
+							if (response == true) {
+								setMessage(true);
+							} else {
+								setMessage(false);
+							}
+						}}>
 						Generar factura
 					</button>
 				</div>
 			</div>
+			{message == true ? (
+				<div className="">
+					<h2 className="featurette-heading bluedark-investy">Factura creada correctamente</h2>
+					<Link to="/listBills">
+						<button className="btn btn-formCreate2 shadow-lg">Volver a facturas</button>
+					</Link>
+				</div>
+			) : message == false ? (
+				<div className="">
+					<h2 className="featurette-heading text-danger">Factura no creada</h2>
+				</div>
+			) : null}
 		</div>
 	);
 };

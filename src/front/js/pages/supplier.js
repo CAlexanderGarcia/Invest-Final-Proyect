@@ -2,32 +2,49 @@ import React from "react";
 import ListSupplier from "../component/listSupplier";
 import ModalSupplier from "../component/modalSupplier";
 import FooterFixed from "../component/footerFixed";
+import suppliers from "../../img/supplier.png";
 
 const Supplier = () => {
 	return (
-		<div className="container-fluid justify-content-between">
-			<div className="container-fluid navbar navbar-white bg-white">
-				<button
-					type="button"
-					className="btn fs-5 buttom-nsi"
-					data-bs-toggle="modal"
-					data-bs-target={`#modal-create-supplier`}>
-					<span id="span9" />
-					<span id="span10" />
-					<span id="span11" />
-					<span id="span12" />
-					Crear Proveedor
-				</button>
-				<ModalSupplier
-					idModal="modal-create-supplier"
-					buttonTitle="Crear Proveedor"
-					modalHeader="Creación de Proveedor"
-					nameButton="Crear"
-					messageSuccess="El Proveedor fue creado con Exito"
-					messageError="El Proveedor no fue creado. Inténtelo nuevamente"
-					isCreated={true}
-					supplier={{}}
-				/>
+		<div className="container justify-content-between">
+			<h2 className="featurette-heading bluedark-investy mt-3">Proveedores</h2>
+			<hr className="featurette-divider bluedark-investy" />
+			<div className="container">
+				<div className="row">
+					<div className="col-md-4">
+						<img src={suppliers} className="img-fluid" />
+					</div>
+
+					<div className="col-md-8">
+						<p className="lead">
+							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
+							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
+						</p>
+						<div className="bg-white text-center">
+							<button
+								type="button"
+								className="btn fs-4 buttom-nsi mt-5 fw-bold"
+								data-bs-toggle="modal"
+								data-bs-target={`#modal-create-supplier`}>
+								<span id="span9" />
+								<span id="span10" />
+								<span id="span11" />
+								<span id="span12" />
+								CREAR PROVEEDOR
+							</button>
+							<ModalSupplier
+								idModal="modal-create-supplier"
+								buttonTitle="Crear Proveedor"
+								modalHeader="Creación de Proveedor"
+								nameButton="Crear"
+								messageSuccess="El Proveedor fue creado con Exito"
+								messageError="El Proveedor no fue creado. Inténtelo nuevamente"
+								isCreated={true}
+								supplier={{}}
+							/>
+						</div>
+					</div>
+				</div>
 			</div>
 			<ListSupplier />
 			<FooterFixed />

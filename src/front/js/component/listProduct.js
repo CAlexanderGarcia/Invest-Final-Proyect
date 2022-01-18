@@ -83,7 +83,9 @@ const ListProduct = () => {
 						})
 					) : (
 						<tr>
-							<td colSpan="12">No tiene productos añadidos</td>
+							<td colSpan="7" className="text-center">
+								No tiene productos añadidos
+							</td>
 						</tr>
 					)}
 				</tbody>
