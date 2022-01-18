@@ -11,7 +11,7 @@ import Footer from "../component/footer";
 
 export const Home = () => {
 	return (
-		<div className="container-fluid">
+		<div className="col-12">
 			<Intro id="informacion-link" />
 			<Pricing id="suscripciones-link" />
 			<Valoration />
