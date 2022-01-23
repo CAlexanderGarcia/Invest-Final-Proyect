@@ -15,9 +15,7 @@
     font-size: 500px;
 
 }
-.navbar{
-    margin:5px;
-}
+
 .cd-supplier{
   margin-top: -24px;
 }
@@ -140,10 +138,8 @@
   color: black;
   letter-spacing: 4px;
   text-decoration: none;
-  font-size: 24px;
   overflow: hidden;
   transition: 0.2s;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
   &:hover {
     border: 1px solid transparent;
@@ -233,10 +229,6 @@
       }
     }
   }
-}
-
-.btn-login-contrast:hover{
-    color: white !important;
 }
 
 .aviso-legal{
@@ -429,6 +421,14 @@ a{color:inherit;text-decoration:none}
 
 .bluedark-investy{
   color: #003444;
+}
+
+.border-bluedark{
+  border: 1px solid #003444;
+}
+
+.border-left-bluedark{
+  border-left: 1px solid #003444;
 }
 
 .bluelight-investy{
