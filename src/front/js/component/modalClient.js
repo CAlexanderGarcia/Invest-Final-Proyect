@@ -103,7 +103,7 @@ const ModalClient = props => {
 								</div>
 
 								<div className="row">
-									<div className="col-6">
+									<div className="col-5">
 										<label htmlFor="client_nif" className="col-2 text-white">
 											NIF
 										</label>
@@ -118,7 +118,7 @@ const ModalClient = props => {
 										/>
 									</div>
 
-									<div className="col-6">
+									<div className="col-7">
 										<label htmlFor="client_postalcode" className="col-6 text-white">
 											Código Postal
 										</label>

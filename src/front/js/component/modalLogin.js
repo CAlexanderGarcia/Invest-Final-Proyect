@@ -26,7 +26,7 @@ const ModalLogin = () => {
 		<div>
 			<button
 				type="button"
-				className="btn buttom-nsi bluelight-investy btn-login-contrast"
+				className="btn buttom-nsi btn-login-contrast fw-bold"
 				data-bs-toggle="modal"
 				data-bs-target="#modalLogin">
 				<span id="span5" />
@@ -66,7 +66,7 @@ const ModalLogin = () => {
 									""
 								)}
 								<div className="mb-3">
-									<label htmlFor="user" className="form-label">
+									<label htmlFor="user" className="form-label text-white">
 										Email
 									</label>
 									<input
@@ -78,7 +78,7 @@ const ModalLogin = () => {
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="pass" className="form-label">
+									<label htmlFor="pass" className="form-label text-white">
 										Password
 									</label>
 									<input

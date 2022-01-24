@@ -25,11 +25,11 @@ const ListBills = () => {
 							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
 							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
 						</p>
-						<div className="bg-white text-center">
+						<div className="text-center">
 							<Link to="bills">
 								<button
 									type="button"
-									className="btn fs-4 buttom-nsi mt-5 fw-bold"
+									className="btn fs-4 buttom-nsi mt-5 fw-bold btn-create"
 									data-bs-toggle="modal"
 									data-bs-target="">
 									<span id="span5" />
