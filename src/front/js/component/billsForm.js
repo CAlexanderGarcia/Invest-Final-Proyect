@@ -465,7 +465,7 @@ const BillsForm = () => {
 										<input
 											type="number"
 											className="form-control text-end"
-											value={product.productPrice}
+											value={product.productPrice.toFixed(2)}
 										/>
 										<i
 											onClick={() =>
@@ -483,7 +483,12 @@ const BillsForm = () => {
 				<div className="col-3 offset-9 text-end mt-5">
 					<div className="input-group">
 						<span className="input-group-text fw-bold">Total €</span>
-						<input type="number" className="form-control text-end fw-bold" readOnly value={total} />
+						<input
+							type="number"
+							className="form-control text-end fw-bold"
+							readOnly
+							value={total.toFixed(2)}
+						/>
 					</div>
 				</div>
 

@@ -13,41 +13,48 @@ const ModalProduct = props => {
 		if (Object.keys(data).length == 0) {
 			setData({
 				...props.product,
-				[event.target.name]: event.target.value
+				[event.target.name]:
+					typeof event.target.value == "number" ? Math.abs(event.target.value) : event.target.value
 			});
 		} else {
 			setData({
 				...data,
-				[event.target.name]: event.target.value
+				[event.target.name]:
+					typeof event.target.value == "number" ? Math.abs(event.target.value) : event.target.value
 			});
 		}
 	};
 	const handleFormSubmit = event => {
 		event.preventDefault();
 		setShowMessage({});
-		props.isCreated
-			? actions
-					.createProduct(data)
-					.then(result => {
-						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
-						setShowMessage({ error: false, message: props.messageSuccess });
-						{
-							document.getElementById("myform").reset();
-						}
-					})
-					.catch(err => {
-						setShowMessage({ error: true, message: props.messageError });
-					})
-			: actions
-					.updateProduct(data)
-					.then(result => {
-						console.log(result);
-						actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
-						setShowMessage({ error: false, message: props.messageSuccess });
-					})
-					.catch(err => {
-						setShowMessage({ error: true, message: props.messageError });
-					});
+		if (data.name && data.code && data.quantity && data.price) {
+			props.isCreated
+				? actions
+						.createProduct(data)
+						.then(result => {
+							actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
+							setData({});
+							setShowMessage({ error: false, message: props.messageSuccess });
+							{
+								document.getElementById("myform").reset();
+							}
+						})
+						.catch(err => {
+							setShowMessage({ error: true, message: props.messageError });
+						})
+				: actions
+						.updateProduct(data)
+						.then(result => {
+							actions.listProduct(); //actualizo el listado de clientes independientemente de crear o modificar
+							setShowMessage({ error: false, message: props.messageSuccess });
+						})
+						.catch(err => {
+							setShowMessage({ error: true, message: props.messageError });
+						});
+		} else {
+			setShowMessage({ error: true, message: "Tiene que llenar el formulario" });
+		}
+
 		//	console.log("pepito");
 	};
 	return (
@@ -110,9 +117,10 @@ const ModalProduct = props => {
 										</label>
 										<input
 											id="product_quantity"
-											type="text"
+											type="number"
 											className="col-4"
 											name="quantity"
+											min={0}
 											data-type="text"
 											onChange={handleInputChange}
 											defaultValue={props.product.quantity}
@@ -127,6 +135,7 @@ const ModalProduct = props => {
 											type="number"
 											className="col-7"
 											name="price"
+											min={0}
 											data-type="number"
 											onChange={handleInputChange}
 											defaultValue={props.product.price}

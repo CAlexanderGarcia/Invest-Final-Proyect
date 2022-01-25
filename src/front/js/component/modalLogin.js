@@ -72,7 +72,7 @@ const ModalLogin = () => {
 									<input
 										type="email"
 										name="email"
-										className="form-control"
+										className="form-control input-focus"
 										id="user"
 										onChange={handleInputChange}
 									/>
@@ -83,7 +83,7 @@ const ModalLogin = () => {
 									</label>
 									<input
 										type="password"
-										className="form-control"
+										className="form-control input-focus"
 										id="pass"
 										data-type="password"
 										name="password"

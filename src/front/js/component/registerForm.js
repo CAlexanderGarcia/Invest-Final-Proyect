@@ -66,7 +66,7 @@ const RegisterForm = () => {
 
 							<input
 								type="text"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								placeholder="Investy"
 								name="company"
 								onChange={handleInputChange}
@@ -83,7 +83,7 @@ const RegisterForm = () => {
 
 							<input
 								type="text"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								placeholder="Investy"
 								name="surname"
 								onChange={handleInputChange}
@@ -100,7 +100,7 @@ const RegisterForm = () => {
 							</span>
 							<input
 								type="text"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="address"
 								placeholder="Calle Investy, 12"
 								aria-label="adress"
@@ -117,7 +117,7 @@ const RegisterForm = () => {
 							</span>
 							<input
 								type="email"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								placeholder="correo@correo.com"
 								name="email"
 								onChange={handleInputChange}
@@ -134,7 +134,7 @@ const RegisterForm = () => {
 							</span>
 							<input
 								type="text"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="postalCode"
 								placeholder="Sólo números"
 								name="postalCode"
@@ -150,7 +150,7 @@ const RegisterForm = () => {
 							</span>
 							<select
 								id="inputState"
-								className="form-select border-left-bluedark border-bluedark"
+								className="form-select border-left-bluedark border-bluedark input-focus"
 								onChange={handleInputChange}
 								name="typeDocumentation">
 								<option selected="true" disabled="disabled">
@@ -169,7 +169,7 @@ const RegisterForm = () => {
 							</span>
 							<input
 								type="text"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								name="numberDocumentation"
 								onChange={handleInputChange}
 								placeholder="Y99990000D"
@@ -188,7 +188,7 @@ const RegisterForm = () => {
 
 							<input
 								type="password"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="password"
 								name="password"
 								onChange={handleInputChange}
@@ -205,7 +205,7 @@ const RegisterForm = () => {
 
 							<input
 								type="password"
-								className="form-control border-left-bluedark border-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="passwordTwo"
 								name="passwordTwo"
 								onChange={handleInputChange}

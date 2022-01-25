@@ -493,6 +493,12 @@ a{color:inherit;text-decoration:none}
   border-color: #0C121A;
 }
 
+.input-focus:focus{
+  outline: none !important;
+    border-color: #003444;
+    box-shadow: 0 0 10px #003444;
+}
+
 //Graficos
 .board{
   margin: auto;

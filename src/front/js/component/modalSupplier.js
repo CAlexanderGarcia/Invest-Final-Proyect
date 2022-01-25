@@ -22,28 +22,34 @@ const ModalSupplier = props => {
 	const handleFormSubmit = event => {
 		event.preventDefault();
 		setShowMessage({});
-		props.isCreated
-			? actions
-					.createSupplier(data)
-					.then(result => {
-						actions.listSupplier(); //actualizo el listado de clientes independientemente de crear o modificar
-						setShowMessage({ error: false, message: props.messageSuccess });
-						{
-							document.getElementById("myform").reset();
-						}
-					})
-					.catch(err => {
-						setShowMessage({ error: true, message: props.messageError });
-					})
-			: actions
-					.updateSupplier(data)
-					.then(result => {
-						actions.listSupplier(); //actualizo el listado de clientes independientemente de crear o modificar
-						setShowMessage({ error: false, message: props.messageSuccess });
-					})
-					.catch(err => {
-						setShowMessage({ error: true, message: props.messageError });
-					});
+		if (data.name && data.address && data.postalCode && data.email && data.phoneNumber && data.nif) {
+			props.isCreated
+				? actions
+						.createSupplier(data)
+						.then(result => {
+							actions.listSupplier(); //actualizo el listado de clientes independientemente de crear o modificar
+							setData({});
+							setShowMessage({ error: false, message: props.messageSuccess });
+							{
+								document.getElementById("myform").reset();
+							}
+						})
+						.catch(err => {
+							setShowMessage({ error: true, message: props.messageError });
+						})
+				: actions
+						.updateSupplier(data)
+						.then(result => {
+							actions.listSupplier(); //actualizo el listado de clientes independientemente de crear o modificar
+							setShowMessage({ error: false, message: props.messageSuccess });
+						})
+						.catch(err => {
+							setShowMessage({ error: true, message: props.messageError });
+						});
+		} else {
+			setShowMessage({ error: true, message: "Tiene que llenar los datos del formulario." });
+		}
+
 		//	console.log("pepito");
 	};
 	return (
@@ -109,6 +115,7 @@ const ModalSupplier = props => {
 											id="supplier_postalcode"
 											type="number"
 											className="col-5"
+											min={0}
 											name="postalCode"
 											data-type="number"
 											onChange={handleInputChange}

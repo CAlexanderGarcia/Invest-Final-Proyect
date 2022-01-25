@@ -73,7 +73,7 @@ const ListBills = () => {
 									<td className="col-2 text-center">{value.number}</td>
 									<td className="col-2 text-center">{value.nif}</td>
 									<td className="col-4 text-center">{value.date}</td>
-									<td className="col-2 fw-bold text-center">{value.total}</td>
+									<td className="col-2 fw-bold text-center">{value.total.toFixed(2)}</td>
 									<td className="col-1">
 										<Link to={"billdetail/" + value.id}>
 											<button className="btn btn-formCreate2 shadow-lg">Detalles</button>
