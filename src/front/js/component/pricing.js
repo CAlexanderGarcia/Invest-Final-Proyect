@@ -31,9 +31,12 @@ const Pricing = () => {
 								<li>Soporte Email</li>
 								<li>Ayuda a través de Help Center</li>
 							</ul>
-							<button type="button" className="w-100 btn btn-lg btn-valoration1">
-								<Link to="/register-form">Regístrate Gratis</Link>
-							</button>
+
+							<Link to="/register-form">
+								<button type="button" className="w-100 btn btn-lg btn-valoration1">
+									Regístrate Gratis
+								</button>
+							</Link>
 						</div>
 					</div>
 				</div>

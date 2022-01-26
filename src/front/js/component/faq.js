@@ -105,9 +105,9 @@ const Faq = () => {
 				<div className="col-md-4">
 					<div className="card border-0">
 						<img src={call_center} className="card-img-top img-fluid" alt="..." />
-						<div className="card-body">
+						<div className="card-body text-center">
 							<p className="card-text">Puedes contactar con nosotros y resolveremos todas tus dudas.</p>
-							<a href="#" className="btn bg-bluedark-investy text-white">
+							<a href="tel:00000000" className="btn btn-lg px-5 btn-valoration2">
 								Llámanos
 							</a>
 						</div>

@@ -85,7 +85,7 @@ const ModalClient = props => {
 									<input
 										id="client_name"
 										type="text"
-										className="col-10"
+										className="col-10 input-focus"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.client.name}
