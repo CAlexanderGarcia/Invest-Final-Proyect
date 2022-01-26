@@ -13,12 +13,12 @@
 }
 .title{
     font-size: 500px;
-
 }
 
 .cd-supplier{
   margin-top: -24px;
 }
+
 .table-front{
    background:white;
    border-radius:3px;
@@ -29,6 +29,7 @@
    animation: float 5s infinite;
    color: black;
 }
+
 //TABLE 
 .table-fill {
     background: white;
@@ -54,7 +55,6 @@
    
   .th-CPP:last-child {
     border-top-right-radius:3px;
-    
   }
 
   .tr-CPP {
@@ -126,6 +126,14 @@
   color: white;
 }
 
+.link-trash2{
+  color: rgb(202, 95, 95);
+}
+
+.link-trash2:hover{
+  color: #003444;
+}
+
 .th-icons{
   text-align: right;
 }
@@ -135,7 +143,6 @@
   position: relative;
   display: inline-block;
   padding: 15px 30px;
-  color: black;
   letter-spacing: 4px;
   text-decoration: none;
   overflow: hidden;
@@ -229,6 +236,37 @@
       }
     }
   }
+}
+
+.btn-login-contrast{
+  background-color: #fff;
+  color:#003444;
+}
+
+.btn-login-contrast:hover{
+  background-color: #003444;
+  color:#fff;
+  text-shadow: 0px 0px 20px #fff;
+}
+
+.btn-navbar-custom{
+  color: #fff;
+  background-color: #003444;
+}
+
+.btn-navbar-custom:hover{
+  color: #fff;
+  text-shadow: 0px 0px 20px #fff;
+}
+
+.btn-create{
+  background-color: #003444;
+  color: #fff;
+}
+
+.btn-create:hover{
+  background-color: #fff;
+  color: #003444;
 }
 
 .aviso-legal{
@@ -461,6 +499,12 @@ a{color:inherit;text-decoration:none}
 
 .border-black-investy{
   border-color: #0C121A;
+}
+
+.input-focus:focus{
+  outline: none !important;
+    border-color: #003444;
+    box-shadow: 0 0 10px #003444;
 }
 
 //Graficos

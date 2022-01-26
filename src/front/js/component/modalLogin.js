@@ -26,7 +26,7 @@ const ModalLogin = () => {
 		<div>
 			<button
 				type="button"
-				className="btn buttom-nsi bluelight-investy btn-login-contrast"
+				className="btn buttom-nsi btn-login-contrast fw-bold"
 				data-bs-toggle="modal"
 				data-bs-target="#modalLogin">
 				<span id="span5" />
@@ -42,11 +42,9 @@ const ModalLogin = () => {
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
 				<div className="modal-dialog">
-					<div className="modal-content  bg-bluedark-investy p-4">
+					<div className="modal-content modalCSP p-4">
 						<div className="modal-header">
-							<label htmlFor="tab-1" className="tab text-center text-white">
-								Login
-							</label>
+							<h5 className="modal-title text-white">Login</h5>
 
 							<button
 								type="button"
@@ -56,8 +54,8 @@ const ModalLogin = () => {
 							/>
 						</div>
 
-						<div className="modal-body">
-							<form onSubmit={handleOnSubmit}>
+						<form onSubmit={handleOnSubmit}>
+							<div className="modal-body">
 								{error ? (
 									<div className={`alert alert-danger`} role="alert">
 										{error}
@@ -66,36 +64,37 @@ const ModalLogin = () => {
 									""
 								)}
 								<div className="mb-3">
-									<label htmlFor="user" className="form-label">
+									<label htmlFor="user" className="form-label text-white">
 										Email
 									</label>
 									<input
 										type="email"
 										name="email"
-										className="form-control"
+										className="form-control input-focus"
 										id="user"
 										onChange={handleInputChange}
 									/>
 								</div>
 								<div className="mb-3">
-									<label htmlFor="pass" className="form-label">
+									<label htmlFor="pass" className="form-label text-white">
 										Password
 									</label>
 									<input
 										type="password"
-										className="form-control"
+										className="form-control input-focus"
 										id="pass"
 										data-type="password"
 										name="password"
 										onChange={handleInputChange}
 									/>
 								</div>
-
-								<button type="submit" className="mt-4 btn btn-lg btn-formCreate2 w-100">
+							</div>
+							<div className="modal-footer justify-content-center">
+								<button type="submit" className="mt-4 btn btn-lg btn-formCreate w-50">
 									LOGIN
 								</button>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

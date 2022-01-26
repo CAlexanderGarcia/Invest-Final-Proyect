@@ -20,10 +20,10 @@ const Product = () => {
 							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
 							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
 						</p>
-						<div className="bg-white text-center">
+						<div className="text-center">
 							<button
 								type="button"
-								className="btn buttom-nsi fs-4 mt-5 fw-bold"
+								className="btn buttom-nsi fs-4 mt-5 fw-bold btn-create"
 								data-bs-toggle="modal"
 								data-bs-target={`#modal-create-product`}>
 								<span id="span5" />
@@ -35,10 +35,10 @@ const Product = () => {
 							<ModalProduct
 								idModal="modal-create-product"
 								buttonTitle="Añadir Productos"
-								modalHeader="Agregar Productos"
-								nameButton="Agregar"
-								messageSuccess="El Producto fue añadido con éxito"
-								messageError="El Producto no fue añadido"
+								modalHeader="Añadir productos"
+								nameButton="Añadir"
+								messageSuccess="El producto fue añadido con éxito"
+								messageError="El producto no fue añadido. Inténtalo de nuevo"
 								isCreated={true}
 								product={{}}
 							/>

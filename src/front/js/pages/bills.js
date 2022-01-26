@@ -4,7 +4,7 @@ import Footer from "../component/footer";
 
 export const Bills = () => {
 	return (
-		<div className="container-fluid">
+		<div className="col-12">
 			<BillsForm />
 			<Footer />
 		</div>

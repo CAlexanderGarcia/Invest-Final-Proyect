@@ -39,7 +39,7 @@ class Supplier(db.Model):
     email = db.Column(db.String(120), nullable=False)
     phoneNumber = db.Column(db.String(120), unique=False, nullable=False)
     userData_id = db.Column(db.Integer, db.ForeignKey('userdata.id'), nullable=False)
-    products = db.relationship('Product', backref='supplier', lazy=True)
+    products = db.relationship('Product', backref='supplier', lazy=True, cascade="all,delete")
     def serialize(self):
         return {
             "id" : self.id,
@@ -119,7 +119,7 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'), nullable=False)
-    productToBills = db.relationship('ProductToBill', backref='product', lazy=True)
+    productToBills = db.relationship('ProductToBill', backref='product', lazy=True, cascade="all,delete")
 
     def serialize(self):
         return {

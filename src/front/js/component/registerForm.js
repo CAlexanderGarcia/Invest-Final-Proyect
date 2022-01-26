@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/register.scss";
 import FooterFixed from "../component/footerFixed";
 
 const RegisterForm = () => {
@@ -57,14 +56,16 @@ const RegisterForm = () => {
 					submitForm(e);
 				}}
 				id="form">
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-6">
-						<div className="input-group border-bluedark rounded" id="name">
-							<span className="input-group-text bg-white bluedark-investy">Razón Social</span>
+						<div className="input-group" id="name">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Razón Social
+							</span>
 
 							<input
 								type="text"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								placeholder="Investy"
 								name="company"
 								onChange={handleInputChange}
@@ -74,12 +75,14 @@ const RegisterForm = () => {
 						</div>
 					</div>
 					<div className="col-md-6">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Nombre completo</span>
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Nombre completo
+							</span>
 
 							<input
 								type="text"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								placeholder="Investy"
 								name="surname"
 								onChange={handleInputChange}
@@ -88,13 +91,15 @@ const RegisterForm = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-6">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Dirección de empresa</span>
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Dirección de empresa
+							</span>
 							<input
 								type="text"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="address"
 								placeholder="Calle Investy, 12"
 								aria-label="adress"
@@ -105,11 +110,13 @@ const RegisterForm = () => {
 						</div>
 					</div>
 					<div className="col-md-6">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Email</span>
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Email
+							</span>
 							<input
 								type="email"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								placeholder="correo@correo.com"
 								name="email"
 								onChange={handleInputChange}
@@ -118,13 +125,15 @@ const RegisterForm = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-3">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Código postal</span>
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Código postal
+							</span>
 							<input
 								type="text"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="postalCode"
 								placeholder="Sólo números"
 								name="postalCode"
@@ -133,12 +142,14 @@ const RegisterForm = () => {
 							/>
 						</div>
 					</div>
-					<div className="col-md-5">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Tipo de documentación</span>
+					<div className="col-md-4">
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Tipo de documentación
+							</span>
 							<select
 								id="inputState"
-								className="form-select border-left-bluedark"
+								className="form-select border-left-bluedark border-bluedark input-focus"
 								onChange={handleInputChange}
 								name="typeDocumentation">
 								<option selected="true" disabled="disabled">
@@ -150,12 +161,14 @@ const RegisterForm = () => {
 							</select>
 						</div>
 					</div>
-					<div className="col-md-4">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Número de identificación</span>
+					<div className="col-md-5">
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Número de identificación
+							</span>
 							<input
 								type="text"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								name="numberDocumentation"
 								onChange={handleInputChange}
 								placeholder="Y99990000D"
@@ -165,14 +178,16 @@ const RegisterForm = () => {
 					</div>
 				</div>
 
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-6">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Contraseña</span>
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Contraseña
+							</span>
 
 							<input
 								type="password"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="password"
 								name="password"
 								onChange={handleInputChange}
@@ -182,12 +197,14 @@ const RegisterForm = () => {
 						</div>
 					</div>
 					<div className="col-md-6">
-						<div className="input-group border-bluedark rounded">
-							<span className="input-group-text bg-white bluedark-investy">Repetir Contraseña</span>
+						<div className="input-group">
+							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
+								Repetir Contraseña
+							</span>
 
 							<input
 								type="password"
-								className="form-control border-left-bluedark"
+								className="form-control border-left-bluedark border-bluedark input-focus"
 								id="passwordTwo"
 								name="passwordTwo"
 								onChange={handleInputChange}
@@ -198,14 +215,14 @@ const RegisterForm = () => {
 					</div>
 				</div>
 
-				<div className="form-grupo form-grupo-btn-enviar">
+				<div className="form-grupo form-grupo-btn-enviar mt-5 text-center">
 					<button
 						type="submit"
-						className="btn btn-lg btn-valoration2"
+						className="btn btn-lg btn-valoration2 shadow-lg p-3"
 						onKeyPress={e => {
 							e.key == "Enter" && e.preventDefault();
 						}}>
-						Registrarse
+						REGISTRARSE
 					</button>
 				</div>
 				{message.text && (

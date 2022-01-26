@@ -22,31 +22,36 @@ const ModalClient = props => {
 	const handleFormSubmit = event => {
 		event.preventDefault();
 		setShowMessage({});
-		props.isCreated
-			? actions
-					.createClient(data)
-					.then(result => {
-						actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
-						setShowMessage({ error: false, message: props.messageSuccess });
-						{
-							document.getElementById("myform").reset();
-						}
-					})
-					.catch(err => {
-						setShowMessage({ error: true, message: props.messageError });
-					})
-			: actions
-					.updateClient(data)
-					.then(result => {
-						actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
-						setShowMessage({ error: false, message: props.messageSuccess });
-						{
-							document.getElementById("myform").reset();
-						}
-					})
-					.catch(err => {
-						setShowMessage({ error: true, message: props.messageError });
-					});
+		if (data.name && data.address && data.nif && data.postalCode) {
+			props.isCreated
+				? actions
+						.createClient(data)
+						.then(result => {
+							actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
+							setData({});
+							setShowMessage({ error: false, message: props.messageSuccess });
+							{
+								document.getElementById("myform").reset();
+							}
+						})
+						.catch(err => {
+							setShowMessage({ error: true, message: props.messageError });
+						})
+				: actions
+						.updateClient(data)
+						.then(result => {
+							actions.listClient(); //actualizo el listado de clientes independientemente de crear o modificar
+							setShowMessage({ error: false, message: props.messageSuccess });
+							{
+								document.getElementById("myform").reset();
+							}
+						})
+						.catch(err => {
+							setShowMessage({ error: true, message: props.messageError });
+						});
+		} else {
+			setShowMessage({ error: true, message: "Completa todos los campos del formulario" });
+		}
 	};
 	return (
 		<>
@@ -103,7 +108,7 @@ const ModalClient = props => {
 								</div>
 
 								<div className="row">
-									<div className="col-6">
+									<div className="col-5">
 										<label htmlFor="client_nif" className="col-2 text-white">
 											NIF
 										</label>
@@ -118,7 +123,7 @@ const ModalClient = props => {
 										/>
 									</div>
 
-									<div className="col-6">
+									<div className="col-7">
 										<label htmlFor="client_postalcode" className="col-6 text-white">
 											Código Postal
 										</label>

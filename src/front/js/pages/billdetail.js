@@ -180,7 +180,9 @@ const BillDetail = () => {
 												<td className="text-center">{value.product.price}</td>
 												<td className="text-center">21%</td>
 												<td className="text-center">{value.quantity}</td>
-												<td className="text-center">{value.price * value.quantity * 1.21}</td>
+												<td className="text-center">
+													{(value.price * value.quantity * 1.21).toFixed(2)}
+												</td>
 											</tr>
 										</tbody>
 									);
@@ -194,7 +196,7 @@ const BillDetail = () => {
 								<input
 									type="text"
 									className="form-control fw-bold text-center"
-									value={data.bill.total}
+									value={data.bill.total.toFixed(2)}
 									readOnly
 									disabled
 								/>

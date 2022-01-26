@@ -31,7 +31,7 @@ export const Navbar = () => {
 				<div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
-							<HashLink to="/#informacion-link" className="btn buttom-nsi text-white">
+							<HashLink to="/#informacion-link" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -40,7 +40,7 @@ export const Navbar = () => {
 							</HashLink>
 						</li>
 						<li className="nav-item">
-							<HashLink to="/#suscripciones-link" className="btn buttom-nsi text-white">
+							<HashLink to="/#suscripciones-link" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -49,7 +49,7 @@ export const Navbar = () => {
 							</HashLink>
 						</li>
 						<li className="nav-item">
-							<HashLink to="/#nosotros-link" className="btn buttom-nsi text-white">
+							<HashLink to="/#nosotros-link" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -58,7 +58,7 @@ export const Navbar = () => {
 							</HashLink>
 						</li>
 						<li className="nav-item">
-							<Link to="register-form" className="btn buttom-nsi text-white">
+							<Link to="register-form" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span1" />
 								<span id="span2" />
 								<span id="span3" />

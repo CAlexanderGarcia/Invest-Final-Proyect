@@ -20,10 +20,10 @@ const Client = () => {
 							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
 							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
 						</p>
-						<div className="bg-white text-center">
+						<div className="text-center">
 							<button
 								type="button"
-								className="btn fs-4 buttom-nsi mt-5 fw-bold"
+								className="btn fs-4 buttom-nsi mt-5 fw-bold btn-create"
 								data-bs-toggle="modal"
 								data-bs-target={`#modal-create-client`}>
 								<span id="span9" />
@@ -35,10 +35,10 @@ const Client = () => {
 							<ModalClient
 								idModal="modal-create-client"
 								buttonTitle="Crear Cliente"
-								modalHeader="Creación de Clientes"
-								nameButton="Crear cliente"
-								messageSuccess="El Cliente fue creado con Exito"
-								messageError="El Cliente no fue creado"
+								modalHeader="Añadir cliente"
+								nameButton="Añadir"
+								messageSuccess="El cliente fue añadido con éxito"
+								messageError="El cliente no fue añadido. Inténtalo de nuevo"
 								isCreated={true}
 								client={{}}
 							/>

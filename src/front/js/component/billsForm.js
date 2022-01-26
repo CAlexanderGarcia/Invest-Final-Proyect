@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import { object } from "prop-types";
 
 const BillsForm = () => {
 	const { actions } = useContext(Context);
@@ -10,7 +11,7 @@ const BillsForm = () => {
 	const [dateBill, setDateBill] = useState(new Date().toDateString());
 	const [numberBill, setNumberBill] = useState();
 	const [currentUser, setCurrentUser] = useState();
-	const [message, setMessage] = useState();
+	const [message, setMessage] = useState({ text: null, error: null });
 
 	const [selectedClient, setSelectedClient] = useState();
 	const [selectedProducts, setSelectedProducts] = useState([]);
@@ -315,7 +316,7 @@ const BillsForm = () => {
 					{selectedProducts.map((product, i) => {
 						return (
 							<div className="row mb-2" key={i}>
-								<div className="col-lg-2">
+								<div className="col-lg-2 col-sm-2">
 									{i == 0 ? (
 										<label htmlFor="inputCode" className="form-label text-center bluedark-investy">
 											Referencia
@@ -330,7 +331,7 @@ const BillsForm = () => {
 										disabled
 									/>
 								</div>
-								<div className="col-lg-5">
+								<div className="col-lg-5 col-sm-4">
 									{i == 0 ? (
 										<label
 											htmlFor="nameProducts"
@@ -349,7 +350,7 @@ const BillsForm = () => {
 								</div>
 
 								{/* PRICE */}
-								<div className="col-lg-1">
+								<div className="col-lg-1 col-sm-1">
 									{i == 0 ? (
 										<label
 											htmlFor="inputQuantityUnity"
@@ -368,7 +369,7 @@ const BillsForm = () => {
 								</div>
 
 								{/* TAX */}
-								<div className="col-lg-1 col-sm-4">
+								<div className="col-lg-1 col-sm-1">
 									{i == 0 ? (
 										<label htmlFor="inputTax" className="form-label text-center bluedark-investy">
 											IVA
@@ -384,7 +385,7 @@ const BillsForm = () => {
 								</div>
 
 								{/* QUANTITY */}
-								<div className="col-lg-1 col-sm-4">
+								<div className="col-lg-1 col-sm-2">
 									{i == 0 ? (
 										<label htmlFor="inputQuantity" className="form-label text-end bluedark-investy">
 											Cantidad
@@ -455,7 +456,7 @@ const BillsForm = () => {
 								</div>
 
 								{/* PRICE * QUANTITY */}
-								<div className="col-lg-2 col-sm-4">
+								<div className="col-lg-2 col-sm-2">
 									{i == 0 ? (
 										<label htmlFor="inputPrice" className="form-label text-center bluedark-investy">
 											Subtotal
@@ -465,13 +466,13 @@ const BillsForm = () => {
 										<input
 											type="number"
 											className="form-control text-end"
-											value={product.productPrice}
+											value={product.productPrice.toFixed(2)}
 										/>
 										<i
 											onClick={() =>
 												setSelectedProducts(selectedProducts.filter((x, y) => y != i))
 											}
-											className="fas fa-trash-alt fs-1 ms-3 mb-0 text-danger"
+											className="fas fa-trash link-trash2 fs-3 ms-3 mt-1"
 										/>
 									</div>
 								</div>
@@ -483,7 +484,12 @@ const BillsForm = () => {
 				<div className="col-3 offset-9 text-end mt-5">
 					<div className="input-group">
 						<span className="input-group-text fw-bold">Total €</span>
-						<input type="number" className="form-control text-end fw-bold" readOnly value={total} />
+						<input
+							type="number"
+							className="form-control text-end fw-bold"
+							readOnly
+							value={total.toFixed(2)}
+						/>
 					</div>
 				</div>
 
@@ -493,33 +499,66 @@ const BillsForm = () => {
 						type="submit"
 						className="btn text-white bg-bluedark-investy"
 						onClick={async () => {
-							let response = await actions.createBill({
-								client_id: selectedClient.id,
-								number_bill: numberBill,
-								date_bill: dateBill,
-								products: selectedProducts,
-								total: total
-							});
-							if (response == true) {
-								setMessage(true);
-							} else {
-								setMessage(false);
+							if (
+								selectedClient != null &&
+								numberBill != null &&
+								numberBill != "" &&
+								selectedProducts.length > 0
+							) {
+								let response = await actions.createBill({
+									client_id: selectedClient.id,
+									number_bill: numberBill,
+									date_bill: dateBill,
+									products: selectedProducts,
+									total: total
+								});
+								if (response == true) {
+									setMessage({ text: "Factura creada correctamente", error: false });
+								} else {
+									setMessage({ text: "Factura no creada", error: true });
+								}
+							} else if (selectedClient == null) {
+								setMessage({ text: "Selecciona un cliente", error: true });
+							} else if (numberBill == null || numberBill == "") {
+								setMessage({ text: "Escribe un número de factura", error: true });
+							} else if (selectedProducts.length == 0) {
+								setMessage({ text: "Selecciona un producto", error: true });
 							}
 						}}>
 						Generar factura
 					</button>
 				</div>
 			</div>
-			{message == true ? (
-				<div className="">
-					<h2 className="featurette-heading bluedark-investy">Factura creada correctamente</h2>
-					<Link to="/listBills">
-						<button className="btn btn-formCreate2 shadow-lg">Volver a facturas</button>
-					</Link>
+			{message.error == false ? (
+				<div className="modal-dialog">
+					<div className="modal-content">
+						<div className="modal-body">
+							<p>{message.text}</p>
+						</div>
+						<div className="modal-footer">
+							<Link to="/listBills">
+								<button className="btn btn-formCreate2 shadow-lg">Volver a facturas</button>
+							</Link>
+						</div>
+					</div>
 				</div>
-			) : message == false ? (
-				<div className="">
-					<h2 className="featurette-heading text-danger">Factura no creada</h2>
+			) : message.error == true ? (
+				<div className="modal-backdrop fade show" tabIndex="-1">
+					<div className="modal-dialog bg-dark">
+						<div className="modal-content">
+							<div className="modal-body">
+								<p>{message.text}</p>
+							</div>
+							<div className="modal-footer">
+								<button
+									type="button"
+									onClick={() => setMessage({ text: null, error: null })}
+									className="btn btn-secondary">
+									Close
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			) : null}
 		</div>

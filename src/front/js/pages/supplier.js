@@ -20,10 +20,10 @@ const Supplier = () => {
 							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
 							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
 						</p>
-						<div className="bg-white text-center">
+						<div className="text-center">
 							<button
 								type="button"
-								className="btn fs-4 buttom-nsi mt-5 fw-bold"
+								className="btn fs-4 buttom-nsi mt-5 fw-bold btn-create"
 								data-bs-toggle="modal"
 								data-bs-target={`#modal-create-supplier`}>
 								<span id="span9" />
@@ -35,10 +35,10 @@ const Supplier = () => {
 							<ModalSupplier
 								idModal="modal-create-supplier"
 								buttonTitle="Crear Proveedor"
-								modalHeader="Creación de Proveedor"
-								nameButton="Crear"
-								messageSuccess="El Proveedor fue creado con Exito"
-								messageError="El Proveedor no fue creado. Inténtelo nuevamente"
+								modalHeader="Añadir proveedor"
+								nameButton="Añadir"
+								messageSuccess="El proveedor fue añadido con éxito"
+								messageError="El proveedor no fue añadido. Inténtalo de nuevo"
 								isCreated={true}
 								supplier={{}}
 							/>

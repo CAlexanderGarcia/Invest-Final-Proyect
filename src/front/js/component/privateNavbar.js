@@ -31,7 +31,7 @@ export const PrivateNavbar = () => {
 				<div className="collapse navbar-collapse justify-content-end" id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
-							<Link to="/client" className="btn buttom-nsi fs-5 text-white">
+							<Link to="/client" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -40,7 +40,7 @@ export const PrivateNavbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/product" className="btn buttom-nsi fs-5 text-white">
+							<Link to="/product" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -49,7 +49,7 @@ export const PrivateNavbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/supplier" className="btn buttom-nsi fs-5 text-white">
+							<Link to="/supplier" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -58,7 +58,7 @@ export const PrivateNavbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/listbills" className="btn buttom-nsi fs-5 text-white">
+							<Link to="/listbills" className="btn buttom-nsi btn-navbar-custom p-3 me-4">
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />
@@ -67,7 +67,7 @@ export const PrivateNavbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<button className="btn buttom-nsi fs-5 text-secondary" onClick={handleClick}>
+							<button className="btn buttom-nsi btn-login-contrast fw-bold" onClick={handleClick}>
 								<span id="span9" />
 								<span id="span10" />
 								<span id="span11" />

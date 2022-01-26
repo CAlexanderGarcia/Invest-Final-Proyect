@@ -25,11 +25,11 @@ const ListBills = () => {
 							Desde esta sección puedes gestionar todos tus clientes; desde su creación hasta su
 							eliminación. Posteriormente podrás visualizarlos y seleccionarlos en factura.
 						</p>
-						<div className="bg-white text-center">
+						<div className="text-center">
 							<Link to="bills">
 								<button
 									type="button"
-									className="btn fs-4 buttom-nsi mt-5 fw-bold"
+									className="btn fs-4 buttom-nsi mt-5 fw-bold btn-create"
 									data-bs-toggle="modal"
 									data-bs-target="">
 									<span id="span5" />
@@ -73,7 +73,7 @@ const ListBills = () => {
 									<td className="col-2 text-center">{value.number}</td>
 									<td className="col-2 text-center">{value.nif}</td>
 									<td className="col-4 text-center">{value.date}</td>
-									<td className="col-2 fw-bold text-center">{value.total}</td>
+									<td className="col-2 fw-bold text-center">{value.total.toFixed(2)}</td>
 									<td className="col-1">
 										<Link to={"billdetail/" + value.id}>
 											<button className="btn btn-formCreate2 shadow-lg">Detalles</button>
