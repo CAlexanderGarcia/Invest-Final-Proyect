@@ -35,10 +35,10 @@ const Product = () => {
 							<ModalProduct
 								idModal="modal-create-product"
 								buttonTitle="Añadir Productos"
-								modalHeader="Agregar Productos"
-								nameButton="Agregar"
-								messageSuccess="El Producto fue añadido con éxito"
-								messageError="El Producto no fue añadido"
+								modalHeader="Añadir productos"
+								nameButton="Añadir"
+								messageSuccess="El producto fue añadido con éxito"
+								messageError="El producto no fue añadido. Inténtalo de nuevo"
 								isCreated={true}
 								product={{}}
 							/>

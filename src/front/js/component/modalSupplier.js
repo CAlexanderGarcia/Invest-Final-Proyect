@@ -47,7 +47,7 @@ const ModalSupplier = props => {
 							setShowMessage({ error: true, message: props.messageError });
 						});
 		} else {
-			setShowMessage({ error: true, message: "Tiene que llenar los datos del formulario." });
+			setShowMessage({ error: true, message: "Completa todos los campos del formulario" });
 		}
 
 		//	console.log("pepito");

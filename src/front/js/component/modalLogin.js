@@ -42,11 +42,9 @@ const ModalLogin = () => {
 				aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
 				<div className="modal-dialog">
-					<div className="modal-content  bg-bluedark-investy p-4">
+					<div className="modal-content modalCSP p-4">
 						<div className="modal-header">
-							<label htmlFor="tab-1" className="tab text-center text-white">
-								Login
-							</label>
+							<h5 className="modal-title text-white">Login</h5>
 
 							<button
 								type="button"
@@ -56,8 +54,8 @@ const ModalLogin = () => {
 							/>
 						</div>
 
-						<div className="modal-body">
-							<form onSubmit={handleOnSubmit}>
+						<form onSubmit={handleOnSubmit}>
+							<div className="modal-body">
 								{error ? (
 									<div className={`alert alert-danger`} role="alert">
 										{error}
@@ -90,12 +88,13 @@ const ModalLogin = () => {
 										onChange={handleInputChange}
 									/>
 								</div>
-
-								<button type="submit" className="mt-4 btn btn-lg btn-formCreate2 w-100">
+							</div>
+							<div className="modal-footer justify-content-center">
+								<button type="submit" className="mt-4 btn btn-lg btn-formCreate w-50">
 									LOGIN
 								</button>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/register.scss";
 import FooterFixed from "../component/footerFixed";
 
 const RegisterForm = () => {
@@ -57,7 +56,7 @@ const RegisterForm = () => {
 					submitForm(e);
 				}}
 				id="form">
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-6">
 						<div className="input-group" id="name">
 							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
@@ -92,7 +91,7 @@ const RegisterForm = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-6">
 						<div className="input-group">
 							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
@@ -126,7 +125,7 @@ const RegisterForm = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-3">
 						<div className="input-group">
 							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
@@ -179,7 +178,7 @@ const RegisterForm = () => {
 					</div>
 				</div>
 
-				<div className="row g-3 mt-1">
+				<div className="row g-3 mt-3">
 					<div className="col-md-6">
 						<div className="input-group">
 							<span className="input-group-text bg-bluedark-investy border-bluedark text-white">
@@ -216,10 +215,10 @@ const RegisterForm = () => {
 					</div>
 				</div>
 
-				<div className="form-grupo form-grupo-btn-enviar">
+				<div className="form-grupo form-grupo-btn-enviar mt-5 text-center">
 					<button
 						type="submit"
-						className="btn btn-lg btn-valoration2 shadow-lg"
+						className="btn btn-lg btn-valoration2 shadow-lg p-3"
 						onKeyPress={e => {
 							e.key == "Enter" && e.preventDefault();
 						}}>

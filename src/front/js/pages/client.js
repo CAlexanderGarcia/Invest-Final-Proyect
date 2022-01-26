@@ -35,10 +35,10 @@ const Client = () => {
 							<ModalClient
 								idModal="modal-create-client"
 								buttonTitle="Crear Cliente"
-								modalHeader="Creación de Clientes"
-								nameButton="Crear cliente"
-								messageSuccess="El Cliente fue creado con Exito"
-								messageError="El Cliente no fue creado"
+								modalHeader="Añadir cliente"
+								nameButton="Añadir"
+								messageSuccess="El cliente fue añadido con éxito"
+								messageError="El cliente no fue añadido. Inténtalo de nuevo"
 								isCreated={true}
 								client={{}}
 							/>

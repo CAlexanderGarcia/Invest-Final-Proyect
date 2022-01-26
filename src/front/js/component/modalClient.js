@@ -50,7 +50,7 @@ const ModalClient = props => {
 							setShowMessage({ error: true, message: props.messageError });
 						});
 		} else {
-			setShowMessage({ error: true, message: "Tiene que llenar el formulario" });
+			setShowMessage({ error: true, message: "Completa todos los campos del formulario" });
 		}
 	};
 	return (

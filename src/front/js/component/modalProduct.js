@@ -52,7 +52,7 @@ const ModalProduct = props => {
 							setShowMessage({ error: true, message: props.messageError });
 						});
 		} else {
-			setShowMessage({ error: true, message: "Tiene que llenar el formulario" });
+			setShowMessage({ error: true, message: "Completa todos los campos del formulario" });
 		}
 
 		//	console.log("pepito");
@@ -154,7 +154,7 @@ const ModalProduct = props => {
 										required
 										defaultValue="DEFAULT">
 										<option disabled selected>
-											-Choose here-
+											Elige un proveedor
 										</option>
 										{store.listSuppliers.map((value, index) => {
 											return (

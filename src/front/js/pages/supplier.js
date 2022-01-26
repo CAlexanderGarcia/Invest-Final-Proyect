@@ -35,10 +35,10 @@ const Supplier = () => {
 							<ModalSupplier
 								idModal="modal-create-supplier"
 								buttonTitle="Crear Proveedor"
-								modalHeader="Creación de Proveedor"
-								nameButton="Crear"
-								messageSuccess="El Proveedor fue creado con Exito"
-								messageError="El Proveedor no fue creado. Inténtelo nuevamente"
+								modalHeader="Añadir proveedor"
+								nameButton="Añadir"
+								messageSuccess="El proveedor fue añadido con éxito"
+								messageError="El proveedor no fue añadido. Inténtalo de nuevo"
 								isCreated={true}
 								supplier={{}}
 							/>
