@@ -510,3 +510,8 @@ a{color:inherit;text-decoration:none}
     border-color: #003444;
     box-shadow: 0 0 10px #003444;
 }
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}

@@ -91,23 +91,7 @@ const ListBills = () => {
 					)}
 				</tbody>
 			</table>
-			<nav aria-label="...">
-				<ul className="pagination justify-content-center">
-					<li className="page-item">
-						<a className="page-link bluedark-investy">Previous</a>
-					</li>
-					<li className="page-item">
-						<a className="page-link bluedark-investy" href="#">
-							1
-						</a>
-					</li>
-					<li className="page-item">
-						<a className="page-link bluedark-investy" href="#">
-							Next
-						</a>
-					</li>
-				</ul>
-			</nav>
+
 			{/*<h1 className="text-center fw-bolder mt-5">COMPRAS</h1>
 			<table className="table container my-5 shadow">
 				<thead className="table-primary text-center">

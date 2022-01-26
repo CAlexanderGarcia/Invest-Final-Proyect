@@ -536,31 +536,33 @@ const BillsForm = () => {
 				</div>
 			</div>
 			{message.error == false ? (
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body">
-							<p>{message.text}</p>
-						</div>
-						<div className="modal-footer">
-							<Link to="/listBills">
-								<button className="btn btn-formCreate2 shadow-lg">Volver a facturas</button>
-							</Link>
+				<div className="modal-backdrop fade show" tabIndex="-1">
+					<div className="modal-dialog">
+						<div className="modal-content modalCSP">
+							<div className="modal-body text-center justify-content-center">
+								<h5 className="modal-title text-white">{message.text}</h5>
+							</div>
+							<div className="modal-footer justify-content-center">
+								<Link to="/listBills">
+									<button className="btn px-3 rounded btn-formCreate">Volver a facturas</button>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>
 			) : message.error == true ? (
 				<div className="modal-backdrop fade show" tabIndex="-1">
-					<div className="modal-dialog bg-dark">
-						<div className="modal-content">
-							<div className="modal-body">
-								<p>{message.text}</p>
+					<div className="modal-dialog">
+						<div className="modal-content modalCSP">
+							<div className="modal-body text-center justify-content-center">
+								<h5 className="modal-title text-white">{message.text}</h5>
 							</div>
-							<div className="modal-footer">
+							<div className="modal-footer justify-content-center">
 								<button
 									type="button"
 									onClick={() => setMessage({ text: null, error: null })}
-									className="btn btn-secondary">
-									Close
+									className="btn px-3 rounded btn-formCreate">
+									Cerrar
 								</button>
 							</div>
 						</div>
