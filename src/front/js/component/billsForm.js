@@ -498,7 +498,7 @@ const BillsForm = () => {
 								value={total.toFixed(2)}
 							/>
 						</div>
-					</div>
+					</div> 
 				</div>
 
 				{/* BUTTON */}
