@@ -85,7 +85,7 @@ const ModalClient = props => {
 									<input
 										id="client_name"
 										type="text"
-										className="col-10"
+										className="col-10 input-focus"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.client.name}
@@ -99,7 +99,7 @@ const ModalClient = props => {
 									<input
 										id="client_address"
 										type="text"
-										className="col-10"
+										className="col-10 input-focus"
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
@@ -108,14 +108,14 @@ const ModalClient = props => {
 								</div>
 
 								<div className="row">
-									<div className="col-5">
+									<div className="col-6">
 										<label htmlFor="client_nif" className="col-2 text-white">
 											NIF
 										</label>
 										<input
 											id="client_nif"
 											type="text"
-											className="col-10"
+											className="col-10 input-focus"
 											name="nif"
 											data-type="text"
 											onChange={handleInputChange}
@@ -123,14 +123,14 @@ const ModalClient = props => {
 										/>
 									</div>
 
-									<div className="col-7">
-										<label htmlFor="client_postalcode" className="col-6 text-white">
+									<div className="col-6">
+										<label htmlFor="client_postalcode" className="col-7 text-white">
 											Código Postal
 										</label>
 										<input
 											id="client_postalcode"
 											type="number"
-											className="col-6"
+											className="col-5 input-focus"
 											name="postalCode"
 											data-type="number"
 											onChange={handleInputChange}

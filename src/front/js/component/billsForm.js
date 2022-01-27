@@ -85,10 +85,10 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-12">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Nombre</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">Nombre</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							value={currentUser ? currentUser.surname : null}
 							readOnly
 							disabled
@@ -97,10 +97,12 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Dirección</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">
+							Dirección
+						</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							value={currentUser ? currentUser.address : null}
 							readOnly
 							disabled
@@ -109,10 +111,12 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-4">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Compañia</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">
+							Compañia
+						</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							value={currentUser ? currentUser.company : null}
 							readOnly
 							disabled
@@ -121,10 +125,10 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">C.P.</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">C.P.</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							value={currentUser ? currentUser.postalCode : null}
 							readOnly
 							disabled
@@ -133,10 +137,10 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-8">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Email</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">Email</span>
 						<input
 							type="email"
-							className="form-control"
+							className="form-control border-bluedark"
 							value={currentUser ? currentUser.email : null}
 							readOnly
 							disabled
@@ -145,10 +149,10 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">DNI</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">DNI</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							value={currentUser ? currentUser.numberDocumentation : null}
 							readOnly
 							disabled
@@ -171,7 +175,7 @@ const BillsForm = () => {
 				<select
 					onChange={e => setSelectedClient(clients.find(x => x.id.toString() == e.target.value))}
 					id="inputState"
-					className="form-select mb-3 border-1 border-bluedark-investy">
+					className="form-select mb-3 border-1 border-bluedark-investy input-focus">
 					<option selected>Pulsa aquí para agregar un cliente</option>
 					{clients
 						? clients.map((x, y) => {
@@ -188,10 +192,10 @@ const BillsForm = () => {
 			<div className="row g-3">
 				<div className="col-md-9">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Nombre</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">Nombre</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							name="name"
 							value={selectedClient ? selectedClient.name : ""}
 							readOnly
@@ -201,10 +205,10 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-3">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">NIF</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">NIF</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							name="nif"
 							value={selectedClient ? selectedClient.nif : ""}
 							readOnly
@@ -214,10 +218,12 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-10">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">Dirección</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">
+							Dirección
+						</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							name="address"
 							value={selectedClient ? selectedClient.address : ""}
 							readOnly
@@ -227,10 +233,10 @@ const BillsForm = () => {
 				</div>
 				<div className="col-md-2">
 					<div className="input-group">
-						<span className="input-group-text bg-bluedark-investy text-white">C.P.</span>
+						<span className="input-group-text bg-bluedark-investy text-white border-bluedark">C.P.</span>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control border-bluedark"
 							name="postalCode"
 							value={selectedClient ? selectedClient.postalCode : ""}
 							readOnly
@@ -264,7 +270,7 @@ const BillsForm = () => {
 								e.target.value = 0;
 							}
 						}}
-						className="form-select mb-3 border-1 border-bluedark-investy">
+						className="form-select mb-3 border-1 border-bluedark-investy input-focus">
 						<option value={0} selected>
 							Pulsa aquí para agregar un producto
 						</option>
@@ -286,7 +292,7 @@ const BillsForm = () => {
 					</label>
 					<input
 						type="text"
-						className="form-control"
+						className="form-control input-focus border-bluedark"
 						value={numberBill}
 						onChange={e => setNumberBill(e.target.value)}
 						required
@@ -304,7 +310,7 @@ const BillsForm = () => {
 					</label>
 					<input
 						type="text"
-						className="form-control"
+						className="form-control border-bluedark"
 						value={new Date().toLocaleString() + ""}
 						readOnly
 						disabled
@@ -324,7 +330,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="text"
-										className="form-control"
+										className="form-control border-bluedark"
 										name="code"
 										value={product.code}
 										readOnly
@@ -341,7 +347,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="text"
-										className="form-control"
+										className="form-control border-bluedark"
 										name="nameProduct"
 										value={product.name}
 										readOnly
@@ -360,7 +366,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="number"
-										className="form-control text-end"
+										className="form-control text-end border-bluedark input-focus"
 										name="price"
 										value={product.price}
 										readOnly
@@ -377,7 +383,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="text"
-										className="form-control text-end"
+										className="form-control text-end border-bluedark input-focus"
 										name="tax"
 										value={21}
 										readOnly
@@ -393,7 +399,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="number"
-										className="form-control text-end"
+										className="form-control text-end input-focus border-bluedark"
 										defaultValue={1}
 										onChange={e => {
 											let quantity = products.find(x => x.id == product.id).quantity;
@@ -465,7 +471,7 @@ const BillsForm = () => {
 									<div className="d-flex">
 										<input
 											type="number"
-											className="form-control text-end"
+											className="form-control text-end input-focus border-bluedark"
 											value={product.productPrice.toFixed(2)}
 										/>
 										<i
@@ -481,15 +487,17 @@ const BillsForm = () => {
 					})}
 				</div>
 
-				<div className="col-3 offset-9 text-end mt-5">
-					<div className="input-group">
-						<span className="input-group-text fw-bold">Total €</span>
-						<input
-							type="number"
-							className="form-control text-end fw-bold"
-							readOnly
-							value={total.toFixed(2)}
-						/>
+				<div className="row justify-content-end pe-0 mb-4">
+					<div className="col-lg-3 col-sm-6 text-end mt-5 pe-0">
+						<div className="input-group">
+							<span className="input-group-text fw-bold total-red border-bluedark">Total €</span>
+							<input
+								type="number"
+								className="form-control text-end fw-bold border-bluedark input-focus"
+								readOnly
+								value={total.toFixed(2)}
+							/>
+						</div>
 					</div>
 				</div>
 
@@ -497,7 +505,7 @@ const BillsForm = () => {
 				<div className="col-12 text-end">
 					<button
 						type="submit"
-						className="btn text-white bg-bluedark-investy"
+						className="btn btn-valoration2 p-3 shadow-lg"
 						onClick={async () => {
 							if (
 								selectedClient != null &&
@@ -530,31 +538,33 @@ const BillsForm = () => {
 				</div>
 			</div>
 			{message.error == false ? (
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body">
-							<p>{message.text}</p>
-						</div>
-						<div className="modal-footer">
-							<Link to="/listBills">
-								<button className="btn btn-formCreate2 shadow-lg">Volver a facturas</button>
-							</Link>
+				<div className="modal-backdrop fade show" tabIndex="-1">
+					<div className="modal-dialog">
+						<div className="modal-content modalCSP">
+							<div className="modal-body text-center justify-content-center">
+								<h5 className="modal-title text-white">{message.text}</h5>
+							</div>
+							<div className="modal-footer justify-content-center">
+								<Link to="/listBills">
+									<button className="btn px-3 rounded btn-formCreate">Volver a facturas</button>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>
 			) : message.error == true ? (
 				<div className="modal-backdrop fade show" tabIndex="-1">
-					<div className="modal-dialog bg-dark">
-						<div className="modal-content">
-							<div className="modal-body">
-								<p>{message.text}</p>
+					<div className="modal-dialog">
+						<div className="modal-content modalCSP">
+							<div className="modal-body text-center justify-content-center">
+								<h5 className="modal-title text-white">{message.text}</h5>
 							</div>
-							<div className="modal-footer">
+							<div className="modal-footer justify-content-center">
 								<button
 									type="button"
 									onClick={() => setMessage({ text: null, error: null })}
-									className="btn btn-secondary">
-									Close
+									className="btn px-3 rounded btn-formCreate">
+									Cerrar
 								</button>
 							</div>
 						</div>

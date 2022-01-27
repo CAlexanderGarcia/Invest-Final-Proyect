@@ -180,7 +180,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			/********************PRODUCTOS**********************/
 			createProduct: data => {
-				console.log(data);
 				const store = getStore();
 				const response = fetch(process.env.BACKEND_URL + "/product", {
 					method: "POST",

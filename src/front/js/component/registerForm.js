@@ -40,14 +40,14 @@ const RegisterForm = () => {
 	};
 
 	return register ? (
-		<div className="container form">
+		<div className="container">
 			<div className="alert alert-success mt-4" role="alert">
 				Su usuario se ha creado correctamente
 			</div>
 			<FooterFixed />
 		</div>
 	) : (
-		<div className="container form">
+		<div className="container">
 			<h2 className="featurette-heading bluedark-investy mt-4">Registro</h2>
 			<hr className="featurette-divider bluedark-investy" />
 			<form

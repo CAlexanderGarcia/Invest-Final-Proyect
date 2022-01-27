@@ -89,7 +89,7 @@ const ModalProduct = props => {
 									<input
 										id="product_name"
 										type="text"
-										className="col-10"
+										className="col-10 input-focus"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.product.name}
@@ -98,27 +98,27 @@ const ModalProduct = props => {
 
 								<div className="row my-3">
 									<div className="col-5">
-										<label htmlFor="product_code" className="col-4 text-white">
+										<label htmlFor="product_code" className="col-5 text-white">
 											Código
 										</label>
 										<input
 											id="product_code"
-											type="text"
-											className="col-8"
+											type="number"
+											className="col-7 input-focus"
 											name="code"
-											data-type="text"
+											data-type="number"
 											onChange={handleInputChange}
 											defaultValue={props.product.code}
 										/>
 									</div>
-									<div className="col-3 px-0">
-										<label htmlFor="product_quantity" className="col-8 text-white">
+									<div className="col-4 px-0">
+										<label htmlFor="product_quantity" className="col-7 text-white">
 											Cantidad
 										</label>
 										<input
 											id="product_quantity"
 											type="number"
-											className="col-4"
+											className="col-5 input-focus"
 											name="quantity"
 											min={0}
 											data-type="text"
@@ -126,14 +126,14 @@ const ModalProduct = props => {
 											defaultValue={props.product.quantity}
 										/>
 									</div>
-									<div className="col-4">
-										<label htmlFor="product_price" className="col-5 text-white">
-											Precio
+									<div className="col-3">
+										<label htmlFor="product_price" className="col-4 text-white">
+											€
 										</label>
 										<input
 											id="product_price"
 											type="number"
-											className="col-7"
+											className="col-8 input-focus"
 											name="price"
 											min={0}
 											data-type="number"
@@ -148,7 +148,7 @@ const ModalProduct = props => {
 									</label>
 									<select
 										id="product_supplier"
-										className="col-9 p-2"
+										className="col-9 p-2 input-focus"
 										name="supplier"
 										onChange={handleInputChange}
 										required

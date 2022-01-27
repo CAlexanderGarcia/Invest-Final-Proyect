@@ -84,7 +84,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_name"
 										type="text"
-										className="col-10"
+										className="col-10 input-focus"
 										name="name"
 										onChange={handleInputChange}
 										defaultValue={props.supplier.name}
@@ -98,7 +98,7 @@ const ModalSupplier = props => {
 									<input
 										id="supplier_address"
 										type="text"
-										className="col-10"
+										className="col-10 input-focus"
 										name="address"
 										data-type="text"
 										onChange={handleInputChange}
@@ -114,7 +114,7 @@ const ModalSupplier = props => {
 										<input
 											id="supplier_postalcode"
 											type="number"
-											className="col-5"
+											className="col-5 input-focus"
 											min={0}
 											name="postalCode"
 											data-type="number"
@@ -130,7 +130,7 @@ const ModalSupplier = props => {
 										<input
 											id="supplier_phoneNumber"
 											type="number"
-											className="col-7"
+											className="col-7 input-focus"
 											name="phoneNumber"
 											data-type="number"
 											onChange={handleInputChange}
@@ -147,7 +147,7 @@ const ModalSupplier = props => {
 										<input
 											id="supplier_postalcode"
 											type="email"
-											className="col-9"
+											className="col-9 input-focus"
 											name="email"
 											data-type="email"
 											onChange={handleInputChange}
@@ -162,7 +162,7 @@ const ModalSupplier = props => {
 										<input
 											id="supplier_nif"
 											type="text"
-											className="col-9"
+											className="col-9 input-focus"
 											name="nif"
 											data-type="text"
 											onChange={handleInputChange}
