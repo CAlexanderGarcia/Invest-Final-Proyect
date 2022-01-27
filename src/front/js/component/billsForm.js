@@ -366,7 +366,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="number"
-										className="form-control text-end border-bluedark"
+										className="form-control text-end border-bluedark input-focus"
 										name="price"
 										value={product.price}
 										readOnly
@@ -383,7 +383,7 @@ const BillsForm = () => {
 									) : null}
 									<input
 										type="text"
-										className="form-control text-end border-bluedark"
+										className="form-control text-end border-bluedark input-focus"
 										name="tax"
 										value={21}
 										readOnly
@@ -487,15 +487,17 @@ const BillsForm = () => {
 					})}
 				</div>
 
-				<div className="col-3 offset-9 text-end mt-5">
-					<div className="input-group">
-						<span className="input-group-text fw-bold total-red border-bluedark">Total €</span>
-						<input
-							type="number"
-							className="form-control text-end fw-bold border-bluedark"
-							readOnly
-							value={total.toFixed(2)}
-						/>
+				<div className="row justify-content-end pe-0 mb-4">
+					<div className="col-lg-3 col-sm-6 text-end mt-5 pe-0">
+						<div className="input-group">
+							<span className="input-group-text fw-bold total-red border-bluedark">Total €</span>
+							<input
+								type="number"
+								className="form-control text-end fw-bold border-bluedark input-focus"
+								readOnly
+								value={total.toFixed(2)}
+							/>
+						</div>
 					</div>
 				</div>
 

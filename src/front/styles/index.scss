@@ -515,3 +515,12 @@ a{color:inherit;text-decoration:none}
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
 }
+
+.accordion-button:not(.collapsed){
+  color: #003444;
+  background-color: #dddd;
+}
+
+.accordion-button:focus{
+  border-color: #00B4CD;
+}

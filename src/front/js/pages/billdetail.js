@@ -246,16 +246,17 @@ const BillDetail = () => {
 							</table>
 						</div>
 
-						<div className="col-md-3 offset-9">
-							<div className="input-group">
-								<span className="input-group-text total-red border-bluedark">TOTAL €</span>
-								<input
-									type="text"
-									className="form-control fw-bold text-center border-bluedark"
-									value={data.bill.total.toFixed(2)}
-									readOnly
-									disabled
-								/>
+						<div className="row justify-content-end pe-0 mb-4">
+							<div className="col-lg-3 col-sm-6 text-end mt-5 pe-0">
+								<div className="input-group">
+									<span className="input-group-text fw-bold total-red border-bluedark">Total €</span>
+									<input
+										type="number"
+										className="form-control text-end fw-bold border-bluedark input-focus"
+										value={data.bill.total.toFixed(2)}
+										readOnly
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
