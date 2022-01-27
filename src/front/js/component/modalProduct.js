@@ -103,10 +103,10 @@ const ModalProduct = props => {
 										</label>
 										<input
 											id="product_code"
-											type="text"
+											type="number"
 											className="col-7 input-focus"
 											name="code"
-											data-type="text"
+											data-type="number"
 											onChange={handleInputChange}
 											defaultValue={props.product.code}
 										/>
